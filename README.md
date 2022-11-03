@@ -9,19 +9,19 @@ In early development
 
 # About architecture
 libs\
-   development-kit - Helper functions, hooks and facedes for external libraries hooks\
-   ui - Reusable UI components, facades for MUI components\
+---development-kit - Helper functions, hooks and facedes for external libraries hooks\
+---ui - Reusable UI components, facades for MUI components\
 online-forms\
-   firebase - Firebase configuration\
-   modules - Implementations of application features. Every module includes\
-      components - components related to specific module\
-      logic - hooks with implemented module logic\
-      containers - place where logic and components are connected\
-           module-name.module.tsx - entry level to using module\
-   pages - place to connect multiple modules, add layout, entry level for routing\
-   routes - configuration of routes\
-   shared - place to store shared things - contexts, types, consts etc\
-   theme - configuration of application theme - global styles, theme\
+---firebase - Firebase configuration\
+---modules - Implementations of application features. Every module includes\
+   ---components - components related to specific module\
+   ---logic - hooks with implemented module logic\
+   ---containers - place where logic and components are connected\
+        ---module-name.module.tsx - entry level to using module\
+   ---pages - place to connect multiple modules, add layout, entry level for routing\
+   ---routes - configuration of routes\
+   ---shared - place to store shared things - contexts, types, consts etc\
+   ---theme - configuration of application theme - global styles, theme\
    
 # Current stack
 - React
