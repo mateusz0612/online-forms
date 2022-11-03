@@ -3,10 +3,17 @@ import { createGlobalStyle, DefaultTheme } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
     body {
       background-image: ${(props) => props.theme.pallete.backgroundPrimary};
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100vh;
       padding: 0;
       margin: 0;
       font-family: 'Roboto', sans-serif;
       color: rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
     }
 `;
 

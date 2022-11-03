@@ -1,18 +1,32 @@
-import { Route } from "react-router-dom";
+import { Navigate, Route } from "react-router-dom";
 
 import { LandingPage } from "online-forms/pages/LandingPage";
+import { DashboardPage } from "online-forms/pages/DashboardPage";
 
 export enum Paths {
-  LandingPage = "/",
+  Landing = "/",
+  Dashboard = "/dashboard",
   DefaultRoute = "/*",
 }
 
 export const AppRoutes = [
+  <Route path={Paths.Landing} key={Paths.Landing} element={<LandingPage />} />,
   <Route
-    path={Paths.LandingPage}
-    key={Paths.LandingPage}
-    element={<LandingPage />}
+    path={Paths.DefaultRoute}
+    key={Paths.DefaultRoute}
+    element={<p>on such page</p>}
   />,
 ];
 
-export const AuthAppRoutes = [];
+export const AuthAppRoutes = [
+  <Route
+    path={Paths.Dashboard}
+    key={Paths.Dashboard}
+    element={<DashboardPage />}
+  />,
+  <Route
+    path={Paths.DefaultRoute}
+    key={Paths.DefaultRoute}
+    element={<Navigate to={Paths.Dashboard} />}
+  />,
+];

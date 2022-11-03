@@ -30,4 +30,5 @@ export const SwitchFormLink = styled.p`
   text-decoration: underline;
   cursor: pointer;
   text-align: center;
+  margin-top: 10px;
 `;

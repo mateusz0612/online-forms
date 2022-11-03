@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import { useForm } from "libs/development-kit/form";
 import { useAuthContext } from "online-forms/shared/auth";
 import { ILoginCredentials } from "online-forms/shared/types";
+import { Paths } from "online-forms/routes";
 import * as yup from "yup";
 
 const DEFAULT_LOGIN_FORM_VALUES: ILoginCredentials = {
@@ -35,6 +37,7 @@ export const useLoginForm = () => {
     });
 
   const { loginUser } = useAuthContext();
+  const navigate = useNavigate();
 
   const onError = (errorCode: string) => {
     switch (errorCode) {
@@ -52,6 +55,8 @@ export const useLoginForm = () => {
 
   const onSubmit = handleSubmit(async (credentials) => {
     await loginUser(credentials, (error) => onError(error?.code));
+
+    navigate(Paths.Dashboard);
   });
 
   return {
