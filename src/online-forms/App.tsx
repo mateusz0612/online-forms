@@ -1,6 +1,7 @@
-import { BrowserRouter, Routes, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes } from "react-router-dom";
 import { Progress } from "libs/ui";
-import { AppRoutes, AuthAppRoutes, Paths } from "online-forms/routes";
+import { NavbarModule } from "online-forms/modules/Navbar";
+import { AppRoutes, AuthAppRoutes } from "online-forms/routes";
 import { useAuthContext } from "online-forms/shared/auth";
 
 function App() {
@@ -11,9 +12,12 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Routes>{user ? AuthAppRoutes : AppRoutes}</Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <NavbarModule />
+        <Routes>{user ? AuthAppRoutes : AppRoutes}</Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

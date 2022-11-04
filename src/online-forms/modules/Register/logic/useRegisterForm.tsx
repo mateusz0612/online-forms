@@ -1,4 +1,6 @@
 import { useForm } from "libs/development-kit/form";
+import { useNavigate } from "libs/development-kit/router";
+import { Paths } from "online-forms/routes";
 import { useAuthContext } from "online-forms/shared/auth";
 import { IRegisterCredentials } from "online-forms/shared/types";
 import * as yup from "yup";
@@ -43,6 +45,7 @@ export const useRegisterForm = () => {
       validationSchema: registerFormSchema,
     });
 
+  const navigate = useNavigate();
   const { registerUser } = useAuthContext();
 
   const onError = (errorCode: string) => {
@@ -54,10 +57,13 @@ export const useRegisterForm = () => {
     }
   };
 
-  const onSubmit = handleSubmit(
-    async (credentials) =>
-      await registerUser(credentials, (error) => onError(error?.code))
-  );
+  const onSubmit = handleSubmit(async (credentials) => {
+    await registerUser(
+      credentials,
+      () => navigate(Paths.Dashboard),
+      (error) => onError(error?.code)
+    );
+  });
 
   return {
     register,
