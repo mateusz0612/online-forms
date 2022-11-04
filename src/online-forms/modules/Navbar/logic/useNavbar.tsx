@@ -18,15 +18,15 @@ export const useNavbar = () => {
   };
 
   const settings: ISetting[] = [
+    { label: "Profile", onClick: () => console.log("Profile clicked") },
     {
       label: "Logout",
       onClick: onLogoutClick,
     },
-    { label: "Profile", onClick: () => console.log("Profile clicked") },
   ];
 
   return {
     links,
     settings,
-  };
+  } as const;
 };
