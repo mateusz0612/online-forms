@@ -21,7 +21,7 @@ online-forms\
 ------pages - place to connect multiple modules, add layout, entry level for routing\
 ------routes - configuration of routes\
 ------shared - place to store shared things - contexts, types, consts etc\
-------theme - configuration of application theme - global styles, theme\
+------theme - configuration of application theme - global styles, theme
    
 # Current stack
 - React
