@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes } from "react-router-dom";
 import { Progress } from "libs/ui";
-import { NavbarModule } from "online-forms/modules/Navbar";
+import { Navbar } from "online-forms/modules/Navbar";
 import { AppRoutes, AuthAppRoutes } from "online-forms/routes";
 import { useAuthContext } from "online-forms/shared/auth";
 
@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavbarModule />
+        <Navbar />
         <Routes>{user ? AuthAppRoutes : AppRoutes}</Routes>
       </BrowserRouter>
     </>

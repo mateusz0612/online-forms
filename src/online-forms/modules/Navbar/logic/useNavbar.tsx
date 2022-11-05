@@ -1,4 +1,4 @@
-import { useNavigate } from "libs/development-kit/router";
+import { useNavigate } from "libs/development-kit/routing";
 import { useAuthContext } from "online-forms/shared/auth";
 import { ILink, ISetting } from "../Navbar.types";
 import { Paths } from "online-forms/routes";
@@ -9,7 +9,7 @@ export const useNavbar = () => {
 
   const links: ILink[] = [
     { label: "My forms", to: Paths.Dashboard },
-    { label: "Create from", to: Paths.Dashboard },
+    { label: "Create form", to: Paths.Dashboard },
   ];
 
   const onLogoutClick = async () => {

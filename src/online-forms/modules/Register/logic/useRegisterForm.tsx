@@ -1,5 +1,5 @@
 import { useForm } from "libs/development-kit/form";
-import { useNavigate } from "libs/development-kit/router";
+import { useNavigate } from "libs/development-kit/routing";
 import { Paths } from "online-forms/routes";
 import { useAuthContext } from "online-forms/shared/auth";
 import { IRegisterCredentials } from "online-forms/shared/types";

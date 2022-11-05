@@ -1,1 +1,1 @@
-export { NavbarModule } from "./Navbar.module";
+export { Navbar } from "./Navbar.module";

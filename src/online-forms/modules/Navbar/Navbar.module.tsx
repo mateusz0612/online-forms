@@ -2,7 +2,7 @@ import { FC } from "react";
 import { NavbarContainer } from "./containers";
 import { useAuthContext } from "online-forms/shared/auth";
 
-export const NavbarModule: FC = () => {
+export const Navbar: FC = () => {
   const { user } = useAuthContext();
 
   if (!user) {
