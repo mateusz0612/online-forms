@@ -11,27 +11,27 @@ export const useAuth = () => {
 
   const registerUser = async (
     credentials: IRegisterCredentials,
-    onError?: (error: AuthErrorType) => void
+    onSuccess: () => void,
+    onError: (error: AuthErrorType) => void
   ) => {
     try {
       await AuthService.register(credentials);
+      onSuccess();
     } catch (error: unknown) {
-      if (onError) {
-        onError(error as AuthErrorType);
-      }
+      onError(error as AuthErrorType);
     }
   };
 
   const loginUser = async (
     credentials: ILoginCredentials,
-    onError?: (error: AuthErrorType) => void
+    onSuccess: () => void,
+    onError: (error: AuthErrorType) => void
   ) => {
     try {
       await AuthService.login(credentials);
+      onSuccess();
     } catch (error: unknown) {
-      if (onError) {
-        onError(error as AuthErrorType);
-      }
+      onError(error as AuthErrorType);
     }
   };
 
@@ -43,5 +43,5 @@ export const useAuth = () => {
     registerUser,
     loginUser,
     signOutUser,
-  };
+  } as const;
 };

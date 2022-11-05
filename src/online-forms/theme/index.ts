@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle`
       background-image: ${(props) => props.theme.pallete.backgroundPrimary};
       background-repeat: no-repeat;
       background-size: cover;
-      height: 100vh;
+      min-height: 100vh;
       padding: 0;
       margin: 0;
       font-family: 'Roboto', sans-serif;
@@ -21,6 +21,7 @@ export const theme: DefaultTheme = {
   pallete: {
     backgroundPrimary:
       "linear-gradient(0deg, rgba(40, 103, 178, 0.29), rgb(255, 255, 255) 71%);",
+    primary: "#1976d2",
   },
   fontWeights: {
     normal: 400,

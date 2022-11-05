@@ -1,5 +1,4 @@
 import { useContext, createContext, ReactNode, FC } from "react";
-import { Progress } from "libs/ui";
 import { useAuth } from "./useAuth";
 
 type ContextType = ReturnType<typeof useAuth>;

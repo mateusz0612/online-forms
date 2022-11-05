@@ -1,1 +1,1 @@
-export { RegisterModule } from "./Register.module";
+export { Register } from "./Register.module";

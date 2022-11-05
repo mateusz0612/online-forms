@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import { useForm } from "libs/development-kit/form";
+import { useNavigate } from "libs/development-kit/routing";
 import { useAuthContext } from "online-forms/shared/auth";
 import { ILoginCredentials } from "online-forms/shared/types";
 import { Paths } from "online-forms/routes";
@@ -54,9 +54,11 @@ export const useLoginForm = () => {
   };
 
   const onSubmit = handleSubmit(async (credentials) => {
-    await loginUser(credentials, (error) => onError(error?.code));
-
-    navigate(Paths.Dashboard);
+    await loginUser(
+      credentials,
+      () => navigate(Paths.Dashboard),
+      (error) => onError(error?.code)
+    );
   });
 
   return {

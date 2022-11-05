@@ -1,24 +1,24 @@
-import { Paths } from "online-forms/routes";
-import { useAuthContext } from "online-forms/shared/auth";
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
+import { Stack } from "libs/ui";
+import { AddIcon, AccountIcon } from "libs/ui/Icons";
+import * as Styled from "./Dashboard.styled";
 
 export const DashboardPage: FC = () => {
-  const { signOutUser } = useAuthContext();
-  const navigate = useNavigate();
-
   return (
-    <div>
-      DashboardPage{" "}
-      <button
-        onClick={async () => {
-          await signOutUser();
-
-          navigate(Paths.Landing);
-        }}
-      >
-        sign out
-      </button>
-    </div>
+    <Styled.Wrapper>
+      <Styled.Tile width="100%" minHeight="300px" mt={4}>
+        <p>Latest forms</p>
+      </Styled.Tile>
+      <Stack justifyContent="space-between" flexDirection="row" mt={4} gap={3}>
+        <Styled.Tile width="50%" minHeight="250px">
+          <p>Create form</p>
+          <AddIcon />
+        </Styled.Tile>
+        <Styled.Tile width="50%" minHeight="250px">
+          <p>Edit profile</p>
+          <AccountIcon />
+        </Styled.Tile>
+      </Stack>
+    </Styled.Wrapper>
   );
 };

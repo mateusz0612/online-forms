@@ -14,7 +14,7 @@ export const AppRoutes = [
   <Route
     path={Paths.DefaultRoute}
     key={Paths.DefaultRoute}
-    element={<p>on such page</p>}
+    element={<Navigate to={Paths.Landing} />}
   />,
 ];
 

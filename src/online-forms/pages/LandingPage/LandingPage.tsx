@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
-import { LoginModule } from "online-forms/modules/Login";
-import { RegisterModule } from "online-forms/modules/Register";
+import { Login } from "online-forms/modules/Login";
+import { Register } from "online-forms/modules/Register";
 import Logo from "/logo.png";
 import * as Styled from "./LandingPage.styled";
 
@@ -31,7 +31,7 @@ export const LandingPage: FC = () => {
   return (
     <Styled.Wrapper justifyContent="center">
       <Styled.Logo alt="Logo" src={Logo} />
-      {isLoginFormShowed ? <LoginModule /> : <RegisterModule />}
+      {isLoginFormShowed ? <Login /> : <Register />}
       <Styled.SwitchFormLink onClick={switchShowedForm}>
         {isLoginFormShowed
           ? `Don't have an account? Register`
