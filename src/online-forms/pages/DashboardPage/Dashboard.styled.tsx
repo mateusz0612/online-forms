@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Stack } from "libs/ui";
+import { DefaultButton, Stack } from "libs/ui";
 
 export const Wrapper = styled(Stack)`
   width: 90vw;
@@ -19,12 +19,20 @@ export const Tile = styled(Stack)`
   cursor: pointer;
   overflow: hidden;
 
-  p {
+  h2,
+  h3 {
     font-size: 30px;
+    font-weight: 400;
     padding: 0 20px;
     letter-spacing: 2px;
   }
 
+  :hover {
+    color: ${(props) => props.theme.pallete.primary};
+  }
+`;
+
+export const IconWrapper = styled.div`
   svg {
     font-size: 128px;
     position: absolute;
@@ -39,10 +47,14 @@ export const Tile = styled(Stack)`
   }
 
   :hover {
-    color: ${(props) => props.theme.pallete.primary};
-
     svg {
       color: ${(props) => props.theme.pallete.primary};
     }
   }
+`;
+
+export const SeeAll = styled(DefaultButton)`
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
 `;

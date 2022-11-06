@@ -1,1 +1,1 @@
-export { FormsModule } from "./Forms.module";
+export { Forms } from "./Forms.module";

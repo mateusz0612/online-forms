@@ -9,3 +9,4 @@ export * from "./DefaultButton";
 export * from "./Menu";
 export * from "./Link";
 export * from "./Icons";
+export * from "./Table";
