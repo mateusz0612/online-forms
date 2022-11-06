@@ -1,5 +1,7 @@
 import { FC } from "react";
+import { FormsContainer } from "./containers";
+import { ModuleProps } from "./Forms.types";
 
-export const FormsModule: FC = () => {
-  return <div>Dashboard.module</div>;
+export const Forms: FC<ModuleProps> = (props) => {
+  return <FormsContainer {...props} />;
 };

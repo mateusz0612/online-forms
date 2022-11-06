@@ -1,5 +1,7 @@
 import { AuthError } from "firebase/auth";
 
+export type AuthErrorType = AuthError;
+
 export interface ILoginCredentials {
   email: string;
   password: string;
@@ -12,4 +14,21 @@ export interface IRegisterCredentials {
   repeatPassword: string;
 }
 
-export type AuthErrorType = AuthError;
+export interface IAnswer {
+  id: string;
+  content: string;
+}
+
+export interface IQuestion {
+  content: string;
+  answers: IAnswer[];
+}
+
+export interface IForm {
+  id: string;
+  userId: string;
+  name: string;
+  description: string;
+  createdAt: string;
+  questions: IQuestion[];
+}
