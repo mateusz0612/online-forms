@@ -2,10 +2,12 @@ import { Navigate, Route } from "react-router-dom";
 
 import { LandingPage } from "online-forms/pages/LandingPage";
 import { DashboardPage } from "online-forms/pages/DashboardPage";
+import { CreateFormPage } from "online-forms/pages/CreateFormPage";
 
 export enum Paths {
   Landing = "/",
   Dashboard = "/dashboard",
+  CreateForm = "/form-creator",
   DefaultRoute = "/*",
 }
 
@@ -23,6 +25,11 @@ export const AuthAppRoutes = [
     path={Paths.Dashboard}
     key={Paths.Dashboard}
     element={<DashboardPage />}
+  />,
+  <Route
+    path={Paths.CreateForm}
+    key={Paths.CreateForm}
+    element={<CreateFormPage />}
   />,
   <Route
     path={Paths.DefaultRoute}

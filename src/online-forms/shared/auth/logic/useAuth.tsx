@@ -37,8 +37,6 @@ export const useAuth = () => {
 
   const signOutUser = async () => await AuthService.signOut();
 
-  console.log(user?.uid);
-
   return {
     loading,
     user,
