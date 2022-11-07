@@ -18,21 +18,22 @@ online-forms\
 ------logic - hooks with implemented module logic\
 ------containers - place where logic and components are connected\
 ---------module-name.module.tsx - entry level to using module\
-------pages - place to connect multiple modules, add layout, entry level for routing\
-------routes - configuration of routes\
-------shared - modules that are used in multiple places in application\
-------theme - configuration of application theme - global styles, theme
+---pages - place to connect multiple modules, add layout, entry level for routing\
+---routes - configuration of routes\
+---shared - modules that are used in multiple places in application\
+---theme - configuration of application theme - global styles, theme
+---types - shared types, interfaces, enums across application
    
 # Current stack
 - React
 - TypeScript
 - Firebase
-- React hook form
+- React Hook Form
+- React Query
 - Yup
 - Styled Components
 - Vite
 - MUI
 
 In the future to add:
-- React Query
 - Cypress
