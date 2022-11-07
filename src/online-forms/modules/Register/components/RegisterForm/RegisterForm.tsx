@@ -1,7 +1,7 @@
 import { BaseSyntheticEvent, FC } from "react";
 import { TextField, Stack, PrimaryButton } from "libs/ui";
 import { IFormState, IRegister } from "libs/development-kit/form";
-import { IRegisterCredentials } from "online-forms/shared/types";
+import { IRegisterCredentials } from "online-forms/types";
 import * as Styled from "./RegisterForm.styled";
 
 interface Props {

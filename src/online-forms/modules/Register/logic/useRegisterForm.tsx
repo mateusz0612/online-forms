@@ -1,8 +1,8 @@
 import { useForm } from "libs/development-kit/form";
 import { useNavigate } from "libs/development-kit/routing";
 import { Paths } from "online-forms/routes";
-import { useAuthContext } from "online-forms/shared/auth";
-import { IRegisterCredentials } from "online-forms/shared/types";
+import { useAuthContext } from "online-forms/shared/Auth";
+import { IRegisterCredentials } from "online-forms/types";
 import * as yup from "yup";
 
 const DEFAULT_VALUES: IRegisterCredentials = {

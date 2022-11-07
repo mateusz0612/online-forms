@@ -1,7 +1,7 @@
 import { useForm } from "libs/development-kit/form";
 import { useNavigate } from "libs/development-kit/routing";
-import { useAuthContext } from "online-forms/shared/auth";
-import { ILoginCredentials } from "online-forms/shared/types";
+import { useAuthContext } from "online-forms/shared/Auth";
+import { ILoginCredentials } from "online-forms/types";
 import { Paths } from "online-forms/routes";
 import * as yup from "yup";
 

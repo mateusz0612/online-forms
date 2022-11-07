@@ -8,10 +8,7 @@ import {
   signOut,
   Collections,
 } from "online-forms/firebase";
-import {
-  ILoginCredentials,
-  IRegisterCredentials,
-} from "online-forms/shared/types";
+import { ILoginCredentials, IRegisterCredentials } from "online-forms/types";
 
 export const AuthService = {
   register: async (credentials: IRegisterCredentials) => {
