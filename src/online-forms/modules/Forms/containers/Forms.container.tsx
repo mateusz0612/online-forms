@@ -4,7 +4,7 @@ import { useForms } from "../logic";
 import { ModuleProps } from "../Forms.types";
 
 export const FormsContainer: FC<ModuleProps> = (props) => {
-  const { forms, isLoading } = useForms(props);
+  const { forms } = useForms();
 
-  return <FormList forms={forms} isLoading={isLoading} />;
+  return <FormList forms={forms?.state} />;
 };

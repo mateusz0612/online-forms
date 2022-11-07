@@ -4,7 +4,7 @@ import {
   IRegisterCredentials,
   AuthErrorType,
   ILoginCredentials,
-} from "online-forms/shared/types";
+} from "online-forms/types";
 
 export const useAuth = () => {
   const [user, loading] = useAuthState();
@@ -36,6 +36,8 @@ export const useAuth = () => {
   };
 
   const signOutUser = async () => await AuthService.signOut();
+
+  console.log(user?.uid);
 
   return {
     loading,

@@ -1,5 +1,9 @@
 import { AuthError } from "firebase/auth";
 
+export enum CacheKeys {
+  forms = "forms",
+}
+
 export type AuthErrorType = AuthError;
 
 export interface ILoginCredentials {

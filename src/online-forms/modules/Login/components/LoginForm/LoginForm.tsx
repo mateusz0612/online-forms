@@ -1,6 +1,6 @@
 import { FC, BaseSyntheticEvent } from "react";
 import { IRegister, IFormState } from "libs/development-kit/form";
-import { ILoginCredentials } from "online-forms/shared/types";
+import { ILoginCredentials } from "online-forms/types";
 import { TextField, Stack, PrimaryButton } from "libs/ui";
 import * as Styled from "./LoginForm.styled";
 

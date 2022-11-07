@@ -1,5 +1,5 @@
 import { useNavigate } from "libs/development-kit/routing";
-import { useAuthContext } from "online-forms/shared/auth";
+import { useAuthContext } from "online-forms/shared/Auth";
 import { ILink, ISetting } from "../Navbar.types";
 import { Paths } from "online-forms/routes";
 
