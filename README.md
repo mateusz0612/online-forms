@@ -20,7 +20,7 @@ online-forms\
 ---------module-name.module.tsx - entry level to using module\
 ------pages - place to connect multiple modules, add layout, entry level for routing\
 ------routes - configuration of routes\
-------shared - place to store shared things - contexts, types, consts etc\
+------shared - modules that are used in multiple places in application
 ------theme - configuration of application theme - global styles, theme
    
 # Current stack
