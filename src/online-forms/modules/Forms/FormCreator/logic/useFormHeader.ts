@@ -14,7 +14,7 @@ const createFormSchema = yup.object().shape({
   description: yup.string().required("Description is required"),
 });
 
-export const useFormCreator = () => {
+export const useFormHeader = () => {
   const [isFormHeaderEdited, setIsFormHeaderEdited] = useState(true);
   const formHeaderRef = useRef();
 
@@ -23,6 +23,7 @@ export const useFormCreator = () => {
     validationSchema: createFormSchema,
     reValidateMode: "onChange",
   });
+  const values = getValues();
 
   const onFormHeaderClick = () => setIsFormHeaderEdited(true);
 
@@ -41,7 +42,7 @@ export const useFormCreator = () => {
   return {
     isFormHeaderEdited,
     formHeaderRef,
-    values: getValues(),
+    values,
     formState,
     register,
     onFormHeaderClick,

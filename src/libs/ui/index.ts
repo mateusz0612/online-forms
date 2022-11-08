@@ -11,3 +11,6 @@ export * from "./Link";
 export * from "./Icons";
 export * from "./Table";
 export * from "./Tile";
+export * from "./Modal";
+export * from "./Select";
+export * from "./Switch";

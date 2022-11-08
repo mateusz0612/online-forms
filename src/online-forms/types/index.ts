@@ -23,9 +23,14 @@ export interface IAnswer {
   content: string;
 }
 
+export type QuesitonType = "boolean" | "text" | "options";
+
 export interface IQuestion {
+  id: string;
   content: string;
-  answers: IAnswer[];
+  type: QuesitonType;
+  required: boolean;
+  answers?: IAnswer[];
 }
 
 export interface IForm {
