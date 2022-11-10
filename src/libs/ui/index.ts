@@ -14,3 +14,4 @@ export * from "./Tile";
 export * from "./Modal";
 export * from "./Select";
 export * from "./Switch";
+export * from "./Radio";

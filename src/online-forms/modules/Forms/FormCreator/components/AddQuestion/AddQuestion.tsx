@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { CloseIcon } from "libs/ui";
 import { IQuestion } from "online-forms/types";
-import { AddQuestionProps } from "../../FormCreator.types";
-import { AddQuestionForm } from "../AddQuestionForm";
+import { QuestionFormProps } from "../../FormCreator.types";
+import { QuestionForm } from "../QuestionForm";
 import * as Styled from "./AddQuestion.styled";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
   onClose: () => void;
 }
 
-export const AddQuestion: FC<AddQuestionProps & Props> = ({
+export const AddQuestion: FC<QuestionFormProps & Props> = ({
   isOpen,
   formState,
   answerFormState,
@@ -20,12 +20,17 @@ export const AddQuestion: FC<AddQuestionProps & Props> = ({
   answers,
   onAddQuestionClick,
   onAddAnswerClick,
+  onRemoveQuestionClick,
   onClose,
   register,
   answerRegister,
 }) => {
   return (
-    <Styled.StyledModal open={isOpen}>
+    <Styled.StyledModal
+      open={isOpen}
+      isAnswerAdderVisible={currentPickedType === "options"}
+      haveAnswers={answers?.length >= 1}
+    >
       <Styled.Content mt={10} mr={2} ml={2} pb={4}>
         <Styled.ModalHeader pl={3} pr={2}>
           <p>Create Question</p>
@@ -33,16 +38,17 @@ export const AddQuestion: FC<AddQuestionProps & Props> = ({
             <CloseIcon />
           </div>
         </Styled.ModalHeader>
-        <AddQuestionForm
-          register={register}
-          answerRegister={answerRegister}
-          onAddQuestionClick={onAddQuestionClick}
-          onAddAnswerClick={onAddAnswerClick}
+        <QuestionForm
           answers={answers}
           currentPickedType={currentPickedType}
           control={control}
           formState={formState}
           answerFormState={answerFormState}
+          register={register}
+          answerRegister={answerRegister}
+          onAddQuestionClick={onAddQuestionClick}
+          onAddAnswerClick={onAddAnswerClick}
+          onRemoveQuestionClick={onRemoveQuestionClick}
         />
       </Styled.Content>
     </Styled.StyledModal>

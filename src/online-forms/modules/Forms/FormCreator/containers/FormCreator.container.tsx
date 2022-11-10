@@ -1,7 +1,13 @@
 import { FC } from "react";
-import { Stack, Tile, AddIcon } from "libs/ui";
-import { useFormHeader, useAddQuestion, useQuestions } from "../logic";
+import { Stack, Tile, PrimaryButton, SecondaryButton } from "libs/ui";
+import {
+  useFormHeader,
+  useQuestions,
+  useQuestionForm,
+  useForm,
+} from "../logic";
 import { FormHeader, AddQuestion } from "../components";
+import { FormView } from "online-forms/shared/FormView";
 import styled from "styled-components";
 
 const Wrapper = styled(Stack)`
@@ -16,39 +22,31 @@ const Wrapper = styled(Stack)`
   }
 `;
 
-const AddIconWrapper = styled.div`
-  position: absolute;
-  right: 5px;
-  bottom: 0;
-  cursor: pointer;
-
-  svg {
-    font-size: 64px;
-  }
-
-  :hover {
-    color: ${(props) => props.theme.pallete.primary};
-  }
-`;
-
-const NoQuestionDisclaimer = styled.p`
+const Label = styled.p`
   text-align: center;
+  margin: 0;
 `;
 
 export const FormCreatorContainer: FC = () => {
-  const { questions, addQuestion } = useQuestions();
+  const {
+    questions,
+    haveNoQuestions,
+    addQuestion,
+    editQuestion,
+    onDeleteQuestionClick,
+  } = useQuestions();
 
   const {
     isFormHeaderEdited,
     formHeaderRef,
-    values,
+    values: formHeaderValues,
     formState: formHeaderFormState,
     register: formHeaderRegister,
     onFormHeaderClick,
   } = useFormHeader();
 
   const {
-    isAddQuestionModalOpen,
+    isQuestionModalOpen,
     currentPickedType,
     answerFormState,
     answers,
@@ -57,46 +55,72 @@ export const FormCreatorContainer: FC = () => {
     register: addQuestionRegister,
     answerRegister,
     onAddQuestionClick,
+    onRemoveAnswerClick,
+    onEditQuestionClick,
     onAddAnswerClick,
-    openAddQuestionModal,
-    closeAddQuestionModal,
-  } = useAddQuestion(addQuestion);
+    onOpenQuestionModal,
+    closeQuestionModal,
+  } = useQuestionForm({ questions, addQuestion, editQuestion });
+
+  const { onFormSave, isFormSavePending } = useForm({
+    questions,
+    formHeaderValues,
+  });
+
+  const formViewHandlers = {
+    onDeleteClick: onDeleteQuestionClick,
+    onEditClick: onEditQuestionClick,
+  };
 
   return (
-    <Wrapper width="50vw" margin="auto" mt={4}>
+    <Wrapper width="50vw" margin="auto" mt={4} mb={4}>
       <Tile width="100%">
         <FormHeader
           isEditMode={isFormHeaderEdited}
           ref={formHeaderRef}
-          values={values}
+          values={formHeaderValues}
           formState={formHeaderFormState}
           register={formHeaderRegister}
           onFormHeaderClick={onFormHeaderClick}
         />
       </Tile>
-      <Tile width="100%" mt={2} minHeight={150}>
-        {questions?.length === 0 && (
-          <NoQuestionDisclaimer>
+      <Tile width="100%" mt={2} pb={2} pt={2}>
+        {haveNoQuestions && (
+          <Label>
             You didn't add any question yet. <br />
-            Click plus icon to add question
-          </NoQuestionDisclaimer>
+            Click add question to begin
+          </Label>
         )}
-        <pre>{JSON.stringify(questions, null, 2)}</pre>
-        <AddIconWrapper onClick={openAddQuestionModal}>
-          <AddIcon />
-        </AddIconWrapper>
+        {!haveNoQuestions && <Label>Preview</Label>}
+        <FormView
+          questions={questions}
+          handlers={formViewHandlers}
+          isEditMode
+        />
+        <Stack flexDirection="row" gap={1} margin="auto" pt={1}>
+          <PrimaryButton
+            disabled={haveNoQuestions || isFormSavePending}
+            onClick={onFormSave}
+          >
+            Save form
+          </PrimaryButton>
+          <SecondaryButton onClick={onOpenQuestionModal}>
+            Add Question
+          </SecondaryButton>
+        </Stack>
       </Tile>
       <AddQuestion
-        isOpen={isAddQuestionModalOpen}
+        isOpen={isQuestionModalOpen}
         formState={addQuestionFormState}
         answerFormState={answerFormState}
         control={addQuestionControl}
         questions={questions}
         currentPickedType={currentPickedType}
         answers={answers}
-        onClose={closeAddQuestionModal}
+        onClose={closeQuestionModal}
         onAddQuestionClick={onAddQuestionClick}
         onAddAnswerClick={onAddAnswerClick}
+        onRemoveQuestionClick={onRemoveAnswerClick}
         register={addQuestionRegister}
         answerRegister={answerRegister}
       />

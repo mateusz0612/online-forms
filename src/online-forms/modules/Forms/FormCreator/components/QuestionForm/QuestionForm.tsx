@@ -6,15 +6,17 @@ import {
   Switch,
   SecondaryButton,
   DefaultButton,
+  DeleteIcon,
 } from "libs/ui";
-import { AddQuestionProps } from "../../FormCreator.types";
-import * as Styled from "./AddQuestionForm.styled";
+import { QuestionFormProps } from "../../FormCreator.types";
+import * as Styled from "./QuestionForm.styled";
 
-export const AddQuestionForm: FC<AddQuestionProps> = ({
+export const QuestionForm: FC<QuestionFormProps> = ({
   register,
   answerRegister,
   onAddAnswerClick,
   onAddQuestionClick,
+  onRemoveQuestionClick,
   currentPickedType,
   answers,
   control,
@@ -84,13 +86,11 @@ export const AddQuestionForm: FC<AddQuestionProps> = ({
             </SecondaryButton>
           </Stack>
           <Styled.HelperText>Added options</Styled.HelperText>
-          <Stack flexDirection="row" flexWrap="wrap">
-            {answers?.map(({ id, content }, index) => (
-              <DefaultButton
-                key={id}
-                style={{ marginLeft: index !== 0 ? "10px" : "0" }}
-              >
+          <Stack flexDirection="row" flexWrap="wrap" gap={1}>
+            {answers?.map(({ id, content }) => (
+              <DefaultButton key={id} onClick={() => onRemoveQuestionClick(id)}>
                 {content}
+                <DeleteIcon />
               </DefaultButton>
             ))}
           </Stack>

@@ -13,19 +13,26 @@ const DEFAULT_VALUES: IRegisterCredentials = {
 };
 
 const registerFormSchema = yup.object().shape({
-  email: yup.string().email("Enter valid email").required("Email is required"),
+  email: yup
+    .string()
+    .trim()
+    .email("Enter valid email")
+    .required("Email is required"),
   username: yup
     .string()
+    .trim()
     .required("Username is required")
     .min(6, "Enter atleast 6 characters")
     .max(32, "Username cannot be longer than 32 characters"),
   password: yup
     .string()
+    .trim()
     .required("Password is required")
     .min(8, "Password must be atleast 8 characters long")
     .max(32, "Password cannot be longer than 32 characters"),
   repeatPassword: yup
     .string()
+    .trim()
     .required("Repeat password is required")
     .oneOf([yup.ref("password"), null], "Passwords must match"),
 });

@@ -1,5 +1,13 @@
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { db, Collections } from "online-forms/firebase";
+import {
+  db,
+  query,
+  collection,
+  where,
+  getDocs,
+  addDoc,
+  doc,
+  Collections,
+} from "online-forms/firebase";
 import { IForm } from "online-forms/types";
 
 export const FormsService = {
@@ -11,8 +19,11 @@ export const FormsService = {
 
     const docs = await getDocs(q);
 
-    const data = docs?.docs?.map((doc) => doc.data());
+    const data = docs?.docs?.map((doc) => ({ ...doc.data(), id: doc.id }));
 
     return data as IForm[];
+  },
+  createForm: async (form: Omit<IForm, "id">) => {
+    await addDoc(collection(db, Collections.forms), form);
   },
 };

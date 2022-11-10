@@ -1,14 +1,14 @@
 import { forwardRef, RefObject } from "react";
 import { Stack, TextField } from "libs/ui";
 import { IFormState, IRegister } from "libs/development-kit/form";
-import { ICreateForm } from "../../FormCreator.types";
+import { IFormHeaderValues } from "../../FormCreator.types";
 import * as Styled from "./FormHeader.styled";
 
 interface Props {
   isEditMode: boolean;
-  values: ICreateForm;
-  formState: IFormState<ICreateForm>;
-  register: IRegister<ICreateForm>;
+  values: IFormHeaderValues;
+  formState: IFormState<IFormHeaderValues>;
+  register: IRegister<IFormHeaderValues>;
   onFormHeaderClick: () => void;
 }
 
@@ -30,12 +30,12 @@ export const FormHeader = forwardRef(
             <TextField
               label="Title"
               placeholder="Enter title..."
-              error={!!errors?.title}
-              helperText={errors?.title?.message}
-              {...register("title")}
+              error={!!errors?.name}
+              helperText={errors?.name?.message}
+              {...register("name")}
             />
           ) : (
-            <Styled.Label align="center">{values?.title}</Styled.Label>
+            <Styled.Label align="center">{values?.name}</Styled.Label>
           )}
           <Styled.Heading align="left">Description</Styled.Heading>
           <Styled.HelperText align="left">

@@ -30,7 +30,7 @@ export interface IQuestion {
   content: string;
   type: QuesitonType;
   required: boolean;
-  answers?: IAnswer[];
+  answers: IAnswer[];
 }
 
 export interface IForm {

@@ -1,13 +1,21 @@
 import { Modal, Stack } from "libs/ui";
 import styled from "styled-components";
 
-export const StyledModal = styled(Modal)`
+export const StyledModal = styled(Modal)<{
+  isAnswerAdderVisible: boolean;
+  haveAnswers: boolean;
+}>`
   display: flex;
   justify-content: center;
-  max-height: 95%;
+  max-height: ${(props) => (props.isAnswerAdderVisible ? "95%" : "65%")};
 
-  @media ${(props) => props.theme.queries.desktop} {
-    max-height: 65%;
+  @media ${(props) => props.theme.queries.tablet} {
+    max-height: ${(props) =>
+      props?.isAnswerAdderVisible
+        ? props.haveAnswers
+          ? "60%"
+          : "58%"
+        : "40%"};
   }
 `;
 

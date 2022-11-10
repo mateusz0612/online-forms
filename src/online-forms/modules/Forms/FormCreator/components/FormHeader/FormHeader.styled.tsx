@@ -27,7 +27,6 @@ export const Label = styled.p<Align>`
   text-align: ${(props) => props.align};
   font-size: 16px;
   margin: 4px 0;
-  text-transform: capitalize;
   white-space: pre-wrap;
   font-weight: 700;
 `;

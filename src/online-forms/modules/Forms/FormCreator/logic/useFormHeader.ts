@@ -1,17 +1,25 @@
 import { useState, useRef } from "react";
 import { useForm } from "libs/development-kit/form";
-import { useOutsideClick } from "libs/development-kit/helpers/useOutsideClick";
-import { ICreateForm } from "../FormCreator.types";
+import { useOutsideClick } from "libs/development-kit/helpers/hooks/useOutsideClick";
+import { IFormHeaderValues } from "../FormCreator.types";
 import * as yup from "yup";
 
-const DEFAULT_VALUES: ICreateForm = {
-  title: "",
+const DEFAULT_VALUES: IFormHeaderValues = {
+  name: "",
   description: "",
 };
 
 const createFormSchema = yup.object().shape({
-  title: yup.string().required("Name is required"),
-  description: yup.string().required("Description is required"),
+  title: yup
+    .string()
+    .trim()
+    .required("Name is required")
+    .max(60, "Max 60 characters"),
+  description: yup
+    .string()
+    .trim()
+    .required("Description is required")
+    .max(1024, "Max 1024 characters"),
 });
 
 export const useFormHeader = () => {
@@ -28,9 +36,9 @@ export const useFormHeader = () => {
   const onFormHeaderClick = () => setIsFormHeaderEdited(true);
 
   const onFormHeaderOutsideClick = () => {
-    const { title, description } = getValues();
+    const { name, description } = getValues();
 
-    if (title.trim() === "" || description.trim() === "") {
+    if (name.trim() === "" || description.trim() === "") {
       return;
     }
 
