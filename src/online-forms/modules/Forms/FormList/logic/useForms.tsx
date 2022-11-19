@@ -1,6 +1,6 @@
 import { useAuthContext } from "online-forms/shared/Auth";
 import { useFetch } from "libs/development-kit/api";
-import { FormsService } from "../services";
+import { FormsService } from "online-forms/modules/Forms/services";
 import { CacheKeys } from "online-forms/types";
 
 export const useForms = () => {
@@ -10,8 +10,6 @@ export const useForms = () => {
     [CacheKeys.forms, `${user?.uid}`],
     async () => await FormsService.userFormsList(`${user?.uid}`)
   );
-
-  console.log(forms);
 
   return {
     forms,

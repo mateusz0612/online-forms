@@ -11,9 +11,14 @@ const DEFAULT_LOGIN_FORM_VALUES: ILoginCredentials = {
 };
 
 const loginFormSchema = yup.object().shape({
-  email: yup.string().email("Enter valid email").required("Field is required"),
+  email: yup
+    .string()
+    .trim()
+    .email("Enter valid email")
+    .required("Field is required"),
   password: yup
     .string()
+    .trim()
     .required("Password is required")
     .min(8, "Password must contains atleast 8 characters")
     .max(32, "Password cannot be longer than 32 characters"),

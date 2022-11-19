@@ -7,7 +7,7 @@ import * as Styled from "./FormList.styled";
 
 interface Props {
   forms: State<IForm[]>;
-  limit: number;
+  limit?: number;
 }
 
 const Loader = () => (
@@ -18,7 +18,7 @@ const Loader = () => (
 
 const Error = () => <p>Error occured</p>;
 
-export const FormList: FC<Props> = ({ forms, limit }) => {
+export const FormList: FC<Props> = ({ forms, limit = 999 }) => {
   return (
     <Renderer<IForm[]> state={forms} pending={Loader} fail={Error}>
       {(data) => (
