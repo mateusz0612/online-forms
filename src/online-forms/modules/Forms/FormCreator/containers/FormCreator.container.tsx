@@ -4,9 +4,13 @@ import {
   useFormHeader,
   useQuestions,
   useQuestionForm,
-  useForm,
+  useFormCreator,
 } from "../logic";
-import { FormHeader, AddQuestion } from "../components";
+import {
+  FormHeader,
+  AddQuestion,
+  FormCreatedConfirmationModal,
+} from "../components";
 import { FormView } from "online-forms/shared/FormView";
 import styled from "styled-components";
 
@@ -62,7 +66,14 @@ export const FormCreatorContainer: FC = () => {
     closeQuestionModal,
   } = useQuestionForm({ questions, addQuestion, editQuestion });
 
-  const { onFormSave, isFormSavePending } = useForm({
+  const {
+    isFormCreatedConfirmationVisible,
+    isFormSavePending,
+    createdFormId,
+    onFormSave,
+    onCloseFormCreatedConfirmationModal,
+    onCopyLinkClick,
+  } = useFormCreator({
     questions,
     formHeaderValues,
   });
@@ -123,6 +134,12 @@ export const FormCreatorContainer: FC = () => {
         onRemoveQuestionClick={onRemoveAnswerClick}
         register={addQuestionRegister}
         answerRegister={answerRegister}
+      />
+      <FormCreatedConfirmationModal
+        isOpen={isFormCreatedConfirmationVisible}
+        createdFormId={`${createdFormId}`}
+        onClose={onCloseFormCreatedConfirmationModal}
+        onCopyLinkClick={onCopyLinkClick}
       />
     </Wrapper>
   );

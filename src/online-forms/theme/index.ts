@@ -22,6 +22,7 @@ export const theme: DefaultTheme = {
     backgroundPrimary:
       "linear-gradient(0deg, rgba(40, 103, 178, 0.29), rgb(255, 255, 255) 71%);",
     primary: "#1976d2",
+    white: "#fff",
   },
   fontWeights: {
     normal: 400,

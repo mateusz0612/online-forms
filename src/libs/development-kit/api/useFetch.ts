@@ -10,7 +10,7 @@ type FetchOptions<T> =
   | Omit<UseQueryOptions<T, unknown, T, string[]>, "queryKey" | "queryFn">
   | undefined;
 
-export const useFetch = <T>(
+export const useFetch = <T = unknown>(
   cacheKey: string[],
   fetchFn: () => Promise<T>,
   options?: FetchOptions<T>

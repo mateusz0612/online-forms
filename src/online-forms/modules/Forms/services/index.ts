@@ -24,6 +24,8 @@ export const FormsService = {
     return data as IForm[];
   },
   createForm: async (form: Omit<IForm, "id">) => {
-    await addDoc(collection(db, Collections.forms), form);
+    const createdForm = await addDoc(collection(db, Collections.forms), form);
+
+    return createdForm;
   },
 };

@@ -12,7 +12,7 @@ const defaultOptions: ToastOptions = {
 export const toast = (
   type: ToastType,
   text: string,
-  hideProgressBar = true
+  hideProgressBar = false
 ) => {
   switch (type) {
     case "default":

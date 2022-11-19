@@ -8,8 +8,8 @@ export const useNavbar = () => {
   const navigate = useNavigate();
 
   const links: ILink[] = [
-    { label: "My forms", to: Paths.Dashboard },
-    { label: "Create form", to: Paths.CreateForm },
+    { label: "Dashboard", to: Paths.Dashboard },
+    { label: "Creator", to: Paths.CreateForm },
   ];
 
   const onLogoutClick = async () => {

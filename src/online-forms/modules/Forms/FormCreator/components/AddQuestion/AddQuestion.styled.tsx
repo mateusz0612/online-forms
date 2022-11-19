@@ -10,18 +10,13 @@ export const StyledModal = styled(Modal)<{
   max-height: ${(props) => (props.isAnswerAdderVisible ? "95%" : "65%")};
 
   @media ${(props) => props.theme.queries.tablet} {
-    max-height: ${(props) =>
-      props?.isAnswerAdderVisible
-        ? props.haveAnswers
-          ? "60%"
-          : "58%"
-        : "40%"};
+    max-height: ${(props) => (props?.isAnswerAdderVisible ? "70%" : "50%")};
   }
 `;
 
 export const Content = styled(Stack)`
   width: 600px;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.pallete.white};
   border-radius: 10px;
   overflow: scroll;
 `;
