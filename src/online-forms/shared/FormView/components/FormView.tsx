@@ -32,7 +32,7 @@ const BooleanAnswers: FC = () => {
 const TextAnswer: FC = () => {
   return (
     <Stack mt={1}>
-      <TextField placeholder="Enter answer..." label="Your answer" />
+      <TextField label="User answer" disabled />
     </Stack>
   );
 };

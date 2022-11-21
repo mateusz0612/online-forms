@@ -15,8 +15,6 @@ export const FormCreatedConfirmationModal: FC<Props> = ({
   onClose,
   onCopyLinkClick,
 }) => {
-  const link = `${window.location.href}/answer/${createdFormId}`;
-
   return (
     <Styled.ModalWrapper open={isOpen}>
       <Styled.Content justifyContent="center" alignItems="center">
@@ -26,9 +24,11 @@ export const FormCreatedConfirmationModal: FC<Props> = ({
         <h3>Form was successfully created! :)</h3>
         <p>
           Your form is available at <br />
-          <span>{link}</span>
+          <span>
+            {window.location.href}/answer/${createdFormId}
+          </span>
         </p>
-        <PrimaryButton onClick={() => onCopyLinkClick(link)}>
+        <PrimaryButton onClick={() => onCopyLinkClick(createdFormId)}>
           Copy link
         </PrimaryButton>
       </Styled.Content>
