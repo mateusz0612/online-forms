@@ -23,14 +23,6 @@ export const Heading = styled.p<Align>`
   letter-spacing: 1px;
 `;
 
-export const Label = styled.p<Align>`
-  text-align: ${(props) => props.align};
-  font-size: 16px;
-  margin: 4px 0;
-  white-space: pre-wrap;
-  font-weight: 700;
-`;
-
 export const HelperText = styled.p<Align>`
   font-size: 10px;
   margin: 0;

@@ -18,7 +18,7 @@ export const Content = styled(Stack)`
   width: 600px;
   background-color: ${(props) => props.theme.pallete.white};
   border-radius: 10px;
-  overflow: scroll;
+  overflow-y: auto;
 `;
 
 export const ModalHeader = styled(Stack)`

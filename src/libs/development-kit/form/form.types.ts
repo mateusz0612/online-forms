@@ -1,4 +1,9 @@
-import { FormState, UseFormRegister, Control } from "react-hook-form";
+import {
+  FormState,
+  UseFormRegister,
+  Control,
+  UseFormTrigger,
+} from "react-hook-form";
 
 export type IRegister<T> = UseFormRegister<T>;
 export type IFormState<T> = FormState<T>;

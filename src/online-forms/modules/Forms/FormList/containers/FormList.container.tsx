@@ -4,7 +4,13 @@ import { useForms } from "../logic";
 import { ModuleProps } from "../FormList.types";
 
 export const FormListContainer: FC<ModuleProps> = ({ limit }) => {
-  const { forms } = useForms();
+  const { forms, onCopyFromLinkClick } = useForms();
 
-  return <FormList forms={forms?.state} limit={limit} />;
+  return (
+    <FormList
+      forms={forms?.state}
+      limit={limit}
+      onCopyFormLinkClick={onCopyFromLinkClick}
+    />
+  );
 };

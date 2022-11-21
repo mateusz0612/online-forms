@@ -41,12 +41,9 @@ export const FormCreatorContainer: FC = () => {
   } = useQuestions();
 
   const {
-    isFormHeaderEdited,
-    formHeaderRef,
     values: formHeaderValues,
     formState: formHeaderFormState,
     register: formHeaderRegister,
-    onFormHeaderClick,
   } = useFormHeader();
 
   const {
@@ -87,12 +84,8 @@ export const FormCreatorContainer: FC = () => {
     <Wrapper width="50vw" margin="auto" mt={4} mb={4}>
       <Tile width="100%">
         <FormHeader
-          isEditMode={isFormHeaderEdited}
-          ref={formHeaderRef}
-          values={formHeaderValues}
           formState={formHeaderFormState}
           register={formHeaderRegister}
-          onFormHeaderClick={onFormHeaderClick}
         />
       </Tile>
       <Tile width="100%" mt={2} pb={2} pt={2}>
@@ -108,16 +101,23 @@ export const FormCreatorContainer: FC = () => {
           handlers={formViewHandlers}
           isEditMode
         />
-        <Stack flexDirection="row" gap={1} margin="auto" pt={1}>
+        <Stack
+          width="100%"
+          flexDirection="row"
+          justifyContent="space-between"
+          margin="auto"
+          pl={5}
+          pr={5}
+        >
+          <SecondaryButton onClick={onOpenQuestionModal}>
+            Add Question
+          </SecondaryButton>
           <PrimaryButton
             disabled={haveNoQuestions || isFormSavePending}
             onClick={onFormSave}
           >
             Save form
           </PrimaryButton>
-          <SecondaryButton onClick={onOpenQuestionModal}>
-            Add Question
-          </SecondaryButton>
         </Stack>
       </Tile>
       <AddQuestion

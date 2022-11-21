@@ -10,49 +10,31 @@ const DEFAULT_VALUES: IFormHeaderValues = {
 };
 
 const createFormSchema = yup.object().shape({
-  title: yup
+  name: yup
     .string()
     .trim()
     .required("Name is required")
+    .min(4, "Min 4 characters")
     .max(60, "Max 60 characters"),
   description: yup
     .string()
     .trim()
     .required("Description is required")
+    .min(8, "Min 8 characters")
     .max(1024, "Max 1024 characters"),
 });
 
 export const useFormHeader = () => {
-  const [isFormHeaderEdited, setIsFormHeaderEdited] = useState(true);
-  const formHeaderRef = useRef();
-
-  const { register, getValues, formState } = useForm({
+  const { register, getValues, handleSubmit, formState } = useForm({
     defaultValues: DEFAULT_VALUES,
     validationSchema: createFormSchema,
     reValidateMode: "onChange",
   });
   const values = getValues();
 
-  const onFormHeaderClick = () => setIsFormHeaderEdited(true);
-
-  const onFormHeaderOutsideClick = () => {
-    const { name, description } = getValues();
-
-    if (name.trim() === "" || description.trim() === "") {
-      return;
-    }
-
-    setIsFormHeaderEdited(false);
-  };
-
-  useOutsideClick(formHeaderRef, onFormHeaderOutsideClick);
-
   return {
-    isFormHeaderEdited,
-    formHeaderRef,
     values,
     formState,
     register,
-    onFormHeaderClick,
   } as const;
 };

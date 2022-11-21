@@ -2,13 +2,12 @@ import { useState } from "react";
 import { useAuthContext } from "online-forms/shared/Auth";
 import { FormsService } from "online-forms/modules/Forms/services";
 import { IForm, IQuestion, CacheKeys } from "online-forms/types";
+import { Paths } from "online-forms/routes";
 import { usePost, useQueryClient } from "libs/development-kit/api";
 import { useNavigate } from "libs/development-kit/routing";
 import { toast } from "libs/development-kit/toasts";
 import { copyToClipboard } from "libs/development-kit/helpers/copyToClipboard";
 import { IFormHeaderValues } from "../FormCreator.types";
-import { Paths } from "online-forms/routes";
-
 interface Params {
   questions: IQuestion[];
   formHeaderValues: IFormHeaderValues;
@@ -45,10 +44,7 @@ export const useFormCreator = ({ questions, formHeaderValues }: Params) => {
   });
 
   const onFormSave = async () => {
-    const date = new Date();
-    const createdAt = `${date.getDate()}-${
-      date.getMonth() + 1
-    }-${date.getFullYear()}`;
+    const createdAt = Date.now();
 
     const form: FromWithoutId = {
       ...formHeaderValues,
@@ -61,7 +57,7 @@ export const useFormCreator = ({ questions, formHeaderValues }: Params) => {
   };
 
   const onCopyLinkClick = (link: string) => {
-    copyToClipboard(link);
+    copyToClipboard(`${window.location.href}/answer/${link}`);
     toast("success", "Link copied to clipboard");
   };
 
