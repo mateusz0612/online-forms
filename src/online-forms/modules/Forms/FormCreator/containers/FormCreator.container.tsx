@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Stack, Tile, PrimaryButton, SecondaryButton } from "libs/ui";
+import { Stack } from "libs/ui";
 import {
   useFormHeader,
   useQuestions,
@@ -8,10 +8,10 @@ import {
 } from "../logic";
 import {
   FormHeader,
-  AddQuestion,
+  AddQuestionModal,
   FormCreatedConfirmationModal,
+  FormCreateQuestions,
 } from "../components";
-import { FormView } from "online-forms/shared/FormView";
 import styled from "styled-components";
 
 const Wrapper = styled(Stack)`
@@ -24,11 +24,6 @@ const Wrapper = styled(Stack)`
   @media ${(props) => props.theme.queries.desktop} {
     width: 40vw;
   }
-`;
-
-const Label = styled.p`
-  text-align: center;
-  margin: 0;
 `;
 
 export const FormCreatorContainer: FC = () => {
@@ -82,45 +77,19 @@ export const FormCreatorContainer: FC = () => {
 
   return (
     <Wrapper width="50vw" margin="auto" mt={4} mb={4}>
-      <Tile width="100%">
-        <FormHeader
-          formState={formHeaderFormState}
-          register={formHeaderRegister}
-        />
-      </Tile>
-      <Tile width="100%" mt={2} pb={2} pt={2}>
-        {haveNoQuestions && (
-          <Label>
-            You didn't add any question yet. <br />
-            Click add question to begin
-          </Label>
-        )}
-        {!haveNoQuestions && <Label>Preview</Label>}
-        <FormView
-          questions={questions}
-          handlers={formViewHandlers}
-          isEditMode
-        />
-        <Stack
-          width="100%"
-          flexDirection="row"
-          justifyContent="space-between"
-          margin="auto"
-          pl={5}
-          pr={5}
-        >
-          <SecondaryButton onClick={onOpenQuestionModal}>
-            Add Question
-          </SecondaryButton>
-          <PrimaryButton
-            disabled={haveNoQuestions || isFormSavePending}
-            onClick={onFormSave}
-          >
-            Save form
-          </PrimaryButton>
-        </Stack>
-      </Tile>
-      <AddQuestion
+      <FormHeader
+        formState={formHeaderFormState}
+        register={formHeaderRegister}
+      />
+      <FormCreateQuestions
+        haveNoQuestions={haveNoQuestions}
+        isFormSavePending={isFormSavePending}
+        formViewHandlers={formViewHandlers}
+        questions={questions}
+        onFormSave={onFormSave}
+        onOpenQuestionModal={onOpenQuestionModal}
+      />
+      <AddQuestionModal
         isOpen={isQuestionModalOpen}
         formState={addQuestionFormState}
         answerFormState={answerFormState}

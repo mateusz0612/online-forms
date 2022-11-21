@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { AnyObjectSchema, object } from "yup";
 
 interface IForm<T> {
-  defaultValues: T;
+  defaultValues?: T;
   validationSchema?: AnyObjectSchema;
   reValidateMode?: "onBlur" | "onChange" | "onSubmit";
 }

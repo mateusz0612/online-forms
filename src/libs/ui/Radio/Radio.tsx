@@ -7,8 +7,8 @@ import {
 import { Controller, Control } from "react-hook-form";
 
 interface Props {
-  control: Control;
-  value: string;
+  control: Control<any>;
+  value: string | boolean;
   name: string;
   label: string;
 }
@@ -23,6 +23,7 @@ export const ControlledRadio: FC<Props> = ({ control, value, name, label }) => {
           label={label}
           control={
             <MaterialRadio
+              value={value}
               checked={currentValue === value}
               onChange={onChange}
               onBlur={onBlur}

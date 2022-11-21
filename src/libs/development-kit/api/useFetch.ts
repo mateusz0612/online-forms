@@ -1,5 +1,7 @@
 import { useQuery, UseQueryOptions } from "react-query";
 
+export type Status = "error" | "idle" | "loading" | "success";
+
 export interface State<T> {
   status: "error" | "idle" | "loading" | "success";
   data: T;

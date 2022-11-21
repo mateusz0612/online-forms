@@ -31,7 +31,7 @@ export const IconWrapper = styled.div`
   }
 `;
 
-export const SeeAll = styled(DefaultButton)`
+export const SeeButton = styled(DefaultButton)`
   position: absolute;
   bottom: 5px;
   right: 5px;

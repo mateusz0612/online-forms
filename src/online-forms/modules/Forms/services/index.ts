@@ -5,9 +5,11 @@ import {
   where,
   getDocs,
   addDoc,
+  doc,
+  getDoc,
   Collections,
 } from "online-forms/firebase";
-import { IForm } from "online-forms/types";
+import { IForm, IFormAnswersRequest } from "online-forms/types";
 
 export const FormsService = {
   userFormsList: async (userId: string) => {
@@ -26,5 +28,20 @@ export const FormsService = {
     const createdForm = await addDoc(collection(db, Collections.forms), form);
 
     return createdForm;
+  },
+  getForm: async (id: string) => {
+    const formRef = doc(db, Collections.forms, id);
+
+    const formDoc = await getDoc(formRef);
+
+    return { ...formDoc?.data(), id: formDoc?.id } as IForm;
+  },
+  createFormAnswer: async (formAnswersData: IFormAnswersRequest) => {
+    const createdAnswer = await addDoc(
+      collection(db, Collections.answers),
+      formAnswersData
+    );
+
+    return createdAnswer;
   },
 };

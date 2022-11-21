@@ -57,7 +57,7 @@ export const useFormCreator = ({ questions, formHeaderValues }: Params) => {
   };
 
   const onCopyLinkClick = (link: string) => {
-    copyToClipboard(`${window.location.href}/answer/${link}`);
+    copyToClipboard(`${window.location.origin}/form-answer/${link}`);
     toast("success", "Link copied to clipboard");
   };
 

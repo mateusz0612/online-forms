@@ -3,7 +3,7 @@ import { CloseIcon } from "libs/ui";
 import { IQuestion } from "online-forms/types";
 import { QuestionFormProps } from "../../FormCreator.types";
 import { QuestionForm } from "../QuestionForm";
-import * as Styled from "./AddQuestion.styled";
+import * as Styled from "./AddQuestionModal.styled";
 
 interface Props {
   isOpen: boolean;
@@ -11,7 +11,7 @@ interface Props {
   onClose: () => void;
 }
 
-export const AddQuestion: FC<QuestionFormProps & Props> = ({
+export const AddQuestionModal: FC<QuestionFormProps & Props> = ({
   isOpen,
   formState,
   answerFormState,

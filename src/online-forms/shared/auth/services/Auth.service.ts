@@ -6,9 +6,16 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  query,
+  where,
+  getDocs,
   Collections,
 } from "online-forms/firebase";
-import { ILoginCredentials, IRegisterCredentials } from "online-forms/types";
+import {
+  ILoginCredentials,
+  IRegisterCredentials,
+  IUserData,
+} from "online-forms/types";
 
 export const AuthService = {
   register: async (credentials: IRegisterCredentials) => {
@@ -20,8 +27,9 @@ export const AuthService = {
       credentials?.password
     );
 
-    const userData = {
+    const userData: IUserData = {
       username: credentials?.username,
+      email: credentials?.email,
       id: uid,
     };
 
@@ -35,4 +43,13 @@ export const AuthService = {
     );
   },
   signOut: async () => await signOut(auth),
+  getUserData: async (id: string) => {
+    const q = query(collection(db, Collections.users), where("id", "==", id));
+
+    const userDoc = await getDocs(q);
+
+    const user = userDoc?.docs[0]?.data();
+
+    return user as IUserData;
+  },
 };

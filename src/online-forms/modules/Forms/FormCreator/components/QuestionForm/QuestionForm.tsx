@@ -5,7 +5,6 @@ import {
   Select,
   Switch,
   SecondaryButton,
-  DefaultButton,
   DeleteIcon,
 } from "libs/ui";
 import { QuestionFormProps } from "../../FormCreator.types";
@@ -88,10 +87,10 @@ export const QuestionForm: FC<QuestionFormProps> = ({
           <Styled.HelperText>Added options</Styled.HelperText>
           <Stack flexDirection="row" flexWrap="wrap" gap={1}>
             {answers?.map(({ id, content }) => (
-              <DefaultButton key={id} onClick={() => onRemoveQuestionClick(id)}>
+              <Styled.Answer key={id} onClick={() => onRemoveQuestionClick(id)}>
                 {content}
                 <DeleteIcon />
-              </DefaultButton>
+              </Styled.Answer>
             ))}
           </Stack>
         </>
