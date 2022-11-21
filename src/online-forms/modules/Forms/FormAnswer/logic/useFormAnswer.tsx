@@ -5,8 +5,8 @@ import {
 } from "libs/development-kit/api";
 import { useParams } from "libs/development-kit/routing";
 import { useForm } from "libs/development-kit/form";
-import { FormsService } from "online-forms/modules/Forms/services";
-import { AuthService } from "online-forms/shared/Auth/services";
+import { FormsService } from "online-forms/modules/Forms/services/Forms.service";
+import { UsersService } from "online-forms/shared/Users/services";
 import {
   CacheKeys,
   IForm,
@@ -26,7 +26,7 @@ export const useFormAnswer = () => {
 
   const { state: userFetchState } = useFetch<IUserData>(
     [CacheKeys.user, formFetchState?.data?.userId],
-    async () => await AuthService.getUserData(formFetchState?.data?.userId),
+    async () => await UsersService.getUserData(formFetchState?.data?.userId),
     { enabled: !!formFetchState?.data?.userId }
   );
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from "online-forms/shared/Auth";
-import { FormsService } from "online-forms/modules/Forms/services";
+import { FormsService } from "online-forms/modules/Forms/services/Forms.service";
 import { IForm, IQuestion, CacheKeys } from "online-forms/types";
 import { Paths } from "online-forms/routes";
 import { usePost, useQueryClient } from "libs/development-kit/api";

@@ -6,9 +6,6 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  query,
-  where,
-  getDocs,
   Collections,
 } from "online-forms/firebase";
 import {
@@ -43,13 +40,4 @@ export const AuthService = {
     );
   },
   signOut: async () => await signOut(auth),
-  getUserData: async (id: string) => {
-    const q = query(collection(db, Collections.users), where("id", "==", id));
-
-    const userDoc = await getDocs(q);
-
-    const user = userDoc?.docs[0]?.data();
-
-    return user as IUserData;
-  },
 };

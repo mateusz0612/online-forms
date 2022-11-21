@@ -1,5 +1,5 @@
 import { useAuthContext } from "online-forms/shared/Auth";
-import { FormsService } from "online-forms/modules/Forms/services";
+import { FormsService } from "online-forms/modules/Forms/services/Forms.service";
 import { CacheKeys, IForm } from "online-forms/types";
 import { useFetch } from "libs/development-kit/api";
 import { toast } from "libs/development-kit/toasts";
