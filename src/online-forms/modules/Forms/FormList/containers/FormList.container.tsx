@@ -4,13 +4,16 @@ import { useForms } from "../logic";
 import { ModuleProps } from "../FormList.types";
 
 export const FormListContainer: FC<ModuleProps> = ({ limit }) => {
-  const { forms, onCopyFromLinkClick } = useForms();
+  const { isFormDeletePending, forms, onCopyFromLinkClick, onDeleteFormClick } =
+    useForms();
 
   return (
     <FormList
+      isFormDeletePending={isFormDeletePending}
       forms={forms?.state}
       limit={limit}
       onCopyFormLinkClick={onCopyFromLinkClick}
+      onDeleteFormCLick={onDeleteFormClick}
     />
   );
 };

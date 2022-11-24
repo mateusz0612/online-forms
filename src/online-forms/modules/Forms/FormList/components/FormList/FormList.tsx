@@ -1,13 +1,15 @@
 import { FC } from "react";
 import { IForm } from "online-forms/types";
-import { Progress, Table, ArrowRight, CopyIcon } from "libs/ui";
+import { Progress, Table, ArrowRight, CopyIcon, DeleteIcon } from "libs/ui";
 import { State, Renderer } from "libs/development-kit/api";
 import { formatDate } from "libs/development-kit/helpers/formatDate";
 import * as Styled from "./FormList.styled";
 
 interface Props {
   forms: State<IForm[]>;
+  isFormDeletePending: boolean;
   onCopyFormLinkClick: (link: string, formName: string) => void;
+  onDeleteFormCLick: (id: string) => void;
   limit?: number;
 }
 
@@ -21,8 +23,10 @@ const Error = () => <p>Error occured</p>;
 
 export const FormList: FC<Props> = ({
   forms,
+  isFormDeletePending,
   limit = 999,
   onCopyFormLinkClick,
+  onDeleteFormCLick,
 }) => {
   return (
     <Renderer<IForm[]> state={forms} pending={Loader} fail={Error}>
@@ -42,6 +46,7 @@ export const FormList: FC<Props> = ({
                 <TableCell align="center">Created at</TableCell>
                 <TableCell align="center">See details</TableCell>
                 <TableCell align="center">Copy link</TableCell>
+                <TableCell align="center">Delete</TableCell>
               </>
             )}
             renderRows={(TableCell, TableRow) => (
@@ -64,6 +69,17 @@ export const FormList: FC<Props> = ({
                     >
                       <Styled.IconWrapper variant="small">
                         <CopyIcon />
+                      </Styled.IconWrapper>
+                    </TableCell>
+                    <TableCell
+                      align="center"
+                      style={{
+                        pointerEvents: isFormDeletePending ? "none" : "auto",
+                      }}
+                      onClick={() => onDeleteFormCLick(form?.id)}
+                    >
+                      <Styled.IconWrapper variant="small">
+                        <DeleteIcon />
                       </Styled.IconWrapper>
                     </TableCell>
                   </TableRow>

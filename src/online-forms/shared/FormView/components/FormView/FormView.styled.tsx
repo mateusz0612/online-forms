@@ -26,7 +26,7 @@ export const QuestionHeader = styled.p<{ isQuestionRequired: boolean }>`
     css`
       ::after {
         content: " *";
-        color: red;
+        color: ${(props) => props.theme.pallete.error};
       }
     `}
 `;

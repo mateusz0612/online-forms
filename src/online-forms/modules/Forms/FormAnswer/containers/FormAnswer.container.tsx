@@ -1,7 +1,11 @@
 import { FC } from "react";
 import { Stack, Progress } from "libs/ui";
 import { Renderer } from "libs/development-kit/api";
-import { FormAnswerHeader, FormQuestions } from "../components";
+import {
+  FormAnswerHeader,
+  FormQuestions,
+  FormAnswerSuccessModal,
+} from "../components";
 import { useFormAnswer } from "../logic";
 
 const Pending: FC = () => (
@@ -11,8 +15,16 @@ const Pending: FC = () => (
 );
 
 export const FormAnswerContainer: FC = () => {
-  const { fetchState, control, isFormPending, register, onFormSubmit } =
-    useFormAnswer();
+  const {
+    fetchState,
+    formState,
+    control,
+    isFormPending,
+    isSuccessModalOpen,
+    register,
+    onSuccessModalConfirm,
+    onFormSubmit,
+  } = useFormAnswer();
 
   return (
     <Renderer
@@ -26,10 +38,15 @@ export const FormAnswerContainer: FC = () => {
             <FormAnswerHeader formWithUserData={formWithUserData} />
             <FormQuestions
               formWithUserData={formWithUserData}
+              formState={formState}
               control={control}
               isFormPending={isFormPending}
               register={register}
               onFormSubmit={onFormSubmit}
+            />
+            <FormAnswerSuccessModal
+              isOpen={isSuccessModalOpen}
+              onConfirm={onSuccessModalConfirm}
             />
           </Stack>
         );

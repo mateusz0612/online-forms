@@ -29,13 +29,13 @@ export const useFormCreator = ({ questions, formHeaderValues }: Params) => {
   const navigate = useNavigate();
 
   const {
-    mutateAsync,
+    mutateAsync: createForm,
     data,
     isLoading: isFormSavePending,
   } = usePost<FromWithoutId, FormCreatedResponse>({
     mutationFn: async (data) => await FormsService.createForm(data),
-    onSuccess: () => {
-      queryClient.invalidateQueries([CacheKeys.forms]);
+    onSuccess: async () => {
+      await queryClient.invalidateQueries([CacheKeys.forms]);
       setIsFormCreatedConfirmationVisible(true);
     },
     onError: () => {
@@ -53,7 +53,7 @@ export const useFormCreator = ({ questions, formHeaderValues }: Params) => {
       userId: user?.uid as string,
     };
 
-    await mutateAsync(form);
+    await createForm(form);
   };
 
   const onCopyLinkClick = (link: string) => {

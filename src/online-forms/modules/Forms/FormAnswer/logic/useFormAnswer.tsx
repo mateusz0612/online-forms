@@ -1,23 +1,53 @@
+import { useState } from "react";
 import {
   useFetch,
   usePost,
   combineFetchStates,
 } from "libs/development-kit/api";
-import { useParams } from "libs/development-kit/routing";
+import { useParams, useNavigate } from "libs/development-kit/routing";
 import { useForm } from "libs/development-kit/form";
-import { FormsService } from "online-forms/modules/Forms/services/Forms.service";
+import { toast } from "libs/development-kit/toasts";
+import { FormsService } from "online-forms/modules/Forms/services";
 import { UsersService } from "online-forms/shared/Users/services";
+import { useAuthContext } from "online-forms/shared/Auth";
+import { Paths } from "online-forms/routes";
 import {
   CacheKeys,
   IForm,
   IUserData,
-  IFormAnswersRequest,
+  IFormAnswers,
+  IQuestion,
 } from "online-forms/types";
+import * as yup from "yup";
 
 type URLParams = { formId: string };
 
+const createFormValidationSchema = (questions: IQuestion[]) => {
+  const validationSchema = questions?.reduce((currentSchema, question) => {
+    const { required, id } = question;
+
+    if (required) {
+      return {
+        ...currentSchema,
+        [id]: yup
+          .string()
+          .trim()
+          .required("Answer to this question is required"),
+      };
+    }
+
+    return currentSchema;
+  }, {});
+
+  return yup.object().shape(validationSchema);
+};
+
 export const useFormAnswer = () => {
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const navigate = useNavigate();
+
   const { formId } = useParams<URLParams>();
+  const { user } = useAuthContext();
 
   const { state: formFetchState } = useFetch<IForm>(
     [CacheKeys.form, `${formId}`],
@@ -30,14 +60,23 @@ export const useFormAnswer = () => {
     { enabled: !!formFetchState?.data?.userId }
   );
 
-  const { control, register, handleSubmit } = useForm<unknown>({});
-
-  const { mutateAsync, isLoading: isFormPending } =
-    usePost<IFormAnswersRequest>({
+  const { mutateAsync: addAnswer, isLoading: isFormPending } =
+    usePost<IFormAnswers>({
       mutationFn: async (data) => await FormsService.createFormAnswer(data),
-      onSuccess: () => {},
-      onError: () => {},
+      onSuccess: () => {
+        setIsSuccessModalOpen(true);
+      },
+      onError: () => {
+        toast("error", "Something went wrong :( Please try again");
+      },
     });
+
+  const { control, formState, register, handleSubmit } = useForm<unknown>({
+    validationSchema: createFormValidationSchema(
+      formFetchState?.data?.questions
+    ),
+    reValidateMode: "onChange",
+  });
 
   const fetchState = combineFetchStates<IForm, IUserData>(
     formFetchState,
@@ -45,19 +84,31 @@ export const useFormAnswer = () => {
   );
 
   const onFormSubmit = handleSubmit(async (data) => {
-    const formAnswersData: IFormAnswersRequest = {
+    const formAnswersData: IFormAnswers = {
       formId: formFetchState?.data?.id,
       answers: data,
     };
 
-    await mutateAsync(formAnswersData);
+    await addAnswer(formAnswersData);
   });
 
+  const onSuccessModalConfirm = () => {
+    if (user) {
+      navigate(Paths.Dashboard);
+      return;
+    }
+
+    navigate(Paths.Landing);
+  };
+
   return {
+    formState,
+    isSuccessModalOpen,
     fetchState,
     control,
-    register,
     isFormPending,
+    register,
+    onSuccessModalConfirm,
     onFormSubmit,
   } as const;
 };

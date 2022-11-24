@@ -50,7 +50,7 @@ export interface IForm {
   questions: IQuestion[];
 }
 
-export interface IFormAnswersRequest {
+export interface IFormAnswers {
   formId: string;
   answers: unknown;
 }

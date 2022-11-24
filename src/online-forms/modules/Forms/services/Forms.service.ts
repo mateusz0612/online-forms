@@ -7,9 +7,10 @@ import {
   addDoc,
   doc,
   getDoc,
+  deleteDoc,
   Collections,
 } from "online-forms/firebase";
-import { IForm, IFormAnswersRequest } from "online-forms/types";
+import { IForm, IFormAnswers } from "online-forms/types";
 
 export const FormsService = {
   userFormsList: async (userId: string) => {
@@ -36,7 +37,12 @@ export const FormsService = {
 
     return { ...formDoc?.data(), id: formDoc?.id } as IForm;
   },
-  createFormAnswer: async (formAnswersData: IFormAnswersRequest) => {
+  deleteForm: async (id: string) => {
+    const formToDelete = doc(db, Collections.forms, id);
+
+    await deleteDoc(formToDelete);
+  },
+  createFormAnswer: async (formAnswersData: IFormAnswers) => {
     const createdAnswer = await addDoc(
       collection(db, Collections.answers),
       formAnswersData

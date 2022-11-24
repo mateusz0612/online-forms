@@ -1,116 +1,35 @@
 import { FC } from "react";
-import { Stack, Radio, TextField, ControlledRadio } from "libs/ui";
+import { HelperText, Stack } from "libs/ui";
 import { IControl, IRegister } from "libs/development-kit/form";
-import { IAnswer, IQuestion } from "online-forms/types";
+import { IAnswer } from "online-forms/types";
 import { EditHandlers } from "../EditHandlers";
-import { IHandlers } from "../../FormView.types";
+import { AnswersList } from "../AnswersList";
+import { BooleanAnswers } from "../BooleanAnswers";
+import { TextAnswer } from "../TextAnswer";
+import { FormViewProps, FormViewAnswerComponent } from "../../FormView.types";
 import * as Styled from "./FormView.styled";
-
-interface Props {
-  questions: IQuestion[];
-  isEditable: boolean;
-  control?: IControl<unknown>;
-  register?: IRegister<unknown>;
-  handlers?: IHandlers;
-}
-
-const AnswerList: FC<{
-  questionId: string;
-  answers: IAnswer[];
-  control: IControl<unknown>;
-}> = ({ questionId, answers, control }) => (
-  <Stack>
-    {answers?.map(({ id, content }) => {
-      if (control) {
-        return (
-          <ControlledRadio
-            key={id}
-            name={questionId}
-            control={control}
-            label={content}
-            value={content}
-          />
-        );
-      }
-
-      return <Radio key={id} label={content} checked={false} />;
-    })}
-  </Stack>
-);
-
-const BooleanAnswers: FC<{
-  questionId: string;
-  control: IControl<unknown>;
-}> = ({ questionId, control }) => {
-  return (
-    <Stack>
-      {control ? (
-        <>
-          <ControlledRadio
-            name={questionId}
-            control={control}
-            label="Yes"
-            value="yes"
-          />
-          <ControlledRadio
-            name={questionId}
-            control={control}
-            label="No"
-            value="no"
-          />
-        </>
-      ) : (
-        <>
-          <Radio label="Yes" checked={false} />
-          <Radio label="No" checked={false} />
-        </>
-      )}
-    </Stack>
-  );
-};
-
-const TextAnswer: FC<{
-  questionId: string;
-  isEditable: boolean;
-  register: IRegister<unknown>;
-}> = ({ questionId, isEditable, register }) => {
-  return (
-    <Stack mt={1}>
-      <TextField
-        label="User answer"
-        disabled={isEditable}
-        {...register(questionId as never)}
-      />
-    </Stack>
-  );
-};
 
 const getTypeComponent = ({
   answers,
   id,
   isEditable,
-  register,
   control,
-}: {
-  answers: IAnswer[];
-  id: string;
-  isEditable: boolean;
-  register: IRegister<unknown>;
-  control: IControl<unknown>;
-}) => ({
-  options: <AnswerList questionId={id} answers={answers} control={control} />,
+  register,
+}: FormViewAnswerComponent & { answers: IAnswer[]; id: string }) => ({
+  options: <AnswersList questionId={id} answers={answers} control={control} />,
   boolean: <BooleanAnswers questionId={id} control={control} />,
   text: (
     <TextAnswer questionId={id} isEditable={isEditable} register={register} />
   ),
 });
 
-export const FormView: FC<Props> = ({
+export const FormView: FC<FormViewProps> = ({
   questions,
   isEditable,
   control,
-  register,
   handlers,
+  formState,
+  register,
 }) => {
   return (
     <Stack>
@@ -126,10 +45,18 @@ export const FormView: FC<Props> = ({
                 answers,
                 isEditable,
                 id,
+                formState,
                 register: register as IRegister<unknown>,
                 control: control as IControl<unknown>,
               })[type]
             }
+            <HelperText
+              text={
+                (formState?.errors as Record<string, { message: string }>)?.[
+                  `${id}`
+                ]?.message
+              }
+            />
           </Styled.QuestionWrapper>
         </Styled.Wrapper>
       ))}
