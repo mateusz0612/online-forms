@@ -5,7 +5,11 @@ import styled from "styled-components";
 interface Props {
   isOpen: boolean;
   onConfirm: () => void;
-  onClose?: () => void;
+  onReject?: () => void;
+  labels?: {
+    confirm: string;
+    close: string;
+  };
   children?: React.ReactElement | React.ReactElement[];
 }
 
@@ -30,7 +34,8 @@ const ModalWrapper = styled(Modal)`
 
 export const ConfirmationModal: FC<Props> = ({
   isOpen,
-  onClose,
+  labels,
+  onReject,
   onConfirm,
   children,
 }) => {
@@ -46,12 +51,16 @@ export const ConfirmationModal: FC<Props> = ({
           pr={2}
         >
           <Stack width="35%" alignSelf="start">
-            {onClose && (
-              <SecondaryButton onClick={onClose}>Close</SecondaryButton>
+            {onReject && (
+              <SecondaryButton onClick={onReject}>
+                {labels?.close || "Close"}
+              </SecondaryButton>
             )}
           </Stack>
           <Stack width="35%" alignSelf="end">
-            <PrimaryButton onClick={onConfirm}>Confirm</PrimaryButton>
+            <PrimaryButton onClick={onConfirm}>
+              {labels?.confirm || "Confirm"}
+            </PrimaryButton>
           </Stack>
         </Stack>
       </Wrapper>

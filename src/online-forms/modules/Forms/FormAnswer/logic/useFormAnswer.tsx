@@ -22,6 +22,18 @@ import * as yup from "yup";
 
 type URLParams = { formId: string };
 
+type FormData = Record<string, string>;
+
+const mapUndefinedFormValues = (formData: FormData) => {
+  return Object.keys(formData)?.reduce((currentValues, key) => {
+    if (!formData?.[key]) {
+      return { ...currentValues, [key]: "" };
+    }
+
+    return { ...currentValues, [key]: formData?.[key] };
+  }, {});
+};
+
 const createFormValidationSchema = (questions: IQuestion[]) => {
   const validationSchema = questions?.reduce((currentSchema, question) => {
     const { required, id } = question;
@@ -71,12 +83,13 @@ export const useFormAnswer = () => {
       },
     });
 
-  const { control, formState, register, handleSubmit } = useForm<unknown>({
-    validationSchema: createFormValidationSchema(
-      formFetchState?.data?.questions
-    ),
-    reValidateMode: "onChange",
-  });
+  const { control, formState, register, handleSubmit, getValues } =
+    useForm<FormData>({
+      validationSchema: createFormValidationSchema(
+        formFetchState?.data?.questions
+      ),
+      reValidateMode: "onChange",
+    });
 
   const fetchState = combineFetchStates<IForm, IUserData>(
     formFetchState,
@@ -86,7 +99,7 @@ export const useFormAnswer = () => {
   const onFormSubmit = handleSubmit(async (data) => {
     const formAnswersData: IFormAnswers = {
       formId: formFetchState?.data?.id,
-      answers: data,
+      answers: mapUndefinedFormValues(data),
     };
 
     await addAnswer(formAnswersData);

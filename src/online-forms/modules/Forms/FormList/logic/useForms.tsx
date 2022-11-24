@@ -13,12 +13,18 @@ const sortFormsByLatestCreateAt = (forms: IForm[]) => {
 };
 
 export const useForms = () => {
+  const [
+    isFormDeleteConfirmationModalOpen,
+    setIsFormDeleteConfirmationModalOpen,
+  ] = useState(false);
+  const [currentPickedForm, setCurrentPickedForm] = useState<IForm | null>(
+    null
+  );
   const { user } = useAuthContext();
 
   const forms = useFetch(
     [CacheKeys.forms, `${user?.uid}`],
-    async () => await FormsService.userFormsList(`${user?.uid}`),
-    {}
+    async () => await FormsService.userFormsList(`${user?.uid}`)
   );
 
   const { mutateAsync: deleteForm, isLoading: isFormDeletePending } = usePost<{
@@ -36,17 +42,35 @@ export const useForms = () => {
     },
   });
 
+  const openFormDeleteConfirmationModal = () =>
+    setIsFormDeleteConfirmationModalOpen(true);
+  const closeFormDeleteConfirmationModal = () =>
+    setIsFormDeleteConfirmationModalOpen(false);
+
   const onCopyFromLinkClick = (link: string, formName: string) => {
     copyToClipboard(`${window.location.origin}/form-answer/${link}`);
     toast("success", `Link to form ${formName} copied to clipboard`);
   };
 
-  const onDeleteFormClick = async (id: string) => {
+  const onDeleteFormClick = (id: string) => {
+    const form = forms?.state?.data?.find((form) => form?.id === id);
+
+    setCurrentPickedForm(form as IForm);
+    openFormDeleteConfirmationModal();
+  };
+
+  const onRejectDeleteFormClick = () => {
+    closeFormDeleteConfirmationModal();
+  };
+
+  const onConfirmDeleteFormClick = async (id: string) => {
+    closeFormDeleteConfirmationModal();
     await deleteForm({ id });
   };
 
   return {
     isFormDeletePending,
+    isFormDeleteConfirmationModalOpen,
     forms: {
       ...forms,
       state: {
@@ -55,7 +79,10 @@ export const useForms = () => {
       },
       data: sortFormsByLatestCreateAt(forms?.state?.data),
     },
+    currentPickedForm: currentPickedForm as IForm,
     onCopyFromLinkClick,
     onDeleteFormClick,
+    onRejectDeleteFormClick,
+    onConfirmDeleteFormClick,
   } as const;
 };
