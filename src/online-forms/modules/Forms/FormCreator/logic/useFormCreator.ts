@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from "online-forms/shared/Auth";
-import { FormsService } from "online-forms/modules/Forms/services";
+import { FormsService } from "online-forms/modules/Forms/services/Forms.service";
 import { IForm, IQuestion, CacheKeys } from "online-forms/types";
 import { Paths } from "online-forms/routes";
 import { usePost, useQueryClient } from "libs/development-kit/api";
@@ -29,13 +29,13 @@ export const useFormCreator = ({ questions, formHeaderValues }: Params) => {
   const navigate = useNavigate();
 
   const {
-    mutateAsync,
+    mutateAsync: createForm,
     data,
     isLoading: isFormSavePending,
   } = usePost<FromWithoutId, FormCreatedResponse>({
     mutationFn: async (data) => await FormsService.createForm(data),
-    onSuccess: () => {
-      queryClient.invalidateQueries([CacheKeys.forms]);
+    onSuccess: async () => {
+      await queryClient.invalidateQueries([CacheKeys.forms]);
       setIsFormCreatedConfirmationVisible(true);
     },
     onError: () => {
@@ -53,11 +53,11 @@ export const useFormCreator = ({ questions, formHeaderValues }: Params) => {
       userId: user?.uid as string,
     };
 
-    await mutateAsync(form);
+    await createForm(form);
   };
 
   const onCopyLinkClick = (link: string) => {
-    copyToClipboard(`${window.location.href}/answer/${link}`);
+    copyToClipboard(`${window.location.origin}/form-answer/${link}`);
     toast("success", "Link copied to clipboard");
   };
 

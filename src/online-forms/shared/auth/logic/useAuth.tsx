@@ -1,13 +1,25 @@
 import { useAuthState } from "online-forms/firebase";
-import { AuthService } from "../services";
+import { UsersService } from "online-forms/shared/Users/services";
 import {
   IRegisterCredentials,
   AuthErrorType,
   ILoginCredentials,
+  CacheKeys,
 } from "online-forms/types";
+import { useFetch } from "libs/development-kit/api";
+import { AuthService } from "../services";
 
 export const useAuth = () => {
-  const [user, loading] = useAuthState();
+  const [user, isAuthStateLoading] = useAuthState();
+
+  const { state: userDataFetchState } = useFetch(
+    [CacheKeys.user, `${user?.uid}`],
+    async () => await UsersService.getUserData(`${user?.uid}`)
+  );
+
+  const loading =
+    isAuthStateLoading || userDataFetchState?.status === "loading";
+  const userData = userDataFetchState?.data;
 
   const registerUser = async (
     credentials: IRegisterCredentials,
@@ -40,6 +52,7 @@ export const useAuth = () => {
   return {
     loading,
     user,
+    userData,
     registerUser,
     loginUser,
     signOutUser,

@@ -8,7 +8,11 @@ import {
   signOut,
   Collections,
 } from "online-forms/firebase";
-import { ILoginCredentials, IRegisterCredentials } from "online-forms/types";
+import {
+  ILoginCredentials,
+  IRegisterCredentials,
+  IUserData,
+} from "online-forms/types";
 
 export const AuthService = {
   register: async (credentials: IRegisterCredentials) => {
@@ -20,8 +24,9 @@ export const AuthService = {
       credentials?.password
     );
 
-    const userData = {
+    const userData: IUserData = {
       username: credentials?.username,
+      email: credentials?.email,
       id: uid,
     };
 

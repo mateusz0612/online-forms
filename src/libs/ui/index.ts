@@ -15,3 +15,5 @@ export * from "./Modal";
 export * from "./Select";
 export * from "./Switch";
 export * from "./Radio";
+export * from "./ConfirmationModal";
+export * from "./HelperText";

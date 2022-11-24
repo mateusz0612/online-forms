@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { PrimaryButton, CloseIcon } from "libs/ui";
+import { ConfirmationModal } from "libs/ui";
 import * as Styled from "./FormCreatedConfirmationModal.styled";
 
 interface Props {
@@ -9,6 +9,11 @@ interface Props {
   onCopyLinkClick: (link: string) => void;
 }
 
+const formCreatedConfirmationModalLabels = {
+  close: "Copy link",
+  confirm: "Close",
+};
+
 export const FormCreatedConfirmationModal: FC<Props> = ({
   isOpen,
   createdFormId,
@@ -16,11 +21,13 @@ export const FormCreatedConfirmationModal: FC<Props> = ({
   onCopyLinkClick,
 }) => {
   return (
-    <Styled.ModalWrapper open={isOpen}>
+    <ConfirmationModal
+      isOpen={isOpen}
+      labels={formCreatedConfirmationModalLabels}
+      onReject={() => onCopyLinkClick(createdFormId)}
+      onConfirm={onClose}
+    >
       <Styled.Content justifyContent="center" alignItems="center">
-        <div onClick={onClose}>
-          <CloseIcon />
-        </div>
         <h3>Form was successfully created! :)</h3>
         <p>
           Your form is available at <br />
@@ -28,10 +35,7 @@ export const FormCreatedConfirmationModal: FC<Props> = ({
             {window.location.href}/answer/${createdFormId}
           </span>
         </p>
-        <PrimaryButton onClick={() => onCopyLinkClick(createdFormId)}>
-          Copy link
-        </PrimaryButton>
       </Styled.Content>
-    </Styled.ModalWrapper>
+    </ConfirmationModal>
   );
 };

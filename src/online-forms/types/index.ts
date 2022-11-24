@@ -2,9 +2,17 @@ import { AuthError } from "firebase/auth";
 
 export enum CacheKeys {
   forms = "forms",
+  form = "form",
+  user = "user",
 }
 
 export type AuthErrorType = AuthError;
+
+export interface IUserData {
+  id: string;
+  username: string;
+  email: string;
+}
 
 export interface ILoginCredentials {
   email: string;
@@ -40,4 +48,9 @@ export interface IForm {
   description: string;
   createdAt: number;
   questions: IQuestion[];
+}
+
+export interface IFormAnswers {
+  formId: string;
+  answers: unknown;
 }

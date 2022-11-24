@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { Stack } from "libs/ui";
 
 export const Wrapper = styled(Stack)`
-  width: 90%;
+  width: 100%;
   margin: auto;
 `;
 
@@ -26,20 +26,7 @@ export const QuestionHeader = styled.p<{ isQuestionRequired: boolean }>`
     css`
       ::after {
         content: " *";
-        color: red;
+        color: ${(props) => props.theme.pallete.error};
       }
     `}
-`;
-
-export const IconsWrapper = styled(Stack)`
-  position: absolute;
-  cursor: pointer;
-  top: 10px;
-  right: 10px;
-`;
-
-export const IconWrapper = styled.div`
-  :hover {
-    color: ${(props) => props.theme.pallete.primary};
-  }
 `;
