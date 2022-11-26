@@ -3,7 +3,10 @@ import { State, Status } from "./useFetch";
 export const combineFetchStates = <T, K>(
   firstFetchState: State<T>,
   secondFetchState: State<K>
-): State<T & K> => {
+): State<{
+  firstStateData: T;
+  secondStateData: K;
+}> => {
   const getStatus = (
     firstFetchStatus: Status,
     secondFetchStatus: Status
@@ -24,7 +27,10 @@ export const combineFetchStates = <T, K>(
   };
 
   return {
-    data: { ...firstFetchState?.data, ...secondFetchState?.data },
+    data: {
+      firstStateData: firstFetchState?.data,
+      secondStateData: secondFetchState?.data,
+    },
     status: getStatus(firstFetchState?.status, secondFetchState?.status),
     error: firstFetchState?.error || secondFetchState?.error,
   };

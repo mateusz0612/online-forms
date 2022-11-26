@@ -10,7 +10,7 @@ interface Props {
 }
 
 const deleteFormConfirmationModalLabels = {
-  close: "No, close",
+  reject: "No, close",
   confirm: "Yes, delete",
 };
 

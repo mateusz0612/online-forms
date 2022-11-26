@@ -10,7 +10,7 @@ interface Props {
 }
 
 const formCreatedConfirmationModalLabels = {
-  close: "Copy link",
+  reject: "Copy link",
   confirm: "Close",
 };
 

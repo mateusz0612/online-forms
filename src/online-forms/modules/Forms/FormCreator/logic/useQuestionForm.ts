@@ -4,6 +4,8 @@ import { IAnswer, IQuestion } from "online-forms/types";
 import { id } from "libs/development-kit/helpers/id";
 import * as yup from "yup";
 
+const MAX_QUESTION_ANSWERS_AMOUNT = 12;
+
 const QUESTION_DEFAULT_VALUES: IQuestion = {
   id: "",
   content: "",
@@ -79,6 +81,13 @@ export const useQuestionForm = ({
   const onOpenQuestionModal = () => openQuestionModal();
 
   const onAddAnswerClick = answerHandleSubmit(({ content }) => {
+    if (answers?.length === MAX_QUESTION_ANSWERS_AMOUNT) {
+      setAnswerError("content", {
+        message: `Max amount of answers - ${MAX_QUESTION_ANSWERS_AMOUNT}`,
+      });
+      return;
+    }
+
     setValue("answers", [...(answers as IAnswer[]), { id: id(), content }]);
 
     answerReset();

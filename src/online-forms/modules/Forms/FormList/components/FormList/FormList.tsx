@@ -8,6 +8,7 @@ import * as Styled from "./FormList.styled";
 interface Props {
   forms: State<IForm[]>;
   isFormDeletePending: boolean;
+  onAnalyzeFormClick: (id: string) => void;
   onCopyFormLinkClick: (link: string, formName: string) => void;
   onDeleteFormCLick: (id: string) => void;
   limit?: number;
@@ -25,11 +26,12 @@ export const FormList: FC<Props> = ({
   forms,
   isFormDeletePending,
   limit = 999,
+  onAnalyzeFormClick,
   onCopyFormLinkClick,
   onDeleteFormCLick,
 }) => {
   return (
-    <Renderer<IForm[]> state={forms} pending={Loader} fail={Error}>
+    <Renderer state={forms} pending={Loader} fail={Error}>
       {(data) => {
         if (data?.length === 0) {
           return (
@@ -44,8 +46,8 @@ export const FormList: FC<Props> = ({
                 <TableCell>Name</TableCell>
                 <TableCell>Description</TableCell>
                 <TableCell align="center">Created at</TableCell>
-                <TableCell align="center">See details</TableCell>
-                <TableCell align="center">Copy link</TableCell>
+                <TableCell align="center">Analyze</TableCell>
+                <TableCell align="center">Link</TableCell>
                 <TableCell align="center">Delete</TableCell>
               </>
             )}
@@ -56,9 +58,12 @@ export const FormList: FC<Props> = ({
                     <TableCell>{form?.name}</TableCell>
                     <TableCell>{form?.description}</TableCell>
                     <TableCell align="center">
-                      {formatDate(form?.createdAt, "MM/dd/yyyy")}
+                      {formatDate(form?.createdAt, "dd/MM/yyyy")}
                     </TableCell>
-                    <TableCell align="center">
+                    <TableCell
+                      align="center"
+                      onClick={() => onAnalyzeFormClick(form?.id)}
+                    >
                       <Styled.IconWrapper variant="medium">
                         <ArrowRight />
                       </Styled.IconWrapper>

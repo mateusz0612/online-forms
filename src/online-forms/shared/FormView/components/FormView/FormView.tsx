@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { HelperText, Stack } from "libs/ui";
 import { IControl, IRegister } from "libs/development-kit/form";
-import { IAnswer } from "online-forms/types";
+import { IAnswer, FormData } from "online-forms/types";
 import { EditHandlers } from "../EditHandlers";
 import { AnswersList } from "../AnswersList";
 import { BooleanAnswers } from "../BooleanAnswers";
@@ -13,19 +13,41 @@ const getTypeComponent = ({
   answers,
   id,
   isEditable,
+  isValueEditDisabled,
   control,
   register,
 }: FormViewAnswerComponent & { answers: IAnswer[]; id: string }) => ({
-  options: <AnswersList questionId={id} answers={answers} control={control} />,
-  boolean: <BooleanAnswers questionId={id} control={control} />,
+  options: (
+    <AnswersList
+      questionId={id}
+      isEditable={isEditable}
+      isValueEditDisabled={isValueEditDisabled}
+      answers={answers}
+      control={control}
+    />
+  ),
+  boolean: (
+    <BooleanAnswers
+      questionId={id}
+      isEditable={isEditable}
+      isValueEditDisabled={isValueEditDisabled}
+      control={control}
+    />
+  ),
   text: (
-    <TextAnswer questionId={id} isEditable={isEditable} register={register} />
+    <TextAnswer
+      questionId={id}
+      isEditable={isEditable}
+      isValueEditDisabled={isValueEditDisabled}
+      register={register}
+    />
   ),
 });
 
 export const FormView: FC<FormViewProps> = ({
   questions,
   isEditable,
+  isValueEditDisabled = false,
   control,
   handlers,
   formState,
@@ -44,10 +66,10 @@ export const FormView: FC<FormViewProps> = ({
               getTypeComponent({
                 answers,
                 isEditable,
+                isValueEditDisabled,
                 id,
-                formState,
-                register: register as IRegister<unknown>,
-                control: control as IControl<unknown>,
+                control: control as IControl<FormData>,
+                register: register as IRegister<FormData>,
               })[type]
             }
             <HelperText

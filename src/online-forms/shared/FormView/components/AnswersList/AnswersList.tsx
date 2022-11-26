@@ -5,7 +5,13 @@ import { FormViewAnswerComponent } from "../../FormView.types";
 
 type Props = FormViewAnswerComponent & { answers: IAnswer[] };
 
-export const AnswersList: FC<Props> = ({ questionId, answers, control }) => {
+export const AnswersList: FC<Props> = ({
+  questionId,
+  answers,
+  control,
+  isEditable,
+  isValueEditDisabled,
+}) => {
   return (
     <Stack>
       {answers?.map(({ id, content }) => {
@@ -17,6 +23,7 @@ export const AnswersList: FC<Props> = ({ questionId, answers, control }) => {
               control={control}
               label={content}
               value={content}
+              disabled={isEditable || isValueEditDisabled}
             />
           );
         }

@@ -5,18 +5,18 @@ import { FormViewAnswerComponent } from "../../FormView.types";
 export const TextAnswer: FC<FormViewAnswerComponent> = ({
   questionId,
   isEditable,
+  isValueEditDisabled,
   register,
 }) => {
   return (
     <Stack mt={1}>
       {register ? (
         <TextField
-          label="User answer"
-          disabled={isEditable}
+          disabled={isEditable || isValueEditDisabled}
           {...register(questionId as never)}
         />
       ) : (
-        <TextField label="User answer" disabled={isEditable} />
+        <TextField disabled={isEditable || isValueEditDisabled} />
       )}
     </Stack>
   );

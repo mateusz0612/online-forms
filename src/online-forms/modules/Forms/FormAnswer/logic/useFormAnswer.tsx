@@ -3,6 +3,7 @@ import {
   useFetch,
   usePost,
   combineFetchStates,
+  State,
 } from "libs/development-kit/api";
 import { useParams, useNavigate } from "libs/development-kit/routing";
 import { useForm } from "libs/development-kit/form";
@@ -15,14 +16,14 @@ import {
   CacheKeys,
   IForm,
   IUserData,
-  IFormAnswers,
+  IFormAnswer,
   IQuestion,
+  FormData,
 } from "online-forms/types";
 import * as yup from "yup";
 
 type URLParams = { formId: string };
-
-type FormData = Record<string, string>;
+type FormAnswerWithoutId = Omit<IFormAnswer, "id">;
 
 const mapUndefinedFormValues = (formData: FormData) => {
   return Object.keys(formData)?.reduce((currentValues, key) => {
@@ -73,7 +74,7 @@ export const useFormAnswer = () => {
   );
 
   const { mutateAsync: addAnswer, isLoading: isFormPending } =
-    usePost<IFormAnswers>({
+    usePost<FormAnswerWithoutId>({
       mutationFn: async (data) => await FormsService.createFormAnswer(data),
       onSuccess: () => {
         setIsSuccessModalOpen(true);
@@ -83,13 +84,12 @@ export const useFormAnswer = () => {
       },
     });
 
-  const { control, formState, register, handleSubmit, getValues } =
-    useForm<FormData>({
-      validationSchema: createFormValidationSchema(
-        formFetchState?.data?.questions
-      ),
-      reValidateMode: "onChange",
-    });
+  const { control, formState, register, handleSubmit } = useForm<FormData>({
+    validationSchema: createFormValidationSchema(
+      formFetchState?.data?.questions
+    ),
+    reValidateMode: "onChange",
+  });
 
   const fetchState = combineFetchStates<IForm, IUserData>(
     formFetchState,
@@ -97,7 +97,7 @@ export const useFormAnswer = () => {
   );
 
   const onFormSubmit = handleSubmit(async (data) => {
-    const formAnswersData: IFormAnswers = {
+    const formAnswersData: Omit<FormAnswerWithoutId, "id"> = {
       formId: formFetchState?.data?.id,
       answers: mapUndefinedFormValues(data),
     };
@@ -115,9 +115,15 @@ export const useFormAnswer = () => {
   };
 
   return {
+    fetchState: {
+      ...fetchState,
+      data: {
+        ...fetchState?.data?.firstStateData,
+        ...fetchState?.data?.secondStateData,
+      },
+    },
     formState,
     isSuccessModalOpen,
-    fetchState,
     control,
     isFormPending,
     register,

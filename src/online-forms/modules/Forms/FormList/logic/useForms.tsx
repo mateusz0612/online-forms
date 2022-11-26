@@ -3,8 +3,10 @@ import { useAuthContext } from "online-forms/shared/Auth";
 import { FormsService } from "online-forms/modules/Forms/services/Forms.service";
 import { CacheKeys, IForm } from "online-forms/types";
 import { useFetch, usePost } from "libs/development-kit/api";
+import { useNavigate } from "libs/development-kit/routing";
 import { toast } from "libs/development-kit/toasts";
 import { copyToClipboard } from "libs/development-kit/helpers/copyToClipboard";
+import { Paths } from "online-forms/routes";
 
 const sortFormsByLatestCreateAt = (forms: IForm[]) => {
   const sortedForms = forms?.sort((x, y) => y?.createdAt - x?.createdAt);
@@ -21,6 +23,7 @@ export const useForms = () => {
     null
   );
   const { user } = useAuthContext();
+  const navigate = useNavigate();
 
   const forms = useFetch(
     [CacheKeys.forms, `${user?.uid}`],
@@ -44,6 +47,7 @@ export const useForms = () => {
 
   const openFormDeleteConfirmationModal = () =>
     setIsFormDeleteConfirmationModalOpen(true);
+
   const closeFormDeleteConfirmationModal = () =>
     setIsFormDeleteConfirmationModalOpen(false);
 
@@ -61,6 +65,10 @@ export const useForms = () => {
 
   const onRejectDeleteFormClick = () => {
     closeFormDeleteConfirmationModal();
+  };
+
+  const onAnalyzeFormClick = (id: string) => {
+    navigate(Paths.AnalyzeForm?.replace(":formId", id));
   };
 
   const onConfirmDeleteFormClick = async (id: string) => {
@@ -81,6 +89,7 @@ export const useForms = () => {
     },
     currentPickedForm: currentPickedForm as IForm,
     onCopyFromLinkClick,
+    onAnalyzeFormClick,
     onDeleteFormClick,
     onRejectDeleteFormClick,
     onConfirmDeleteFormClick,

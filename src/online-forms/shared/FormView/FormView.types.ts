@@ -1,5 +1,5 @@
 import { IControl, IFormState, IRegister } from "libs/development-kit/form";
-import { IQuestion } from "online-forms/types";
+import { IQuestion, FormData } from "online-forms/types";
 
 export interface IHandlers {
   onDeleteClick: (questionId: string) => void;
@@ -9,10 +9,11 @@ export interface IHandlers {
 export interface FormViewProps {
   questions: IQuestion[];
   isEditable: boolean;
-  control?: IControl<unknown>;
+  isValueEditDisabled?: boolean;
+  control?: IControl<FormData>;
   handlers?: IHandlers;
-  formState?: IFormState<unknown>;
-  register?: IRegister<unknown>;
+  formState?: IFormState<FormData>;
+  register?: IRegister<FormData>;
 }
 
 export type FormViewAnswerComponent = Partial<

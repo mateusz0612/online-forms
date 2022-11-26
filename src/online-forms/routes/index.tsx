@@ -4,12 +4,14 @@ import { LandingPage } from "online-forms/pages/LandingPage";
 import { DashboardPage } from "online-forms/pages/DashboardPage";
 import { CreateFormPage } from "online-forms/pages/CreateFormPage";
 import { AnswerPage } from "online-forms/pages/AnswerPage";
+import { AnalyzePage } from "online-forms/pages/AnalyzePage";
 
 export enum Paths {
   Landing = "/",
   Dashboard = "/dashboard",
   CreateForm = "/form-creator",
   AnswerForm = "/form-answer/:formId",
+  AnalyzeForm = "/form-analyze/:formId",
   DefaultRoute = "/*",
 }
 
@@ -42,6 +44,11 @@ export const AuthAppRoutes = [
     path={Paths.AnswerForm}
     key={Paths.AnswerForm}
     element={<AnswerPage />}
+  />,
+  <Route
+    path={Paths.AnalyzeForm}
+    key={Paths.AnalyzeForm}
+    element={<AnalyzePage />}
   />,
   <Route
     path={Paths.DefaultRoute}

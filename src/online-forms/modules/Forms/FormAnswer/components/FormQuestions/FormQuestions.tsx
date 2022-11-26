@@ -1,16 +1,16 @@
 import { FC } from "react";
-import { Tile, Stack, PrimaryButton } from "libs/ui";
+import { Tile } from "libs/ui";
 import { FormView } from "online-forms/shared/FormView";
-import { IForm, IUserData } from "online-forms/types";
+import { IForm, IUserData, FormData } from "online-forms/types";
 import { IControl, IFormState, IRegister } from "libs/development-kit/form";
 import * as Styled from "./FormQuestion.styled";
 
 interface Props {
   formWithUserData: IForm & IUserData;
-  control: IControl<unknown>;
+  control: IControl<FormData>;
   isFormPending: boolean;
-  formState: IFormState<unknown>;
-  register: IRegister<unknown>;
+  formState: IFormState<FormData>;
+  register: IRegister<FormData>;
   onFormSubmit: () => void;
 }
 
