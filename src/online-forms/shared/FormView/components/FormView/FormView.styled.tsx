@@ -1,9 +1,15 @@
 import styled, { css } from "styled-components";
 import { Stack } from "libs/ui";
 
-export const Wrapper = styled(Stack)`
+export const Wrapper = styled(Stack)<{ onClickEnabled: boolean }>`
   width: 100%;
   margin: auto;
+
+  ${(props) =>
+    props?.onClickEnabled &&
+    css`
+      cursor: pointer;
+    `}
 `;
 
 export const QuestionWrapper = styled(Stack)`

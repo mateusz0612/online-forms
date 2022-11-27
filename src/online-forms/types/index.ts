@@ -60,6 +60,6 @@ export interface IFormAnswer {
 }
 
 export enum BooleanAnswersKeys {
-  true = "yes",
-  false = "no",
+  true = "Yes",
+  false = "No",
 }

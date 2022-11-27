@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { IForm } from "online-forms/types";
-import { Progress, Table, ArrowRight, CopyIcon, DeleteIcon } from "libs/ui";
+import { Progress, Table, AnalyticsIcon, CopyIcon, DeleteIcon } from "libs/ui";
 import { State, Renderer } from "libs/development-kit/api";
 import { formatDate } from "libs/development-kit/helpers/formatDate";
 import * as Styled from "./FormList.styled";
@@ -64,15 +64,15 @@ export const FormList: FC<Props> = ({
                       align="center"
                       onClick={() => onAnalyzeFormClick(form?.id)}
                     >
-                      <Styled.IconWrapper variant="medium">
-                        <ArrowRight />
+                      <Styled.IconWrapper>
+                        <AnalyticsIcon />
                       </Styled.IconWrapper>
                     </TableCell>
                     <TableCell
                       align="center"
                       onClick={() => onCopyFormLinkClick(form?.id, form?.name)}
                     >
-                      <Styled.IconWrapper variant="small">
+                      <Styled.IconWrapper>
                         <CopyIcon />
                       </Styled.IconWrapper>
                     </TableCell>
@@ -83,7 +83,7 @@ export const FormList: FC<Props> = ({
                       }}
                       onClick={() => onDeleteFormCLick(form?.id)}
                     >
-                      <Styled.IconWrapper variant="small">
+                      <Styled.IconWrapper>
                         <DeleteIcon />
                       </Styled.IconWrapper>
                     </TableCell>

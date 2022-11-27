@@ -1,16 +1,45 @@
 import { FC } from "react";
-import { Tile } from "libs/ui";
-import styled from "styled-components";
+import { Stack, Doughnut } from "libs/ui";
+import { IQuestion } from "online-forms/types";
+import { IQuestionAnswersGraphData } from "../../FormAnalyze.types";
+import * as Styled from "./QuestionAnswerGraph.styled";
 
-const Wrapper = styled(Tile)`
-  width: 100%;
-  min-height: 400px;
-`;
+interface Props {
+  pickedQuestion: IQuestion | null;
+  graphData: IQuestionAnswersGraphData;
+}
 
-export const QuestionAnswerGraph: FC = () => {
+export const QuestionAnswerGraph: FC<Props> = ({
+  pickedQuestion,
+  graphData,
+}) => {
+  const showGraph = pickedQuestion && pickedQuestion?.type !== "text";
+
   return (
-    <Wrapper>
-      <h3>Graph</h3>
-    </Wrapper>
+    <Styled.Wrapper>
+      <h2>Graph</h2>
+      {!pickedQuestion && (
+        <Styled.HelperText>
+          Click on question in <span>form preview</span> to see answers graph
+        </Styled.HelperText>
+      )}
+      {showGraph && (
+        <Styled.HelperText>
+          Graph for <span>{pickedQuestion?.content}</span> answers
+        </Styled.HelperText>
+      )}
+      {pickedQuestion?.type === "text" && (
+        <Styled.HelperText>
+          No graph available for user input question type
+        </Styled.HelperText>
+      )}
+      {showGraph && (
+        <Stack width="100%" justifyContent="center" alignItems="center" pb={2}>
+          <Stack width="350px" height="350px">
+            <Doughnut data={graphData} />
+          </Stack>
+        </Stack>
+      )}
+    </Styled.Wrapper>
   );
 };

@@ -52,11 +52,16 @@ export const FormView: FC<FormViewProps> = ({
   handlers,
   formState,
   register,
+  onQuestionClick,
 }) => {
   return (
     <Stack>
       {questions?.map(({ id, content, required, answers, type }) => (
-        <Styled.Wrapper key={id}>
+        <Styled.Wrapper
+          key={id}
+          onClickEnabled={!!onQuestionClick}
+          onClick={() => (onQuestionClick ? onQuestionClick(id) : undefined)}
+        >
           <Styled.QuestionWrapper>
             {isEditable && <EditHandlers handlers={handlers} id={id} />}
             <Styled.QuestionHeader isQuestionRequired={required}>

@@ -17,3 +17,4 @@ export * from "./Switch";
 export * from "./Radio";
 export * from "./ConfirmationModal";
 export * from "./HelperText";
+export * from "./Graphs";

@@ -14,6 +14,7 @@ export interface FormViewProps {
   handlers?: IHandlers;
   formState?: IFormState<FormData>;
   register?: IRegister<FormData>;
+  onQuestionClick?: (id: string) => void;
 }
 
 export type FormViewAnswerComponent = Partial<

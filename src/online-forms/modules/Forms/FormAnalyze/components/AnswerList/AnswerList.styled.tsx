@@ -2,9 +2,12 @@ import { Tile } from "libs/ui";
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled(Tile)`
-  width: 40%;
-  height: 400px;
-  overflow: auto;
+  width: 100%;
+  height: 600px;
+
+  @media ${(props) => props.theme.queries.desktop} {
+    width: 20%;
+  }
 `;
 
 export const AnswerLength = styled.p`

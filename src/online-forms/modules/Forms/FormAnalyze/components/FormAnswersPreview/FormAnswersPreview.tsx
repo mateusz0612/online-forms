@@ -10,10 +10,14 @@ interface Props {
   control: IControl<FormData>;
   showPreview: boolean;
   register: IRegister<FormData>;
+  onQuestionClick: (id: string) => void;
 }
 
 export const FormAnswersPreview = forwardRef(
-  ({ questions, control, showPreview, register }: Props, ref) => {
+  (
+    { questions, control, showPreview, register, onQuestionClick }: Props,
+    ref
+  ) => {
     return (
       <Styled.Wrapper>
         <Styled.ScrollableContent ref={ref}>
@@ -25,11 +29,12 @@ export const FormAnswersPreview = forwardRef(
                 control={control}
                 register={register}
                 isEditable={false}
+                onQuestionClick={onQuestionClick}
                 isValueEditDisabled
               />
             ) : (
               <Styled.NoPreviewInfo>
-                Pick answer to see form preview
+                Pick answer in <span>answers</span> to see form preview
               </Styled.NoPreviewInfo>
             )}
           </Stack>

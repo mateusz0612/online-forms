@@ -1,21 +1,16 @@
-import { Stack, Tile } from "libs/ui";
 import styled from "styled-components";
+import { Tile } from "libs/ui";
 
 export const Wrapper = styled(Tile)`
   width: 100%;
   height: 600px;
 
   @media ${(props) => props.theme.queries.desktop} {
-    width: 50%;
+    width: 40%;
   }
 `;
 
-export const ScrollableContent = styled(Stack)`
-  overflow: auto;
-  scroll-behavior: smooth;
-`;
-
-export const NoPreviewInfo = styled.p`
+export const HelperText = styled.p`
   text-align: center;
 
   span {

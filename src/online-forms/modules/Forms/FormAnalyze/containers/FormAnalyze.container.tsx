@@ -6,36 +6,48 @@ import {
   QuestionAnswerGraph,
 } from "../components";
 import { useFormAnswers } from "../logic";
+import styled from "styled-components";
+
+const Wrapper = styled(Stack)`
+  flex-direction: column;
+
+  @media ${(props) => props.theme.queries.desktop} {
+    flex-direction: row;
+  }
+`;
 
 export const FormAnalyzeContainer: FC = () => {
   const {
     answerWithFormState,
     pickedAnswerId,
+    pickedQuestion,
     control,
     formPreviewRef,
+    graphData,
     register,
     onPickedAnswerIdChange,
+    onQuestionClick,
   } = useFormAnswers();
 
   return (
-    <Stack width="100%" mt={4}>
-      <Stack width="60%" margin="auto" flexDirection="row" gap={3}>
-        <AnswerList
-          answerWithFormState={answerWithFormState}
-          pickedAnswerId={pickedAnswerId}
-          onPickedAnswerIdChange={onPickedAnswerIdChange}
-        />
-        <FormAnswersPreview
-          ref={formPreviewRef}
-          questions={answerWithFormState?.data?.secondStateData?.questions}
-          control={control}
-          showPreview={pickedAnswerId !== ""}
-          register={register}
-        />
-      </Stack>
-      <Stack width="60%" margin="auto" flexDirection="row" mt={2}>
-        <QuestionAnswerGraph />
-      </Stack>
-    </Stack>
+    <Wrapper width="100%" margin="auto" pl={5} pr={5} gap={2} mt={4}>
+      <AnswerList
+        answerWithFormState={answerWithFormState}
+        pickedAnswerId={pickedAnswerId}
+        onPickedAnswerIdChange={onPickedAnswerIdChange}
+      />
+      <FormAnswersPreview
+        ref={formPreviewRef}
+        questions={answerWithFormState?.data?.secondStateData?.questions}
+        control={control}
+        showPreview={pickedAnswerId !== ""}
+        onQuestionClick={onQuestionClick}
+        register={register}
+      />
+      <QuestionAnswerGraph
+        pickedQuestion={pickedQuestion}
+        graphData={graphData}
+      />
+    </Wrapper>
   );
 };

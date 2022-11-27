@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Stack, Tile, Progress } from "libs/ui";
+import { Stack, Progress } from "libs/ui";
 import { Renderer } from "libs/development-kit/api";
 import { AnswerWithFormState } from "../../FormAnalyze.types";
 import * as Styled from "./AnswerList.styled";
@@ -9,12 +9,6 @@ interface Props {
   pickedAnswerId: string;
   onPickedAnswerIdChange: (id: string) => void;
 }
-
-const Pending: FC = () => (
-  <Stack width="100%" alignItems="center">
-    <Progress />
-  </Stack>
-);
 
 export const AnswerList: FC<Props> = ({
   answerWithFormState,
@@ -26,19 +20,24 @@ export const AnswerList: FC<Props> = ({
       <h3>Answers</h3>
       <Renderer
         state={answerWithFormState}
-        pending={() => <Pending />}
+        pending={() => (
+          <Stack width="100%" alignItems="center">
+            <Progress />
+          </Stack>
+        )}
         fail={() => <p>Error occured</p>}
       >
-        {(answerWithForm) => {
-          const { firstStateData: formAnswers } = answerWithForm;
+        {(answersWithForm) => {
+          const { firstStateData: formAnswers } = answersWithForm;
 
           return (
-            <Stack ml={3}>
+            <Stack ml={3} pb={2} overflow="auto">
               <Styled.AnswerLength>
                 {formAnswers?.length} answers found
               </Styled.AnswerLength>
               {formAnswers?.map((formAnswer, index) => (
                 <Stack
+                  key={formAnswer?.id}
                   mt={2}
                   onClick={() => onPickedAnswerIdChange(formAnswer?.id)}
                 >
