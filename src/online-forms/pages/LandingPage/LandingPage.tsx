@@ -14,25 +14,25 @@ const useLandingPage = () => {
 
   const isLoginFormShowed = showedForm === FormKeys.login;
 
-  const switchShowedForm = () =>
+  const onSwitchShowedForm = () =>
     isLoginFormShowed
       ? setShowedForm(FormKeys.register)
       : setShowedForm(FormKeys.login);
 
   return {
     isLoginFormShowed,
-    switchShowedForm,
+    onSwitchShowedForm,
   } as const;
 };
 
 export const LandingPage: FC = () => {
-  const { isLoginFormShowed, switchShowedForm } = useLandingPage();
+  const { isLoginFormShowed, onSwitchShowedForm } = useLandingPage();
 
   return (
     <Styled.Wrapper justifyContent="center">
       <Styled.Logo alt="Logo" src={Logo} />
       {isLoginFormShowed ? <Login /> : <Register />}
-      <Styled.SwitchFormLink onClick={switchShowedForm}>
+      <Styled.SwitchFormLink onClick={onSwitchShowedForm}>
         {isLoginFormShowed
           ? `Don't have an account? Register`
           : `Already have an account? Login`}
