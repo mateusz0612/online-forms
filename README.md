@@ -5,7 +5,7 @@ Web application (SPA) which helps user to create online forms, let other people 
 This project is created on BSc Thesis purposes and to learn new things (Vite, React app architecture, e2e tests with cypress)
 
 # Project status
-In early development
+In development
 
 # About architecture
 libs\
