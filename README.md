@@ -18,7 +18,6 @@ online-forms\
 ------logic - hooks with implemented module logic\
 ------containers - place where logic and components are connected\
 ---------module-name.module.tsx - entry level to using module\
----pages - place to connect multiple modules, add layout, entry level for routing\
 ---routes - configuration of routes\
 ---shared - modules that are used in multiple places in application\
 ---theme - configuration of application theme - global styles, theme
@@ -34,6 +33,8 @@ online-forms\
 - Styled Components
 - Vite
 - MUI
+- React Chart JS 2
+- Date FNS
 
 In the future to add:
 - Cypress
