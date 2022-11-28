@@ -4,6 +4,7 @@ export enum CacheKeys {
   forms = "forms",
   form = "form",
   user = "user",
+  answers = "answers",
 }
 
 export type AuthErrorType = AuthError;
@@ -50,7 +51,15 @@ export interface IForm {
   questions: IQuestion[];
 }
 
-export interface IFormAnswers {
+export type FormData = Record<string, string>;
+
+export interface IFormAnswer {
+  id: string;
   formId: string;
-  answers: unknown;
+  answers: FormData;
+}
+
+export enum BooleanAnswersKeys {
+  true = "Yes",
+  false = "No",
 }

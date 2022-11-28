@@ -7,9 +7,14 @@ interface Props {
   onConfirm: () => void;
 }
 
+const formAnswerSuccessModal = {
+  reject: "",
+  confirm: "Exit",
+};
+
 export const FormAnswerSuccessModal: FC<Props> = (props) => {
   return (
-    <ConfirmationModal {...props}>
+    <ConfirmationModal {...props} labels={formAnswerSuccessModal}>
       <Styled.Header>Everything went great :)</Styled.Header>
       <Styled.Description>
         Your answers were successfully submited and send! <br /> Thanks for

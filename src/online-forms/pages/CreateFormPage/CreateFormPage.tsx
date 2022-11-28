@@ -11,11 +11,9 @@ const Title = styled.h1`
 
 export const CreateFormPage: FC = () => {
   return (
-    <div>
-      <Stack mt={4}>
-        <Title>Create Form</Title>
-      </Stack>
+    <Stack mt={4}>
+      <Title>Create Form</Title>
       <FormCreator />
-    </div>
+    </Stack>
   );
 };

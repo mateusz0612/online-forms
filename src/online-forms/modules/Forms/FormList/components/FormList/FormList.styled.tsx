@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { Stack } from "libs/ui";
 
-export const IconWrapper = styled.div<{ variant: "small" | "medium" }>`
+export const IconWrapper = styled.div`
   svg {
-    font-size: ${(props) => (props?.variant === "small" ? "24px" : "36px")};
+    font-size: 24px;
 
     :hover {
       color: ${(props) => props.theme.pallete.primary};

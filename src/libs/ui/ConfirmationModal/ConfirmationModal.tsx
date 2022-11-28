@@ -8,7 +8,7 @@ interface Props {
   onReject?: () => void;
   labels?: {
     confirm: string;
-    close: string;
+    reject: string;
   };
   children?: React.ReactElement | React.ReactElement[];
 }
@@ -53,7 +53,7 @@ export const ConfirmationModal: FC<Props> = ({
           <Stack width="35%" alignSelf="start">
             {onReject && (
               <SecondaryButton onClick={onReject}>
-                {labels?.close || "Close"}
+                {labels?.reject || "Close"}
               </SecondaryButton>
             )}
           </Stack>

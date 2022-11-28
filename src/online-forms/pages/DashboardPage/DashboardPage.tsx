@@ -15,18 +15,18 @@ const useDashboardPage = () => {
   );
   const navigate = useNavigate();
 
-  const route = (path: Paths) => navigate(path);
-
   const onSeeAllClick = () => setVisibleFormsLimit(MAX_VISIBLE_FORMS_LIMIT);
 
   const onSeeLessClick = () => setVisibleFormsLimit(DEFAULT_VISIBLE_FORM_LIMIT);
+
+  const onCreateFormClick = () => navigate(Paths.CreateForm);
 
   const allFormsVisible = visibleFormsLimit === MAX_VISIBLE_FORMS_LIMIT;
 
   return {
     visibleFormsLimit,
     allFormsVisible,
-    route,
+    onCreateFormClick,
     onSeeAllClick,
     onSeeLessClick,
   } as const;
@@ -36,7 +36,7 @@ export const DashboardPage: FC = () => {
   const {
     visibleFormsLimit,
     allFormsVisible,
-    route,
+    onCreateFormClick,
     onSeeAllClick,
     onSeeLessClick,
   } = useDashboardPage();
@@ -57,7 +57,7 @@ export const DashboardPage: FC = () => {
           width="50%"
           minHeight="250px"
           hoverEnabled
-          onClick={() => route(Paths.CreateForm)}
+          onClick={onCreateFormClick}
         >
           <h3>Create form</h3>
           <Styled.IconWrapper>

@@ -10,6 +10,7 @@ export const FormListContainer: FC<ModuleProps> = ({ limit }) => {
     forms,
     currentPickedForm,
     onCopyFromLinkClick,
+    onAnalyzeFormClick,
     onDeleteFormClick,
     onRejectDeleteFormClick,
     onConfirmDeleteFormClick,
@@ -23,6 +24,7 @@ export const FormListContainer: FC<ModuleProps> = ({ limit }) => {
         limit={limit}
         onCopyFormLinkClick={onCopyFromLinkClick}
         onDeleteFormCLick={onDeleteFormClick}
+        onAnalyzeFormClick={onAnalyzeFormClick}
       />
       <DeleteFormConfirmationModal
         formName={currentPickedForm?.name}

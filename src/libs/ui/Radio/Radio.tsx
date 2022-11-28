@@ -3,7 +3,6 @@ import {
   FormControlLabel,
   Radio as MaterialRadio,
   RadioProps,
-  FormHelperText,
 } from "@mui/material";
 import { Controller, Control } from "react-hook-form";
 
@@ -12,9 +11,16 @@ interface Props {
   value: string | boolean;
   name: string;
   label: string;
+  disabled?: boolean;
 }
 
-export const ControlledRadio: FC<Props> = ({ control, value, name, label }) => {
+export const ControlledRadio: FC<Props> = ({
+  control,
+  value,
+  name,
+  label,
+  disabled,
+}) => {
   return (
     <Controller
       name={name}
@@ -22,11 +28,13 @@ export const ControlledRadio: FC<Props> = ({ control, value, name, label }) => {
       render={({ field: { onChange, onBlur, ref, value: currentValue } }) => (
         <FormControlLabel
           label={label}
+          disabled={disabled}
           control={
             <>
               <MaterialRadio
                 value={value}
                 checked={currentValue === value}
+                disabled={disabled}
                 onChange={onChange}
                 onBlur={onBlur}
                 ref={ref}
