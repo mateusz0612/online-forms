@@ -65,7 +65,7 @@ const getQuestionAnswersByCount = (questionAnswers: string[]) => {
 };
 
 const getQuestionAnswersByPercentages = (questionAnswers: string[]) => {
-  const counter = getQuestionAnswersByCount(questionAnswers);
+  const counter = getQuestionAnswersByCount(questionAnswers) || [];
   const questionsCount = questionAnswers?.length;
 
   const precentages = Object.keys(counter)?.reduce(

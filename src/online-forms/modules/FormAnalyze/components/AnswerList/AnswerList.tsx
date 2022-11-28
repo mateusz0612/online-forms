@@ -28,13 +28,15 @@ export const AnswerList: FC<Props> = ({
         fail={() => <p>Error occured</p>}
       >
         {(answersWithForm) => {
-          const { firstStateData: formAnswers } = answersWithForm;
+          const { firstStateData: formAnswers, secondStateData: form } =
+            answersWithForm;
 
           return (
             <Stack ml={3} pb={2} overflow="auto">
-              <Styled.AnswerLength>
-                {formAnswers?.length} answers found
-              </Styled.AnswerLength>
+              <Styled.AnswerInfo>
+                {formAnswers?.length} answers found <br />
+                <span>for {form?.name}</span>
+              </Styled.AnswerInfo>
               {formAnswers?.map((formAnswer, index) => (
                 <Stack
                   key={formAnswer?.id}
