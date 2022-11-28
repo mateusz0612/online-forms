@@ -48,27 +48,29 @@ export const QuestionAnswerGraph: FC<Props> = ({
           </Stack>
         </Stack>
       )}
-      <Stack
-        flexDirection="row"
-        margin="auto"
-        width="40%"
-        justifyContent="space-between"
-        alignItems="center"
-        mt={2}
-      >
-        <Styled.GraphTypeLabel
-          isPicked={pickedGraphType === Graph.values}
-          onClick={() => onPickedGrahTypeChange(Graph.values)}
+      {showGraph && (
+        <Stack
+          flexDirection="row"
+          margin="auto"
+          width="40%"
+          justifyContent="space-between"
+          alignItems="center"
+          mt={2}
         >
-          # of answers
-        </Styled.GraphTypeLabel>
-        <Styled.GraphTypeLabel
-          isPicked={pickedGraphType === Graph.percentages}
-          onClick={() => onPickedGrahTypeChange(Graph.percentages)}
-        >
-          % of answers
-        </Styled.GraphTypeLabel>
-      </Stack>
+          <Styled.GraphTypeLabel
+            isPicked={pickedGraphType === Graph.values}
+            onClick={() => onPickedGrahTypeChange(Graph.values)}
+          >
+            # of answers
+          </Styled.GraphTypeLabel>
+          <Styled.GraphTypeLabel
+            isPicked={pickedGraphType === Graph.percentages}
+            onClick={() => onPickedGrahTypeChange(Graph.percentages)}
+          >
+            % of answers
+          </Styled.GraphTypeLabel>
+        </Stack>
+      )}
     </Styled.Wrapper>
   );
 };

@@ -10,8 +10,15 @@ export const Wrapper = styled(Tile)`
   }
 `;
 
-export const AnswerLength = styled.p`
+export const AnswerInfo = styled.p`
   margin: 0;
+  padding-right: 12px;
+  font-weight: 600;
+
+  span {
+    font-size: 12px;
+    font-weight: 400;
+  }
 `;
 
 export const Answer = styled.p<{ isPicked: boolean }>`
