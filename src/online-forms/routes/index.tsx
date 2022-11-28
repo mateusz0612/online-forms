@@ -1,10 +1,10 @@
 import { Navigate, Route } from "react-router-dom";
 
-import { LandingPage } from "online-forms/pages/LandingPage";
-import { DashboardPage } from "online-forms/pages/DashboardPage";
-import { CreateFormPage } from "online-forms/pages/CreateFormPage";
-import { AnswerPage } from "online-forms/pages/AnswerPage";
-import { AnalyzePage } from "online-forms/pages/AnalyzePage";
+import { Landing } from "online-forms/modules/Landing";
+import { Dashboard } from "online-forms/modules/Dashboard";
+import { FormAnalyze } from "online-forms/modules/FormAnalyze";
+import { FormAnswer } from "online-forms/modules/FormAnswer";
+import { FormCreator } from "online-forms/modules/FormCreator";
 
 export enum Paths {
   Landing = "/",
@@ -16,11 +16,11 @@ export enum Paths {
 }
 
 export const AppRoutes = [
-  <Route path={Paths.Landing} key={Paths.Landing} element={<LandingPage />} />,
+  <Route path={Paths.Landing} key={Paths.Landing} element={<Landing />} />,
   <Route
     path={Paths.AnswerForm}
     key={Paths.AnswerForm}
-    element={<AnswerPage />}
+    element={<FormAnswer />}
   />,
   <Route
     path={Paths.DefaultRoute}
@@ -33,22 +33,22 @@ export const AuthAppRoutes = [
   <Route
     path={Paths.Dashboard}
     key={Paths.Dashboard}
-    element={<DashboardPage />}
+    element={<Dashboard />}
   />,
   <Route
     path={Paths.CreateForm}
     key={Paths.CreateForm}
-    element={<CreateFormPage />}
+    element={<FormCreator />}
   />,
   <Route
     path={Paths.AnswerForm}
     key={Paths.AnswerForm}
-    element={<AnswerPage />}
+    element={<FormAnswer />}
   />,
   <Route
     path={Paths.AnalyzeForm}
     key={Paths.AnalyzeForm}
-    element={<AnalyzePage />}
+    element={<FormAnalyze />}
   />,
   <Route
     path={Paths.DefaultRoute}
