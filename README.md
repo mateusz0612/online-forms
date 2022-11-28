@@ -23,7 +23,7 @@ online-forms\
 ---theme - configuration of application theme - global styles, theme
 ---types - shared types, interfaces, enums across application
    
-# Current stack
+# Stack
 - React
 - TypeScript
 - Firebase
