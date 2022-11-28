@@ -1,0 +1,1 @@
+export { useLanding } from "./useLanding";
