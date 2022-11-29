@@ -9,6 +9,7 @@ interface Props {
   onSeeLessClick: () => void;
   onSeeAllClick: () => void;
   onCreateFormClick: () => void;
+  onEditProfileClick: () => void;
 }
 
 export const Dashboard: FC<Props> = ({
@@ -17,6 +18,7 @@ export const Dashboard: FC<Props> = ({
   onSeeAllClick,
   onSeeLessClick,
   onCreateFormClick,
+  onEditProfileClick,
 }) => {
   return (
     <Styled.Wrapper pb={4}>
@@ -41,7 +43,12 @@ export const Dashboard: FC<Props> = ({
             <AddIcon />
           </Styled.IconWrapper>
         </Tile>
-        <Tile width="50%" minHeight="250px" hoverEnabled>
+        <Tile
+          width="50%"
+          minHeight="250px"
+          hoverEnabled
+          onClick={onEditProfileClick}
+        >
           <h3>Edit profile</h3>
           <Styled.IconWrapper>
             <AccountIcon />

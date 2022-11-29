@@ -83,7 +83,10 @@ export const useForms = () => {
       ...forms,
       state: {
         ...forms?.state,
-        status: isFormDeletePending ? "loading" : forms?.state?.status,
+        status:
+          isFormDeletePending || forms?.isRefetching
+            ? "loading"
+            : forms?.state?.status,
       },
       data: sortFormsByLatestCreateAt(forms?.state?.data),
     },

@@ -8,6 +8,7 @@ import { useNavigate } from "libs/development-kit/routing";
 import { toast } from "libs/development-kit/toasts";
 import { copyToClipboard } from "libs/development-kit/helpers/copyToClipboard";
 import { IFormHeaderValues } from "../FormCreator.types";
+
 interface Params {
   questions: IQuestion[];
   formHeaderValues: IFormHeaderValues;
@@ -35,7 +36,7 @@ export const useFormCreator = ({ questions, formHeaderValues }: Params) => {
   } = usePost<FromWithoutId, FormCreatedResponse>({
     mutationFn: async (data) => await FormsService.createForm(data),
     onSuccess: async () => {
-      await queryClient.invalidateQueries([CacheKeys.forms]);
+      await queryClient.invalidateQueries([CacheKeys.forms, `${user?.uid}`]);
       setIsFormCreatedConfirmationVisible(true);
     },
     onError: () => {

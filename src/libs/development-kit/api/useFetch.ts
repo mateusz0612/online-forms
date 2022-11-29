@@ -17,10 +17,14 @@ export const useFetch = <T = unknown>(
   fetchFn: () => Promise<T>,
   options?: FetchOptions<T>
 ) => {
-  const { status, data, error, refetch } = useQuery(cacheKey, fetchFn, {
-    staleTime: Infinity,
-    ...options,
-  });
+  const { status, data, error, refetch, isRefetching } = useQuery(
+    cacheKey,
+    fetchFn,
+    {
+      staleTime: Infinity,
+      ...options,
+    }
+  );
 
   return {
     state: {
@@ -29,5 +33,6 @@ export const useFetch = <T = unknown>(
       error,
     } as State<T>,
     refetch,
+    isRefetching,
   } as const;
 };

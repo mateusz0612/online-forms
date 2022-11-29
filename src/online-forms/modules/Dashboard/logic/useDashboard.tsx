@@ -6,6 +6,8 @@ const DEFAULT_VISIBLE_FORM_LIMIT = 3;
 const MAX_VISIBLE_FORMS_LIMIT = 99999;
 
 export const useDashboard = () => {
+  const [isProfileEditFormVisible, setIsProfileEditFormVisible] =
+    useState(false);
   const [visibleFormsLimit, setVisibleFormsLimit] = useState(
     DEFAULT_VISIBLE_FORM_LIMIT
   );
@@ -17,9 +19,14 @@ export const useDashboard = () => {
 
   const onCreateFormClick = () => navigate(Paths.CreateForm);
 
+  const onEditProfileClick = () => setIsProfileEditFormVisible(true);
+
+  const onCloseEditProfileClick = () => setIsProfileEditFormVisible(false);
+
   const allFormsVisible = visibleFormsLimit === MAX_VISIBLE_FORMS_LIMIT;
 
   return {
+    isProfileEditFormVisible,
     visibleFormsLimit,
     allFormsVisible,
     onCreateFormClick,

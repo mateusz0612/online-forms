@@ -1,5 +1,5 @@
 import { useAuthState } from "online-forms/firebase";
-import { UsersService } from "online-forms/shared/Users/services";
+import { UserService } from "online-forms/shared/Users/services";
 import {
   IRegisterCredentials,
   AuthErrorType,
@@ -14,7 +14,7 @@ export const useAuth = () => {
 
   const { state: userDataFetchState } = useFetch(
     [CacheKeys.user, `${user?.uid}`],
-    async () => await UsersService.getUserData(`${user?.uid}`)
+    async () => await UserService.getUserData(`${user?.uid}`)
   );
 
   const loading =

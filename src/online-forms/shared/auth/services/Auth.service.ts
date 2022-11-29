@@ -1,8 +1,8 @@
 import {
   db,
   auth,
-  addDoc,
-  collection,
+  doc,
+  setDoc,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -30,7 +30,7 @@ export const AuthService = {
       id: uid,
     };
 
-    await addDoc(collection(db, Collections.users), userData);
+    await setDoc(doc(db, Collections.users, uid), userData);
   },
   login: async (credentials: ILoginCredentials) => {
     await signInWithEmailAndPassword(
