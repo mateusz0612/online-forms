@@ -20,7 +20,7 @@ online-forms\
 ---------module-name.module.tsx - entry level to using module\
 ---routes - configuration of routes\
 ---shared - modules that are used in multiple places in application\
----theme - configuration of application theme - global styles, theme
+---theme - configuration of application theme - global styles, theme\
 ---types - shared types, interfaces, enums across application
    
 # Stack
