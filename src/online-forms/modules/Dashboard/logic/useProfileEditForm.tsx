@@ -4,7 +4,7 @@ import { useQueryClient, usePost } from "libs/development-kit/api";
 import { toast } from "libs/development-kit/toasts";
 import { useAuthContext } from "online-forms/shared/Auth";
 import { CacheKeys, IUserData } from "online-forms/types";
-import { UserService } from "online-forms/shared/Users";
+import { UserService } from "online-forms/services";
 import * as yup from "yup";
 
 const userFormValidationSchema = yup.object().shape({

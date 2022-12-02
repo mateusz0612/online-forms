@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Tile, Stack, PrimaryButton, SecondaryButton } from "libs/ui";
-import { FormView } from "online-forms/shared/FormView";
+import { FormView } from "online-forms/modules/FormView";
 import { IQuestion } from "online-forms/types";
-import { IHandlers } from "online-forms/shared/FormView/FormView.types";
+import { IHandlers } from "online-forms/modules/FormView/FormView.types";
 import styled from "styled-components";
 
 const Label = styled.p`

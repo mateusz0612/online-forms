@@ -7,8 +7,8 @@ import {
 import { useParams, useNavigate } from "libs/development-kit/routing";
 import { useForm } from "libs/development-kit/form";
 import { toast } from "libs/development-kit/toasts";
-import { FormsService } from "online-forms/shared/Forms";
-import { UserService } from "online-forms/shared/Users";
+import { FormsService } from "online-forms/services";
+import { UserService } from "online-forms/services";
 import { useAuthContext } from "online-forms/shared/Auth";
 import { Paths } from "online-forms/routes";
 import {

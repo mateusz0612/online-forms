@@ -1,5 +1,6 @@
 import { useAuthState } from "online-forms/firebase";
-import { UserService } from "online-forms/shared/Users/services";
+import { UserService } from "online-forms/services";
+import { AuthService } from "online-forms/services";
 import {
   IRegisterCredentials,
   AuthErrorType,
@@ -7,7 +8,6 @@ import {
   CacheKeys,
 } from "online-forms/types";
 import { useFetch } from "libs/development-kit/api";
-import { AuthService } from "../services";
 
 export const useAuth = () => {
   const [user, isAuthStateLoading] = useAuthState();

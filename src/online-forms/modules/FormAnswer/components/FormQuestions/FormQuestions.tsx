@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Tile } from "libs/ui";
-import { FormView } from "online-forms/shared/FormView";
+import { FormView } from "online-forms/modules/FormView";
 import { IForm, IUserData, FormData } from "online-forms/types";
 import { IControl, IFormState, IRegister } from "libs/development-kit/form";
 import * as Styled from "./FormQuestion.styled";

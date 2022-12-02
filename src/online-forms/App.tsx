@@ -12,12 +12,10 @@ function App() {
   }
 
   return (
-    <>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>{user ? AuthAppRoutes : AppRoutes}</Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>{user ? AuthAppRoutes : AppRoutes}</Routes>
+    </BrowserRouter>
   );
 }
 
