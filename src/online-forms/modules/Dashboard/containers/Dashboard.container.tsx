@@ -1,29 +1,23 @@
 import { FC } from "react";
-import { Dashboard, ProfileEditForm } from "../components";
-import { useDashboard, useProfileEditForm } from "../logic";
+import { ProfileEdit } from "online-forms/modules/ProfileEdit";
+import { DashboardView } from "../components";
+import { useDashboard } from "../logic";
 
 export const DashboardContainer: FC = () => {
   const {
     allFormsVisible,
     visibleFormsLimit,
+    isProfileEditOpen,
     onCreateFormClick,
     onSeeAllClick,
     onSeeLessClick,
-  } = useDashboard();
-
-  const {
-    userData,
-    isProfileEditFormOpen,
-    disableSubmit,
-    register,
+    onCloseEditProfileClick,
     onEditProfileClick,
-    onEditProfileClose,
-    onUserEditSubmit,
-  } = useProfileEditForm();
+  } = useDashboard();
 
   return (
     <>
-      <Dashboard
+      <DashboardView
         allFormsVisible={allFormsVisible}
         visibleFormsLimit={visibleFormsLimit}
         onCreateFormClick={onCreateFormClick}
@@ -31,13 +25,9 @@ export const DashboardContainer: FC = () => {
         onSeeLessClick={onSeeLessClick}
         onEditProfileClick={onEditProfileClick}
       />
-      <ProfileEditForm
-        isOpen={isProfileEditFormOpen}
-        disableSubmit={disableSubmit}
-        userData={userData}
-        register={register}
-        onSubmit={onUserEditSubmit}
-        onClose={onEditProfileClose}
+      <ProfileEdit
+        isOpen={isProfileEditOpen}
+        onClose={onCloseEditProfileClick}
       />
     </>
   );

@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Stack, Doughnut, Pie } from "libs/ui";
 import { IQuestion } from "online-forms/types";
 import { IQuestionAnswersGraphData, Graph } from "../../FormAnalyze.types";
+import { PickableTag } from "../PickableTag";
 import * as Styled from "./QuestionAnswerGraph.styled";
 
 interface Props {
@@ -57,18 +58,16 @@ export const QuestionAnswerGraph: FC<Props> = ({
           alignItems="center"
           mt={2}
         >
-          <Styled.GraphTypeLabel
+          <PickableTag
             isPicked={pickedGraphType === Graph.values}
+            label="# of answers"
             onClick={() => onPickedGrahTypeChange(Graph.values)}
-          >
-            # of answers
-          </Styled.GraphTypeLabel>
-          <Styled.GraphTypeLabel
+          />
+          <PickableTag
             isPicked={pickedGraphType === Graph.percentages}
+            label="% of answers"
             onClick={() => onPickedGrahTypeChange(Graph.percentages)}
-          >
-            % of answers
-          </Styled.GraphTypeLabel>
+          />
         </Stack>
       )}
     </Styled.Wrapper>

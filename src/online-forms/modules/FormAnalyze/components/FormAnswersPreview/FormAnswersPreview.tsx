@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { Stack } from "libs/ui";
 import { IControl, IRegister } from "libs/development-kit/form";
-import { FormView } from "online-forms/modules/FormView";
+import { FormView } from "online-forms/shared/FormView";
 import { FormData, IQuestion } from "online-forms/types";
 import * as Styled from "./FormAnswersPreview.styled";
 

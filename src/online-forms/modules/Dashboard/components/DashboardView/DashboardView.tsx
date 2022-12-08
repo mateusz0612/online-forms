@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Tile, Stack, AddIcon, AccountIcon } from "libs/ui";
 import { FormList } from "online-forms/modules/FormList";
-import * as Styled from "./Dashboard.styled";
+import * as Styled from "./DashboardView.styled";
 
 interface Props {
   allFormsVisible: boolean;
@@ -12,7 +12,7 @@ interface Props {
   onEditProfileClick: () => void;
 }
 
-export const Dashboard: FC<Props> = ({
+export const DashboardView: FC<Props> = ({
   allFormsVisible,
   visibleFormsLimit,
   onSeeAllClick,

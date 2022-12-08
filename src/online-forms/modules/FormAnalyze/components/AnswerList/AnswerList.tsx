@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Stack, Progress } from "libs/ui";
 import { Renderer } from "libs/development-kit/api";
 import { AnswerWithFormState } from "../../FormAnalyze.types";
+import { PickableTag } from "../PickableTag";
 import * as Styled from "./AnswerList.styled";
 
 interface Props {
@@ -43,9 +44,10 @@ export const AnswerList: FC<Props> = ({
                   mt={2}
                   onClick={() => onPickedAnswerIdChange(formAnswer?.id)}
                 >
-                  <Styled.Answer isPicked={pickedAnswerId === formAnswer?.id}>
-                    Answer {index + 1}
-                  </Styled.Answer>
+                  <PickableTag
+                    isPicked={pickedAnswerId === formAnswer?.id}
+                    label={`Answer ${index + 1}`}
+                  />
                 </Stack>
               ))}
             </Stack>

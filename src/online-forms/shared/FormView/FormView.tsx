@@ -2,11 +2,13 @@ import { FC } from "react";
 import { HelperText, Stack } from "libs/ui";
 import { IControl, IRegister } from "libs/development-kit/form";
 import { IAnswer, FormData } from "online-forms/types";
-import { EditHandlers } from "../EditHandlers";
-import { AnswersList } from "../AnswersList";
-import { BooleanAnswers } from "../BooleanAnswers";
-import { TextAnswer } from "../TextAnswer";
-import { FormViewProps, FormViewAnswerComponent } from "../../FormView.types";
+import {
+  EditHandlers,
+  AnswersList,
+  BooleanAnswers,
+  TextAnswer,
+} from "./components";
+import { FormViewProps, FormViewAnswerComponent } from "./FormView.types";
 import * as Styled from "./FormView.styled";
 
 const getTypeComponent = ({

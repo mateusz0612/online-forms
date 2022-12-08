@@ -28,6 +28,7 @@ export const AuthService = {
       username: credentials?.username,
       email: credentials?.email,
       id: uid,
+      profileImageUrl: "",
     };
 
     await setDoc(doc(db, Collections.users, uid), userData);

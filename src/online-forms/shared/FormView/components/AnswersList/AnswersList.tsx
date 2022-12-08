@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { IAnswer } from "online-forms/types";
-import { ControlledRadio, Radio, Stack, HelperText } from "libs/ui";
+import { ControlledRadio, Radio, Stack } from "libs/ui";
 import { FormViewAnswerComponent } from "../../FormView.types";
 
 type Props = FormViewAnswerComponent & { answers: IAnswer[] };
