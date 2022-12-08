@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { ProfileEditModuleProps } from "../ProfileEdit.types";
-import { ProfileEditForm } from "../components";
+import { ProfileEditFormModal } from "../components";
 import { useProfileEditForm } from "../logic";
 
 export const ProfileEditContainer: FC<ProfileEditModuleProps> = (props) => {
@@ -15,7 +15,7 @@ export const ProfileEditContainer: FC<ProfileEditModuleProps> = (props) => {
   } = useProfileEditForm(props);
 
   return (
-    <ProfileEditForm
+    <ProfileEditFormModal
       isPending={isUserEditingPending}
       disableSubmit={disableSubmit}
       userData={userData}

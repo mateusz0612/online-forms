@@ -6,7 +6,7 @@ import { IControl, IFormState, IRegister } from "libs/development-kit/form";
 import * as Styled from "./FormQuestion.styled";
 
 interface Props {
-  formWithUserData: IForm & IUserData;
+  formData: IForm;
   control: IControl<FormData>;
   isFormPending: boolean;
   formState: IFormState<FormData>;
@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const FormQuestions: FC<Props> = ({
-  formWithUserData,
+  formData,
   formState,
   control,
   isFormPending,
@@ -27,7 +27,7 @@ export const FormQuestions: FC<Props> = ({
       <Styled.QuestionsLabel>Questions:</Styled.QuestionsLabel>
       <FormView
         isEditable={false}
-        questions={formWithUserData?.questions}
+        questions={formData?.questions}
         control={control}
         formState={formState}
         register={register}
