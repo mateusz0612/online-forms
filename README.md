@@ -29,6 +29,7 @@ online-forms\
 - Firebase
 - React Hook Form
 - React Query
+- React Dropzone
 - Yup
 - Styled Components
 - Vite
