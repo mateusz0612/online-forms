@@ -45,7 +45,7 @@ export const FormAnswerContainer: FC = () => {
       >
         {(formWithUserData) => {
           return (
-            <Stack>
+            <Stack mt={2}>
               <FormAnswerHeader formWithUserData={formWithUserData} />
               <FormQuestions
                 formWithUserData={formWithUserData}

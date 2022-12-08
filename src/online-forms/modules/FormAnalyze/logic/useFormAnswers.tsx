@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { useFetch, combineFetchStates } from "libs/development-kit/api";
 import { useParams } from "libs/development-kit/routing";
 import { useForm } from "libs/development-kit/form";
-import { FormsService } from "online-forms/shared/Forms/services";
+import { FormsService } from "online-forms/services";
 import {
   IForm,
   IFormAnswer,
@@ -91,7 +91,8 @@ export const useFormAnswers = () => {
 
   const { state: answersState } = useFetch<IFormAnswer[]>(
     [CacheKeys.answers, `${formId}`],
-    async () => await FormsService.getFormAnswers(`${formId}`)
+    async () => await FormsService.getFormAnswers(`${formId}`),
+    { cacheTime: 0 }
   );
 
   const { state: formState } = useFetch<IForm>(

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Tile } from "libs/ui";
+import { Tile, Stack } from "libs/ui";
 
 export const Wrapper = styled(Tile)`
   h1,
@@ -21,4 +21,20 @@ export const Wrapper = styled(Tile)`
 
 export const Description = styled.p`
   white-space: pre-wrap;
+`;
+
+export const Avatar = styled.img`
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+`;
+
+export const WelcomeSectionWrapper = styled(Stack)`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  @media ${(props) => props.theme.queries.tablet} {
+    flex-direction: row;
+  }
 `;

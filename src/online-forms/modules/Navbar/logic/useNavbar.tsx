@@ -4,7 +4,7 @@ import { ILink, ISetting } from "../Navbar.types";
 import { Paths } from "online-forms/routes";
 
 export const useNavbar = () => {
-  const { signOutUser } = useAuthContext();
+  const { userData, signOutUser } = useAuthContext();
   const navigate = useNavigate();
 
   const links: ILink[] = [
@@ -18,7 +18,6 @@ export const useNavbar = () => {
   };
 
   const settings: ISetting[] = [
-    { label: "Profile", onClick: () => console.log("Profile clicked") },
     {
       label: "Logout",
       onClick: onLogoutClick,
@@ -26,6 +25,7 @@ export const useNavbar = () => {
   ];
 
   return {
+    userData,
     links,
     settings,
   } as const;

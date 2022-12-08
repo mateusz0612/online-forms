@@ -7,8 +7,12 @@ interface Props {
   onConfirm: () => void;
   onReject?: () => void;
   labels?: {
-    confirm: string;
-    reject: string;
+    confirm?: string;
+    reject?: string;
+  };
+  disabled?: {
+    confirm?: boolean;
+    reject?: boolean;
   };
   children?: React.ReactElement | React.ReactElement[];
 }
@@ -20,6 +24,7 @@ const Wrapper = styled(Stack)`
   background-color: ${(props) => props.theme.pallete.white};
   text-align: center;
   border-radius: 10px;
+  outline: none;
 
   @media ${(props) => props.theme.queries.tablet} {
     width: 30%;
@@ -35,6 +40,7 @@ const ModalWrapper = styled(Modal)`
 export const ConfirmationModal: FC<Props> = ({
   isOpen,
   labels,
+  disabled,
   onReject,
   onConfirm,
   children,
@@ -52,13 +58,13 @@ export const ConfirmationModal: FC<Props> = ({
         >
           <Stack width="35%" alignSelf="start">
             {onReject && (
-              <SecondaryButton onClick={onReject}>
+              <SecondaryButton onClick={onReject} disabled={disabled?.reject}>
                 {labels?.reject || "Close"}
               </SecondaryButton>
             )}
           </Stack>
           <Stack width="35%" alignSelf="end">
-            <PrimaryButton onClick={onConfirm}>
+            <PrimaryButton onClick={onConfirm} disabled={disabled?.confirm}>
               {labels?.confirm || "Confirm"}
             </PrimaryButton>
           </Stack>

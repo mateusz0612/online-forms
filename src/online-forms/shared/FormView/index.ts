@@ -1,1 +1,1 @@
-export { FormView } from "./components";
+export { FormView } from "./FormView";

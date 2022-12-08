@@ -13,6 +13,7 @@ export interface IUserData {
   id: string;
   username: string;
   email: string;
+  profileImageUrl: string;
 }
 
 export interface ILoginCredentials {

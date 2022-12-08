@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from "online-forms/shared/Auth";
-import { FormsService } from "online-forms/shared/Forms/services";
+import { FormsService } from "online-forms/services";
 import { CacheKeys, IForm } from "online-forms/types";
 import { useFetch, usePost } from "libs/development-kit/api";
 import { useNavigate } from "libs/development-kit/routing";
@@ -83,7 +83,10 @@ export const useForms = () => {
       ...forms,
       state: {
         ...forms?.state,
-        status: isFormDeletePending ? "loading" : forms?.state?.status,
+        status:
+          isFormDeletePending || forms?.isRefetching
+            ? "loading"
+            : forms?.state?.status,
       },
       data: sortFormsByLatestCreateAt(forms?.state?.data),
     },

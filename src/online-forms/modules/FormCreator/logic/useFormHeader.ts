@@ -1,6 +1,4 @@
-import { useState, useRef } from "react";
 import { useForm } from "libs/development-kit/form";
-import { useOutsideClick } from "libs/development-kit/helpers/hooks/useOutsideClick";
 import { IFormHeaderValues } from "../FormCreator.types";
 import * as yup from "yup";
 
@@ -25,7 +23,7 @@ const createFormSchema = yup.object().shape({
 });
 
 export const useFormHeader = () => {
-  const { register, getValues, handleSubmit, formState } = useForm({
+  const { register, getValues, formState } = useForm({
     defaultValues: DEFAULT_VALUES,
     validationSchema: createFormSchema,
     reValidateMode: "onChange",

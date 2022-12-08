@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Tile, Stack, AddIcon, AccountIcon } from "libs/ui";
 import { FormList } from "online-forms/modules/FormList";
-import * as Styled from "./Dashboard.styled";
+import * as Styled from "./DashboardView.styled";
 
 interface Props {
   allFormsVisible: boolean;
@@ -9,14 +9,16 @@ interface Props {
   onSeeLessClick: () => void;
   onSeeAllClick: () => void;
   onCreateFormClick: () => void;
+  onEditProfileClick: () => void;
 }
 
-export const Dashboard: FC<Props> = ({
+export const DashboardView: FC<Props> = ({
   allFormsVisible,
   visibleFormsLimit,
   onSeeAllClick,
   onSeeLessClick,
   onCreateFormClick,
+  onEditProfileClick,
 }) => {
   return (
     <Styled.Wrapper pb={4}>
@@ -41,7 +43,12 @@ export const Dashboard: FC<Props> = ({
             <AddIcon />
           </Styled.IconWrapper>
         </Tile>
-        <Tile width="50%" minHeight="250px" hoverEnabled>
+        <Tile
+          width="50%"
+          minHeight="250px"
+          hoverEnabled
+          onClick={onEditProfileClick}
+        >
           <h3>Edit profile</h3>
           <Styled.IconWrapper>
             <AccountIcon />
