@@ -44,11 +44,14 @@ export const FormAnswerContainer: FC = () => {
         fail={() => <p>Error occured</p>}
       >
         {(formWithUserData) => {
+          const { firstStateData: formData, secondStateData: userData } =
+            formWithUserData;
+
           return (
             <Stack mt={2}>
-              <FormAnswerHeader formWithUserData={formWithUserData} />
+              <FormAnswerHeader userData={userData} formData={formData} />
               <FormQuestions
-                formWithUserData={formWithUserData}
+                formData={formData}
                 formState={formState}
                 control={control}
                 isFormPending={isFormPending}

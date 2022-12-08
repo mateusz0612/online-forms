@@ -114,13 +114,7 @@ export const useFormAnswer = () => {
   };
 
   return {
-    fetchState: {
-      ...fetchState,
-      data: {
-        ...fetchState?.data?.firstStateData,
-        ...fetchState?.data?.secondStateData,
-      },
-    },
+    fetchState,
     formState,
     isSuccessModalOpen,
     control,

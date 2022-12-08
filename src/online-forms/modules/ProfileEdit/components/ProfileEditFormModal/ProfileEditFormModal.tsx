@@ -8,7 +8,7 @@ import {
 } from "libs/ui";
 import { IRegister } from "libs/development-kit/form";
 import { IUserData } from "online-forms/types";
-import * as Styled from "./ProfileEditForm.styled";
+import * as Styled from "./ProfileEditFormModal.styled";
 
 interface Props {
   userData: IUserData;
@@ -30,7 +30,7 @@ const ACCEPTED_FILE_TYPES = {
 };
 const MAX_FILES_LIMT = 1;
 
-export const ProfileEditForm: FC<Props> = ({
+export const ProfileEditFormModal: FC<Props> = ({
   isOpen,
   isPending,
   disableSubmit,
