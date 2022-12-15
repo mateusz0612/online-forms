@@ -8,19 +8,17 @@ import * as Styled from "./FormList.styled";
 interface Props {
   forms: State<IForm[]>;
   isFormDeletePending: boolean;
+  limit?: number;
   onAnalyzeFormClick: (id: string) => void;
   onCopyFormLinkClick: (link: string, formName: string) => void;
   onDeleteFormCLick: (id: string) => void;
-  limit?: number;
 }
 
-const Loader = () => (
+const Pending: FC = () => (
   <Styled.LoadingWrapper justifyContent="center" alignItems="center">
     <Progress />
   </Styled.LoadingWrapper>
 );
-
-const Error = () => <p>Error occured</p>;
 
 export const FormList: FC<Props> = ({
   forms,
@@ -31,9 +29,13 @@ export const FormList: FC<Props> = ({
   onDeleteFormCLick,
 }) => {
   return (
-    <Renderer state={forms} pending={Loader} fail={Error}>
-      {(data) => {
-        if (data?.length === 0) {
+    <Renderer
+      state={forms}
+      pending={() => <Pending />}
+      fail={() => <p>Error occured</p>}
+    >
+      {(forms) => {
+        if (forms?.length === 0) {
           return (
             <Styled.NoFormsLabel>No forms created yet.</Styled.NoFormsLabel>
           );
@@ -53,7 +55,7 @@ export const FormList: FC<Props> = ({
             )}
             renderRows={(TableCell, TableRow) => (
               <>
-                {data?.slice(0, limit)?.map((form) => (
+                {forms?.slice(0, limit)?.map((form) => (
                   <TableRow key={form?.id}>
                     <TableCell>{form?.name}</TableCell>
                     <TableCell>{form?.description}</TableCell>

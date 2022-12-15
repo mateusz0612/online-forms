@@ -1,22 +1,22 @@
 import { useForm } from "libs/development-kit/form";
 import { useNavigate } from "libs/development-kit/routing";
+import * as validation from "libs/development-kit/validation";
 import { useAuthContext } from "online-forms/shared/Auth";
 import { ILoginCredentials } from "online-forms/types";
 import { Paths } from "online-forms/routes";
-import * as yup from "yup";
 
 const DEFAULT_LOGIN_FORM_VALUES: ILoginCredentials = {
   email: "",
   password: "",
 };
 
-const loginFormSchema = yup.object().shape({
-  email: yup
+const loginFormSchema = validation.object().shape({
+  email: validation
     .string()
     .trim()
     .email("Enter valid email")
     .required("Field is required"),
-  password: yup
+  password: validation
     .string()
     .trim()
     .required("Password is required")

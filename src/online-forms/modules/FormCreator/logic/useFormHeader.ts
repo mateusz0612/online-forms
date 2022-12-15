@@ -1,20 +1,20 @@
 import { useForm } from "libs/development-kit/form";
+import * as validation from "libs/development-kit/validation";
 import { IFormHeaderValues } from "../FormCreator.types";
-import * as yup from "yup";
 
 const DEFAULT_VALUES: IFormHeaderValues = {
   name: "",
   description: "",
 };
 
-const createFormSchema = yup.object().shape({
-  name: yup
+const createFormSchema = validation.object().shape({
+  name: validation
     .string()
     .trim()
     .required("Name is required")
     .min(4, "Min 4 characters")
     .max(60, "Max 60 characters"),
-  description: yup
+  description: validation
     .string()
     .trim()
     .required("Description is required")

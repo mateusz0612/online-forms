@@ -7,6 +7,7 @@ import {
 import { useParams, useNavigate } from "libs/development-kit/routing";
 import { useForm } from "libs/development-kit/form";
 import { toast } from "libs/development-kit/toasts";
+import * as validation from "libs/development-kit/validation";
 import { FormsService } from "online-forms/services";
 import { UserService } from "online-forms/services";
 import { useAuthContext } from "online-forms/shared/Auth";
@@ -19,7 +20,6 @@ import {
   IQuestion,
   FormData,
 } from "online-forms/types";
-import * as yup from "yup";
 
 type URLParams = { formId: string };
 type FormAnswerWithoutId = Omit<IFormAnswer, "id">;
@@ -41,7 +41,7 @@ const createFormValidationSchema = (questions: IQuestion[]) => {
     if (required) {
       return {
         ...currentSchema,
-        [id]: yup
+        [id]: validation
           .string()
           .trim()
           .required("Answer to this question is required"),
@@ -51,7 +51,7 @@ const createFormValidationSchema = (questions: IQuestion[]) => {
     return currentSchema;
   }, {});
 
-  return yup.object().shape(validationSchema);
+  return validation.object().shape(validationSchema);
 };
 
 export const useFormAnswer = () => {

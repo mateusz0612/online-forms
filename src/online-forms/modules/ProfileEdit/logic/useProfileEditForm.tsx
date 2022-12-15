@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useForm } from "libs/development-kit/form";
 import { useQueryClient, usePost } from "libs/development-kit/api";
 import { toast } from "libs/development-kit/toasts";
+import * as validation from "libs/development-kit/validation";
 import { useAuthContext } from "online-forms/shared/Auth";
 import { CacheKeys, IUserData } from "online-forms/types";
 import { ProfileEditModuleProps } from "online-forms/modules/ProfileEdit/ProfileEdit.types";
 import { UserService } from "online-forms/services";
-import * as yup from "yup";
 
 const getSubmitButtonDisabilityState = ({
   isUserEditingPending,
@@ -32,8 +32,8 @@ const getSubmitButtonDisabilityState = ({
   return false;
 };
 
-const userFormValidationSchema = yup.object().shape({
-  username: yup
+const userFormValidationSchema = validation.object().shape({
+  username: validation
     .string()
     .trim()
     .required("Username is required")
