@@ -11,39 +11,10 @@ import {
 import { FormViewProps, FormViewAnswerComponent } from "./FormView.types";
 import * as Styled from "./FormView.styled";
 
-const getTypeComponent = ({
-  answers,
-  id,
-  isEditable,
-  isValueEditDisabled,
-  control,
-  register,
-}: FormViewAnswerComponent & { answers: IAnswer[]; id: string }) => ({
-  options: (
-    <AnswersList
-      questionId={id}
-      isEditable={isEditable}
-      isValueEditDisabled={isValueEditDisabled}
-      answers={answers}
-      control={control}
-    />
-  ),
-  boolean: (
-    <BooleanAnswers
-      questionId={id}
-      isEditable={isEditable}
-      isValueEditDisabled={isValueEditDisabled}
-      control={control}
-    />
-  ),
-  text: (
-    <TextAnswer
-      questionId={id}
-      isEditable={isEditable}
-      isValueEditDisabled={isValueEditDisabled}
-      register={register}
-    />
-  ),
+const getTypeComponent = ({ ...props }: FormViewAnswerComponent) => ({
+  options: <AnswersList {...props} />,
+  boolean: <BooleanAnswers {...props} />,
+  text: <TextAnswer {...props} />,
 });
 
 export const FormView: FC<FormViewProps> = ({
@@ -74,7 +45,7 @@ export const FormView: FC<FormViewProps> = ({
                 answers,
                 isEditable,
                 isValueEditDisabled,
-                id,
+                questionId: id,
                 control: control as IControl<FormData>,
                 register: register as IRegister<FormData>,
               })[type]

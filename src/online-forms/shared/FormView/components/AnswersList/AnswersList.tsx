@@ -1,11 +1,8 @@
 import { FC } from "react";
-import { IAnswer } from "online-forms/types";
 import { ControlledRadio, Radio, Stack } from "libs/ui";
 import { FormViewAnswerComponent } from "../../FormView.types";
 
-type Props = FormViewAnswerComponent & { answers: IAnswer[] };
-
-export const AnswersList: FC<Props> = ({
+export const AnswersList: FC<FormViewAnswerComponent> = ({
   questionId,
   answers,
   control,
