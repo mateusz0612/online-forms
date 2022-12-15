@@ -10,4 +10,4 @@ mkdir -p "./src/online-forms/modules/$1"
 cd "./src/online-forms/modules/$1"
 mkdir components containers logic
 
-touch components/index.ts containers/index.ts logic/index.ts
+touch components/index.ts containers/index.ts logic/index.ts $1.module.tsx index.ts
