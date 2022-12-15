@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "libs/development-kit/form";
 import { IAnswer, IQuestion } from "online-forms/types";
 import { id } from "libs/development-kit/helpers/id";
-import * as yup from "yup";
+import * as validation from "libs/development-kit/validation";
 
 const MAX_QUESTION_ANSWERS_AMOUNT = 12;
 
@@ -19,16 +19,16 @@ const ANSWER_DEFAULT_VALUE: IAnswer = {
   content: "",
 };
 
-const questionValidationSchema = yup.object().shape({
-  content: yup
+const questionValidationSchema = validation.object().shape({
+  content: validation
     .string()
     .trim()
     .required("Question content is required")
     .max(300, "Max 300 characters"),
 });
 
-const answerValidationSchema = yup.object().shape({
-  content: yup
+const answerValidationSchema = validation.object().shape({
+  content: validation
     .string()
     .trim()
     .required("Answer content is required")

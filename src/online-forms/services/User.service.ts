@@ -28,8 +28,6 @@ export const UserService = {
   editUser: async (userData: IUserData, profileImage: File | null) => {
     const userDoc = doc(db, Collections.users, userData?.id);
 
-    console.log("USER DATA", userData);
-
     if (profileImage) {
       const storageRef = ref(storage, `avatars/${id()}`);
 
