@@ -1,5 +1,5 @@
 import { IControl, IFormState, IRegister } from "libs/development-kit/form";
-import { IQuestion, FormData } from "online-forms/types";
+import { IQuestion, FormData, IAnswer } from "online-forms/types";
 
 export interface IHandlers {
   onDeleteClick: (questionId: string) => void;
@@ -18,5 +18,5 @@ export interface FormViewProps {
 }
 
 export type FormViewAnswerComponent = Partial<
-  Omit<FormViewProps, "questions"> & { questionId: string }
+  Omit<FormViewProps, "questions"> & { questionId: string; answers: IAnswer[] }
 >;
