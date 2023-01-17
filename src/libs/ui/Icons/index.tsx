@@ -6,6 +6,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import MaterialEditIcon from "@mui/icons-material/Edit";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import MaterialAnalyticsIcon from "@mui/icons-material/Analytics";
+import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 
 export const AddIcon = () => <AddCircleIcon />;
 
@@ -22,3 +23,5 @@ export const EditIcon = () => <MaterialEditIcon />;
 export const CopyIcon = () => <ContentCopyIcon />;
 
 export const AnalyticsIcon = () => <MaterialAnalyticsIcon />;
+
+export const OpenIcon = () => <OpenInFullIcon />;

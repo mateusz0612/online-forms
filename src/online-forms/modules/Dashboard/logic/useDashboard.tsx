@@ -12,6 +12,8 @@ export const useDashboard = () => {
   const [isProfileEditOpen, setIsProfileEditOpen] = useState(false);
   const navigate = useNavigate();
 
+  const allFormsVisible = visibleFormsLimit === MAX_VISIBLE_FORMS_LIMIT;
+
   const onSeeAllClick = () => setVisibleFormsLimit(MAX_VISIBLE_FORMS_LIMIT);
 
   const onSeeLessClick = () => setVisibleFormsLimit(DEFAULT_VISIBLE_FORM_LIMIT);
@@ -21,8 +23,6 @@ export const useDashboard = () => {
   const onEditProfileClick = () => setIsProfileEditOpen(true);
 
   const onCloseEditProfileClick = () => setIsProfileEditOpen(false);
-
-  const allFormsVisible = visibleFormsLimit === MAX_VISIBLE_FORMS_LIMIT;
 
   return {
     visibleFormsLimit,

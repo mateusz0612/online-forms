@@ -13,7 +13,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar />
+      {user && <Navbar />}
       <Routes>{user ? AuthAppRoutes : AppRoutes}</Routes>
     </BrowserRouter>
   );

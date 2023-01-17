@@ -1,6 +1,13 @@
 import { FC } from "react";
 import { IForm } from "online-forms/types";
-import { Progress, Table, AnalyticsIcon, CopyIcon, DeleteIcon } from "libs/ui";
+import {
+  Progress,
+  Table,
+  AnalyticsIcon,
+  CopyIcon,
+  DeleteIcon,
+  OpenIcon,
+} from "libs/ui";
 import { State, Renderer } from "libs/development-kit/api";
 import { formatDate } from "libs/development-kit/helpers/formatDate";
 import * as Styled from "./FormList.styled";
@@ -12,6 +19,7 @@ interface Props {
   onAnalyzeFormClick: (id: string) => void;
   onCopyFormLinkClick: (link: string, formName: string) => void;
   onDeleteFormCLick: (id: string) => void;
+  onShowFormClick: (id: string) => void;
 }
 
 const Pending: FC = () => (
@@ -27,6 +35,7 @@ export const FormList: FC<Props> = ({
   onAnalyzeFormClick,
   onCopyFormLinkClick,
   onDeleteFormCLick,
+  onShowFormClick,
 }) => {
   return (
     <Renderer
@@ -48,6 +57,7 @@ export const FormList: FC<Props> = ({
                 <TableCell>Name</TableCell>
                 <TableCell>Description</TableCell>
                 <TableCell align="center">Created at</TableCell>
+                <TableCell align="center">Show</TableCell>
                 <TableCell align="center">Analyze</TableCell>
                 <TableCell align="center">Link</TableCell>
                 <TableCell align="center">Delete</TableCell>
@@ -61,6 +71,14 @@ export const FormList: FC<Props> = ({
                     <TableCell>{form?.description}</TableCell>
                     <TableCell align="center">
                       {formatDate(form?.createdAt, "dd/MM/yyyy")}
+                    </TableCell>
+                    <TableCell
+                      align="center"
+                      onClick={() => onShowFormClick(form?.id)}
+                    >
+                      <Styled.IconWrapper>
+                        <OpenIcon />
+                      </Styled.IconWrapper>
                     </TableCell>
                     <TableCell
                       align="center"

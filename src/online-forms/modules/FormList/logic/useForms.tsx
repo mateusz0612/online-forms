@@ -19,6 +19,8 @@ export const useForms = () => {
     isFormDeleteConfirmationModalOpen,
     setIsFormDeleteConfirmationModalOpen,
   ] = useState(false);
+  const [isFormQuestionPreviewModalOpen, setIsFormQuestionPreviewModalOpen] =
+    useState(false);
   const [currentPickedForm, setCurrentPickedForm] = useState<IForm | null>(
     null
   );
@@ -51,13 +53,37 @@ export const useForms = () => {
   const closeFormDeleteConfirmationModal = () =>
     setIsFormDeleteConfirmationModalOpen(false);
 
+  const openFormQuestionPreviewModal = () =>
+    setIsFormQuestionPreviewModalOpen(true);
+
+  const closeFormQuestionPreviewModal = () =>
+    setIsFormQuestionPreviewModalOpen(false);
+
+  const getFormById = (id: string) =>
+    forms?.state?.data?.find((form) => form?.id === id);
+
   const onCopyFromLinkClick = (link: string, formName: string) => {
     copyToClipboard(`${window.location.origin}/form-answer/${link}`);
     toast("success", `Link to form ${formName} copied to clipboard`);
   };
 
+  const onAnalyzeFormClick = (id: string) => {
+    navigate(Paths.AnalyzeForm?.replace(":formId", id));
+  };
+
+  const onShowFormQuestionsClick = (id: string) => {
+    const form = getFormById(id);
+
+    setCurrentPickedForm(form as IForm);
+    openFormQuestionPreviewModal();
+  };
+
+  const onCloseFormQuestionPreviewClick = () => {
+    closeFormQuestionPreviewModal();
+  };
+
   const onDeleteFormClick = (id: string) => {
-    const form = forms?.state?.data?.find((form) => form?.id === id);
+    const form = getFormById(id);
 
     setCurrentPickedForm(form as IForm);
     openFormDeleteConfirmationModal();
@@ -65,10 +91,6 @@ export const useForms = () => {
 
   const onRejectDeleteFormClick = () => {
     closeFormDeleteConfirmationModal();
-  };
-
-  const onAnalyzeFormClick = (id: string) => {
-    navigate(Paths.AnalyzeForm?.replace(":formId", id));
   };
 
   const onConfirmDeleteFormClick = async (id: string) => {
@@ -79,6 +101,7 @@ export const useForms = () => {
   return {
     isFormDeletePending,
     isFormDeleteConfirmationModalOpen,
+    isFormQuestionPreviewModalOpen,
     forms: {
       ...forms,
       state: {
@@ -96,5 +119,7 @@ export const useForms = () => {
     onDeleteFormClick,
     onRejectDeleteFormClick,
     onConfirmDeleteFormClick,
+    onShowFormQuestionsClick,
+    onCloseFormQuestionPreviewClick,
   } as const;
 };

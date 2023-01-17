@@ -21,10 +21,12 @@ const Wrapper = styled(Stack)`
   width: 80%;
   margin: auto;
   min-height: 120px;
+  max-height: 90vh;
   background-color: ${(props) => props.theme.pallete.white};
   text-align: center;
   border-radius: 10px;
   outline: none;
+  overflow: hidden auto;
 
   @media ${(props) => props.theme.queries.tablet} {
     width: 30%;

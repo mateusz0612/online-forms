@@ -27,9 +27,9 @@ export const FormAnswersPreview = forwardRef(
               <FormView
                 questions={questions}
                 control={control}
-                register={register}
                 isEditable={false}
                 onQuestionClick={onQuestionClick}
+                register={register}
                 isValueEditDisabled
               />
             ) : (

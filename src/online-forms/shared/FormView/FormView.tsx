@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { HelperText, Stack } from "libs/ui";
 import { IControl, IRegister } from "libs/development-kit/form";
-import { IAnswer, FormData } from "online-forms/types";
+import { FormData } from "online-forms/types";
 import {
   EditHandlers,
   AnswersList,

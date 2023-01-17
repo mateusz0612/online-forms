@@ -89,6 +89,8 @@ export const useFormAnswers = () => {
 
   const { formId } = useParams<URLParams>();
 
+  const { control, register, setValue } = useForm<FormData>({});
+
   const { state: answersState } = useFetch<IFormAnswer[]>(
     [CacheKeys.answers, `${formId}`],
     async () => await FormsService.getFormAnswers(`${formId}`),
@@ -100,45 +102,10 @@ export const useFormAnswers = () => {
     async () => await FormsService.getForm(`${formId}`)
   );
 
-  const { control, register, setValue } = useForm<FormData>({});
-
   const answerWithFormState = combineFetchStates<IFormAnswer[], IForm>(
     answersState,
     formState
   );
-
-  const setDefaultPreviewFormValues = (answers: FormData) => {
-    Object.keys(answers)?.forEach((answer) => {
-      setValue(answer, answers[answer]);
-    });
-  };
-
-  const onPickedAnswerIdChange = (id: string) => {
-    if (id === state.pickedAnswerId) {
-      setState((prevState) => ({
-        ...prevState,
-        pickedAnswerId: DEFAULT_STATE.pickedAnswerId,
-      }));
-      return;
-    }
-
-    const answers = answersState?.data?.find((answer) => answer?.id === id)
-      ?.answers as FormData;
-
-    setState((prevState) => ({ ...prevState, pickedAnswerId: id }));
-    setDefaultPreviewFormValues(answers);
-
-    formPreviewRef?.current?.scrollTo(0, 0);
-  };
-
-  const onQuestionClick = (id: string) => {
-    const question =
-      answerWithFormState?.data?.secondStateData?.questions?.find(
-        (question) => question?.id === id
-      ) as IQuestion;
-
-    setState((prevState) => ({ ...prevState, pickedQuestion: question }));
-  };
 
   const pickedQuestionAnswers = getQuestionAnswers(
     state.pickedQuestion as IQuestion,
@@ -176,6 +143,40 @@ export const useFormAnswers = () => {
         borderWidth: 1,
       },
     ],
+  };
+
+  const setDefaultPreviewFormValues = (answers: FormData) => {
+    Object.keys(answers)?.forEach((answer) => {
+      setValue(answer, answers[answer]);
+    });
+  };
+
+  const onPickedAnswerIdChange = (id: string) => {
+    if (id === state.pickedAnswerId) {
+      setState((prevState) => ({
+        ...prevState,
+        pickedAnswerId: DEFAULT_STATE.pickedAnswerId,
+      }));
+
+      return;
+    }
+
+    const answers = answersState?.data?.find((answer) => answer?.id === id)
+      ?.answers as FormData;
+
+    setState((prevState) => ({ ...prevState, pickedAnswerId: id }));
+    setDefaultPreviewFormValues(answers);
+
+    formPreviewRef?.current?.scrollTo(0, 0);
+  };
+
+  const onQuestionClick = (id: string) => {
+    const question =
+      answerWithFormState?.data?.secondStateData?.questions?.find(
+        (question) => question?.id === id
+      ) as IQuestion;
+
+    setState((prevState) => ({ ...prevState, pickedQuestion: question }));
   };
 
   const onPickedGrahTypeChange = (newGraphType: Graph) => {
