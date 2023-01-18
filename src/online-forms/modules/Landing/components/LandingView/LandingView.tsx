@@ -2,14 +2,14 @@ import { FC } from "react";
 import { Login } from "online-forms/modules/Login";
 import { Register } from "online-forms/modules/Register";
 import Logo from "/logo.png";
-import * as Styled from "./Landing.styled";
+import * as Styled from "./LandingView.styled";
 
 interface Props {
   isLoginFormShowed: boolean;
   onSwitchShowedForm: () => void;
 }
 
-export const Landing: FC<Props> = ({
+export const LandingView: FC<Props> = ({
   isLoginFormShowed,
   onSwitchShowedForm,
 }) => {
