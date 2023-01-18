@@ -2,7 +2,7 @@ import { FC } from "react";
 import { FormView } from "online-forms/shared/FormView";
 import { ConfirmationModal, Stack } from "libs/ui";
 import { IForm } from "online-forms/types";
-import * as Styled from "./FormQuestionsPreviewModal.styled";
+import * as Styled from "./FormPreviewModal.styled";
 
 interface Props {
   isOpen: boolean;
@@ -10,7 +10,7 @@ interface Props {
   onConfirm: () => void;
 }
 
-export const FormQuestionsPreviewModal: FC<Props> = ({
+export const FormPreviewModal: FC<Props> = ({
   isOpen,
   currentPickedForm,
   onConfirm,
@@ -22,9 +22,10 @@ export const FormQuestionsPreviewModal: FC<Props> = ({
       labels={{ confirm: "Close" }}
     >
       <Stack pl={3} pr={3}>
-        <Styled.Title>
-          <span>{currentPickedForm?.name}</span> <br /> questions:
-        </Styled.Title>
+        <Styled.Title>{currentPickedForm?.name}</Styled.Title>
+        <Styled.Description>
+          {currentPickedForm?.description}
+        </Styled.Description>
         <FormView questions={currentPickedForm?.questions} isEditable={false} />
       </Stack>
     </ConfirmationModal>

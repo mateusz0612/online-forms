@@ -19,8 +19,7 @@ export const useForms = () => {
     isFormDeleteConfirmationModalOpen,
     setIsFormDeleteConfirmationModalOpen,
   ] = useState(false);
-  const [isFormQuestionPreviewModalOpen, setIsFormQuestionPreviewModalOpen] =
-    useState(false);
+  const [isFormPreviewModalOpen, setIsFormPreviewModalOpen] = useState(false);
   const [currentPickedForm, setCurrentPickedForm] = useState<IForm | null>(
     null
   );
@@ -53,11 +52,9 @@ export const useForms = () => {
   const closeFormDeleteConfirmationModal = () =>
     setIsFormDeleteConfirmationModalOpen(false);
 
-  const openFormQuestionPreviewModal = () =>
-    setIsFormQuestionPreviewModalOpen(true);
+  const openFormQuestionPreviewModal = () => setIsFormPreviewModalOpen(true);
 
-  const closeFormQuestionPreviewModal = () =>
-    setIsFormQuestionPreviewModalOpen(false);
+  const closeFormQuestionPreviewModal = () => setIsFormPreviewModalOpen(false);
 
   const getFormById = (id: string) =>
     forms?.state?.data?.find((form) => form?.id === id);
@@ -71,14 +68,14 @@ export const useForms = () => {
     navigate(Paths.AnalyzeForm?.replace(":formId", id));
   };
 
-  const onShowFormQuestionsClick = (id: string) => {
+  const onShowFormPreviewClick = (id: string) => {
     const form = getFormById(id);
 
     setCurrentPickedForm(form as IForm);
     openFormQuestionPreviewModal();
   };
 
-  const onCloseFormQuestionPreviewClick = () => {
+  const onCloseFormPreviewClick = () => {
     closeFormQuestionPreviewModal();
   };
 
@@ -101,7 +98,7 @@ export const useForms = () => {
   return {
     isFormDeletePending,
     isFormDeleteConfirmationModalOpen,
-    isFormQuestionPreviewModalOpen,
+    isFormPreviewModalOpen,
     forms: {
       ...forms,
       state: {
@@ -119,7 +116,7 @@ export const useForms = () => {
     onDeleteFormClick,
     onRejectDeleteFormClick,
     onConfirmDeleteFormClick,
-    onShowFormQuestionsClick,
-    onCloseFormQuestionPreviewClick,
+    onShowFormPreviewClick,
+    onCloseFormPreviewClick,
   } as const;
 };

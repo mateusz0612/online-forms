@@ -2,7 +2,7 @@ import { FC } from "react";
 import {
   FormList,
   DeleteFormConfirmationModal,
-  FormQuestionsPreviewModal,
+  FormPreviewModal,
 } from "../components";
 import { useForms } from "../logic";
 import { ModuleProps } from "../FormList.types";
@@ -11,7 +11,7 @@ export const FormListContainer: FC<ModuleProps> = ({ limit }) => {
   const {
     isFormDeletePending,
     isFormDeleteConfirmationModalOpen,
-    isFormQuestionPreviewModalOpen,
+    isFormPreviewModalOpen,
     forms,
     currentPickedForm,
     onCopyFromLinkClick,
@@ -19,8 +19,8 @@ export const FormListContainer: FC<ModuleProps> = ({ limit }) => {
     onDeleteFormClick,
     onRejectDeleteFormClick,
     onConfirmDeleteFormClick,
-    onCloseFormQuestionPreviewClick,
-    onShowFormQuestionsClick,
+    onCloseFormPreviewClick,
+    onShowFormPreviewClick,
   } = useForms();
 
   return (
@@ -32,7 +32,7 @@ export const FormListContainer: FC<ModuleProps> = ({ limit }) => {
         onCopyFormLinkClick={onCopyFromLinkClick}
         onDeleteFormCLick={onDeleteFormClick}
         onAnalyzeFormClick={onAnalyzeFormClick}
-        onShowFormClick={onShowFormQuestionsClick}
+        onShowFormClick={onShowFormPreviewClick}
       />
       <DeleteFormConfirmationModal
         formName={currentPickedForm?.name}
@@ -40,10 +40,10 @@ export const FormListContainer: FC<ModuleProps> = ({ limit }) => {
         onClose={onRejectDeleteFormClick}
         onConfirm={() => onConfirmDeleteFormClick(currentPickedForm?.id)}
       />
-      <FormQuestionsPreviewModal
-        isOpen={isFormQuestionPreviewModalOpen}
+      <FormPreviewModal
+        isOpen={isFormPreviewModalOpen}
         currentPickedForm={currentPickedForm}
-        onConfirm={onCloseFormQuestionPreviewClick}
+        onConfirm={onCloseFormPreviewClick}
       />
     </>
   );
