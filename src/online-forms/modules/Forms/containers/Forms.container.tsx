@@ -5,9 +5,9 @@ import {
   FormPreviewModal,
 } from "../components";
 import { useForms } from "../logic";
-import { ModuleProps } from "../FormList.types";
+import { ModuleProps } from "../Formstypes";
 
-export const FormListContainer: FC<ModuleProps> = ({ limit }) => {
+export const FormsContainer: FC<ModuleProps> = ({ limit }) => {
   const {
     isFormDeletePending,
     isFormDeleteConfirmationModalOpen,

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Tile, Stack, AddIcon, AccountIcon } from "libs/ui";
-import { FormList } from "online-forms/modules/FormList";
+import { Forms } from "online-forms/modules/Forms";
 import * as Styled from "./DashboardView.styled";
 
 interface Props {
@@ -29,7 +29,7 @@ export const DashboardView: FC<Props> = ({
         ) : (
           <Styled.SeeButton onClick={onSeeAllClick}>See all</Styled.SeeButton>
         )}
-        <FormList limit={visibleFormsLimit} />
+        <Forms limit={visibleFormsLimit} />
       </Tile>
       <Stack justifyContent="space-between" flexDirection="row" mt={4} gap={3}>
         <Tile
