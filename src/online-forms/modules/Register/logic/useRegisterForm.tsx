@@ -2,7 +2,7 @@ import { useForm } from "libs/development-kit/form";
 import { useNavigate } from "libs/development-kit/routing";
 import * as validation from "libs/development-kit/validation";
 import { Paths } from "online-forms/routes";
-import { useAuthContext } from "online-forms/shared/Auth";
+import { useAuthContext } from "online-forms/modules/Auth";
 import { IRegisterCredentials } from "online-forms/types";
 
 const DEFAULT_VALUES: IRegisterCredentials = {

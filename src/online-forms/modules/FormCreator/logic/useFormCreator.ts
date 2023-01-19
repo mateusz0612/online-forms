@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuthContext } from "online-forms/shared/Auth";
+import { useAuthContext } from "online-forms/modules/Auth";
 import { FormsService } from "online-forms/services";
 import { IForm, IQuestion, CacheKeys } from "online-forms/types";
 import { Paths } from "online-forms/routes";

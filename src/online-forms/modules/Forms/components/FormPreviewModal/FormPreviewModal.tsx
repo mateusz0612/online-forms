@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { FormView } from "online-forms/shared/FormView";
+import { FormView } from "online-forms/modules/FormView";
 import { ConfirmationModal, Stack } from "libs/ui";
 import { IForm } from "online-forms/types";
 import * as Styled from "./FormPreviewModal.styled";

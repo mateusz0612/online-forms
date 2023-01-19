@@ -10,7 +10,7 @@ import { toast } from "libs/development-kit/toasts";
 import * as validation from "libs/development-kit/validation";
 import { FormsService } from "online-forms/services";
 import { UserService } from "online-forms/services";
-import { useAuthContext } from "online-forms/shared/Auth";
+import { useAuthContext } from "online-forms/modules/Auth";
 import { Paths } from "online-forms/routes";
 import {
   CacheKeys,

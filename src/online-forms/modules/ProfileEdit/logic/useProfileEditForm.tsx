@@ -3,7 +3,7 @@ import { useForm } from "libs/development-kit/form";
 import { useQueryClient, usePost } from "libs/development-kit/api";
 import { toast } from "libs/development-kit/toasts";
 import * as validation from "libs/development-kit/validation";
-import { useAuthContext } from "online-forms/shared/Auth";
+import { useAuthContext } from "online-forms/modules/Auth";
 import { CacheKeys, IUserData } from "online-forms/types";
 import { ProfileEditModuleProps } from "online-forms/modules/ProfileEdit/ProfileEdit.types";
 import { UserService } from "online-forms/services";

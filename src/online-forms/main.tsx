@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ThemeProvider } from "styled-components";
 import { theme, GlobalStyle } from "online-forms/theme";
-import { AuthProvider } from "online-forms/shared/Auth";
+import { AuthModule } from "online-forms/modules/Auth";
 import { ToastContainer } from "react-toastify";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import App from "./App";
@@ -19,9 +19,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <ToastContainer />
-        <AuthProvider>
+        <AuthModule>
           <App />
-        </AuthProvider>
+        </AuthModule>
       </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>
