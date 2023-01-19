@@ -7,8 +7,8 @@ import {
   AnswersList,
   BooleanAnswers,
   TextAnswer,
-} from "./components";
-import { FormViewProps, FormViewAnswerComponent } from "./FormView.types";
+} from "../components";
+import { FormViewProps, FormViewAnswerComponent } from "../FormView.types";
 import * as Styled from "./FormView.styled";
 
 const getTypeComponent = ({ ...props }: FormViewAnswerComponent) => ({
@@ -17,7 +17,7 @@ const getTypeComponent = ({ ...props }: FormViewAnswerComponent) => ({
   text: <TextAnswer {...props} />,
 });
 
-export const FormView: FC<FormViewProps> = ({
+export const FormViewContainer: FC<FormViewProps> = ({
   questions,
   isEditable,
   isValueEditDisabled = false,
