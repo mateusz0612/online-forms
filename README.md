@@ -14,13 +14,14 @@ libs\
 online-forms\
 ---firebase - Firebase configuration\
 ---modules - Implementations of application features. Module can includes\
-------components - components related to specific module\
-------logic - hooks with implemented module logic\
-------containers - place where logic and components are connected\
----------module-name.module.tsx - entry level to using module\
----routes - configuration of routes\
----theme - configuration of application theme - global styles, theme\
----types - shared types, interfaces, enums across application
+------components - Components related to specific module\
+------logic - Hooks with implemented module logic\
+------containers - Place where logic and components are connected\
+---------module-name.module.tsx - Entry level to using module\
+---routes - Configuration of routes\
+---services - Services to handle API operations\
+---theme - Configuration of application theme - global styles, theme\
+---types - Shared types, interfaces, enums across application
    
 # Stack
 - React
