@@ -6,7 +6,7 @@ import {
   FileInput,
   Progress,
 } from "libs/ui";
-import { IRegister } from "libs/development-kit/form";
+import { IFormState, IRegister } from "libs/development-kit/form";
 import { IUserData } from "online-forms/types";
 import * as Styled from "./ProfileEditFormModal.styled";
 
@@ -15,6 +15,7 @@ interface Props {
   disableSubmit: boolean;
   isPending: boolean;
   isOpen: boolean;
+  formState: IFormState<IUserData>;
   register: IRegister<IUserData>;
   onSubmit: () => void;
   onClose: () => void;
@@ -35,11 +36,14 @@ export const ProfileEditFormModal: FC<Props> = ({
   isPending,
   disableSubmit,
   userData,
+  formState,
   register,
   onSubmit,
   onClose,
   onProfileImageChange,
 }) => {
+  const { errors } = formState;
+
   return (
     <ConfirmationModal
       isOpen={isOpen}
@@ -64,7 +68,12 @@ export const ProfileEditFormModal: FC<Props> = ({
         </Stack>
         <h2>Edit profile</h2>
         <Stack gap={3}>
-          <TextField label="Username" {...register("username")} />
+          <TextField
+            label="Username"
+            error={!!errors?.username}
+            helperText={errors?.username?.message}
+            {...register("username")}
+          />
           <FileInput
             label="Click here to add avatar image"
             onDrop={(acceptedFiles) => onProfileImageChange(acceptedFiles?.[0])}

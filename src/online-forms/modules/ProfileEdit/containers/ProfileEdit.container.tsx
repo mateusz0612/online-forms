@@ -8,6 +8,7 @@ export const ProfileEditContainer: FC<ProfileEditModuleProps> = (props) => {
     isUserEditingPending,
     disableSubmit,
     userData,
+    formState,
     register,
     onUserEditClose,
     onUserEditSubmit,
@@ -20,6 +21,7 @@ export const ProfileEditContainer: FC<ProfileEditModuleProps> = (props) => {
       disableSubmit={disableSubmit}
       userData={userData}
       isOpen={props?.isOpen}
+      formState={formState}
       register={register}
       onClose={onUserEditClose}
       onSubmit={onUserEditSubmit}

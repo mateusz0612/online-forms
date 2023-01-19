@@ -81,6 +81,7 @@ export const useProfileEditForm = ({ onClose }: ProfileEditModuleProps) => {
 
   const onUserEditClose = () => {
     setProfileImage(null);
+    reset(userData);
 
     onClose();
   };
@@ -93,6 +94,7 @@ export const useProfileEditForm = ({ onClose }: ProfileEditModuleProps) => {
     disableSubmit,
     isUserEditingPending,
     userData,
+    formState,
     register,
     onUserEditClose,
     onProfileImageAdd,
