@@ -13,13 +13,12 @@ libs\
 ---ui - Reusable UI components, facades for MUI components\
 online-forms\
 ---firebase - Firebase configuration\
----modules - Implementations of application features. Every module includes\
+---modules - Implementations of application features. Module can includes\
 ------components - components related to specific module\
 ------logic - hooks with implemented module logic\
 ------containers - place where logic and components are connected\
 ---------module-name.module.tsx - entry level to using module\
 ---routes - configuration of routes\
----shared - modules that are used in multiple places in application\
 ---theme - configuration of application theme - global styles, theme\
 ---types - shared types, interfaces, enums across application
    
