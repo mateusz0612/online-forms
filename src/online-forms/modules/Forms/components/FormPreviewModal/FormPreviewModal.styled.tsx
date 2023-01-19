@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Title = styled.p`
-  font-weight: 600;
+  font-weight: ${(props) => props.theme.fontWeights.bold};
 `;
 
 export const Description = styled.p`

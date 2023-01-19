@@ -13,10 +13,10 @@ export const Wrapper = styled(Tile)`
 export const AnswerInfo = styled.p`
   margin: 0;
   padding-right: 12px;
-  font-weight: 600;
+  font-weight: ${(props) => props.theme.fontWeights.bold};
 
   span {
     font-size: 12px;
-    font-weight: 400;
+    font-weight: ${(props) => props.theme.fontWeights.normal};
   }
 `;

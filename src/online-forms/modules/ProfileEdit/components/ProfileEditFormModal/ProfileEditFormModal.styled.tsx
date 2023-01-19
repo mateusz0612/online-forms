@@ -13,5 +13,5 @@ export const Avatar = styled.img`
 
 export const Username = styled.p`
   margin: 0;
-  font-weight: 600;
+  font-weight: ${(props) => props.theme.fontWeights.bold};
 `;

@@ -4,10 +4,10 @@ import { Stack } from "libs/ui";
 export const Wrapper = styled(Stack)`
   h3 {
     text-align: center;
-    font-weight: 400;
+    font-weight: ${(props) => props.theme.fontWeights.normal};
   }
 
   span {
-    font-weight: 600;
+    font-weight: ${(props) => props.theme.fontWeights.bold};
   }
 `;

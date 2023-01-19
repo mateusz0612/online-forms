@@ -5,7 +5,7 @@ import {
   FormPreviewModal,
 } from "../components";
 import { useForms } from "../logic";
-import { ModuleProps } from "../Formstypes";
+import { ModuleProps } from "../Forms.types";
 
 export const FormsContainer: FC<ModuleProps> = ({ limit }) => {
   const {

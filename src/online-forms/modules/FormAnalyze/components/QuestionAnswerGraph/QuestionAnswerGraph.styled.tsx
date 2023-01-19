@@ -14,6 +14,6 @@ export const HelperText = styled.p`
   text-align: center;
 
   span {
-    font-weight: 600;
+    font-weight: ${(props) => props.theme.fontWeights.bold};
   }
 `;

@@ -23,10 +23,10 @@ const createFormSchema = validation.object().shape({
 });
 
 export const useFormHeader = () => {
-  const { register, getValues, formState } = useForm({
+  const { register, getValues, trigger, formState } = useForm({
     defaultValues: DEFAULT_VALUES,
     validationSchema: createFormSchema,
-    reValidateMode: "onChange",
+    reValidateMode: "onBlur",
   });
   const values = getValues();
 
@@ -34,5 +34,6 @@ export const useFormHeader = () => {
     values,
     formState,
     register,
+    trigger,
   } as const;
 };

@@ -5,7 +5,7 @@ export const Wrapper = styled(Tile)`
   h1,
   h2 {
     font-size: 30px;
-    font-weight: 500;
+    font-weight: ${(props) => props.theme.fontWeights.bold};
     text-transform: capitalize;
     letter-spacing: 1px;
     padding: 0px;
@@ -14,7 +14,7 @@ export const Wrapper = styled(Tile)`
 
   p {
     span {
-      font-weight: 600;
+      font-weight: ${(props) => props.theme.fontWeights.bold};
     }
   }
 `;

@@ -27,7 +27,7 @@ export const theme: DefaultTheme = {
   },
   fontWeights: {
     normal: 400,
-    bold: 700,
+    bold: 600,
   },
   queries: {
     mobile: "(max-width 480px)",

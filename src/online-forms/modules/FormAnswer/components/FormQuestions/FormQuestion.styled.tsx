@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const QuestionsLabel = styled.p`
   text-align: center;
-  font-weight: 500;
+  font-weight: ${(props) => props.theme.fontWeights.bold};
 `;
 
 export const SubmitAnswers = styled(PrimaryButton)`

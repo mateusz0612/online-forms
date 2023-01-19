@@ -5,12 +5,12 @@ export const Tag = styled.p<{ isPicked: boolean }>`
   cursor: pointer;
 
   :hover {
-    font-weight: 600;
+    font-weight: ${(props) => props.theme.fontWeights.bold};
   }
 
   ${(props) =>
     props.isPicked &&
     css`
-      font-weight: 600;
+      font-weight: ${(props) => props.theme.fontWeights.bold};
     `}
 `;

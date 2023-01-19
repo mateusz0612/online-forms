@@ -7,11 +7,14 @@ import { usePost, useQueryClient } from "libs/development-kit/api";
 import { useNavigate } from "libs/development-kit/routing";
 import { toast } from "libs/development-kit/toasts";
 import { copyToClipboard } from "libs/development-kit/helpers/copyToClipboard";
+import { IFormState, ITrigger } from "libs/development-kit/form";
 import { IFormHeaderValues } from "../FormCreator.types";
 
 interface Params {
   questions: IQuestion[];
   formHeaderValues: IFormHeaderValues;
+  formHeaderFormState: IFormState<IFormHeaderValues>;
+  triggerFormHeader: ITrigger<IFormHeaderValues>;
 }
 
 interface FormCreatedResponse {
@@ -20,7 +23,12 @@ interface FormCreatedResponse {
 
 type FromWithoutId = Omit<IForm, "id">;
 
-export const useFormCreator = ({ questions, formHeaderValues }: Params) => {
+export const useFormCreator = ({
+  questions,
+  formHeaderValues,
+  formHeaderFormState,
+  triggerFormHeader,
+}: Params) => {
   const [
     isFormCreatedConfirmationVisible,
     setIsFormCreatedConfirmationVisible,
@@ -45,6 +53,12 @@ export const useFormCreator = ({ questions, formHeaderValues }: Params) => {
   });
 
   const onFormSave = async () => {
+    if (!formHeaderFormState?.isValid) {
+      triggerFormHeader("description");
+      triggerFormHeader("name");
+      return;
+    }
+
     const createdAt = Date.now();
 
     const form: FromWithoutId = {

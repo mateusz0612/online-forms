@@ -46,6 +46,7 @@ export const FormCreatorContainer: FC = () => {
     values: formHeaderValues,
     formState: formHeaderFormState,
     register: formHeaderRegister,
+    trigger: triggerFormHeader,
   } = useFormHeader();
 
   const {
@@ -75,6 +76,8 @@ export const FormCreatorContainer: FC = () => {
   } = useFormCreator({
     questions,
     formHeaderValues,
+    formHeaderFormState,
+    triggerFormHeader,
   });
 
   const formViewHandlers = {
