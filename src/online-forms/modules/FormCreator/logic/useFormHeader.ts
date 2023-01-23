@@ -7,7 +7,7 @@ const DEFAULT_VALUES: IFormHeaderValues = {
   description: "",
 };
 
-const createFormSchema = validation.object().shape({
+const formHeaderSchema = validation.object().shape({
   name: validation
     .string()
     .trim()
@@ -25,7 +25,7 @@ const createFormSchema = validation.object().shape({
 export const useFormHeader = () => {
   const { register, handleSubmit, formState } = useForm({
     defaultValues: DEFAULT_VALUES,
-    validationSchema: createFormSchema,
+    validationSchema: formHeaderSchema,
   });
 
   return {
