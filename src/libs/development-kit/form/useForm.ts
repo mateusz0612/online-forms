@@ -1,4 +1,8 @@
-import { DeepPartial, useForm as useHookForm } from "react-hook-form";
+import {
+  DeepPartial,
+  useForm as useHookForm,
+  FieldValues,
+} from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AnyObjectSchema, object } from "yup";
 
@@ -8,7 +12,7 @@ interface IForm<T> {
   reValidateMode?: "onBlur" | "onChange" | "onSubmit";
 }
 
-export const useForm = <T>({
+export const useForm = <T extends FieldValues>({
   defaultValues,
   validationSchema = object(),
   reValidateMode,
