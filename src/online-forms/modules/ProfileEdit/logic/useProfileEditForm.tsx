@@ -63,6 +63,7 @@ export const useProfileEditForm = ({ onClose }: ProfileEditModuleProps) => {
       onSuccess: (_, userData) => {
         toast("success", "Profile edited!");
         reset(userData);
+        setProfileImage(null);
       },
       onError: () => {
         toast("error", "Something went wrong please try again");

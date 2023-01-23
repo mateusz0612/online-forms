@@ -3,18 +3,16 @@ import { useAuthContext } from "online-forms/modules/Auth";
 import { FormsService } from "online-forms/services";
 import { IForm, IQuestion, CacheKeys } from "online-forms/types";
 import { Paths } from "online-forms/routes";
+import { IHandleSubmit } from "libs/development-kit/form";
 import { usePost, useQueryClient } from "libs/development-kit/api";
 import { useNavigate } from "libs/development-kit/routing";
 import { toast } from "libs/development-kit/toasts";
 import { copyToClipboard } from "libs/development-kit/helpers/copyToClipboard";
-import { IFormState, ITrigger } from "libs/development-kit/form";
 import { IFormHeaderValues } from "../FormCreator.types";
 
 interface Params {
   questions: IQuestion[];
-  formHeaderValues: IFormHeaderValues;
-  formHeaderFormState: IFormState<IFormHeaderValues>;
-  triggerFormHeader: ITrigger<IFormHeaderValues>;
+  handleFormHeaderSubmit: IHandleSubmit<IFormHeaderValues>;
 }
 
 interface FormCreatedResponse {
@@ -25,9 +23,7 @@ type FromWithoutId = Omit<IForm, "id">;
 
 export const useFormCreator = ({
   questions,
-  formHeaderValues,
-  formHeaderFormState,
-  triggerFormHeader,
+  handleFormHeaderSubmit,
 }: Params) => {
   const [
     isFormCreatedConfirmationVisible,
@@ -52,13 +48,7 @@ export const useFormCreator = ({
     },
   });
 
-  const onFormSave = async () => {
-    if (!formHeaderFormState?.isValid) {
-      triggerFormHeader("description");
-      triggerFormHeader("name");
-      return;
-    }
-
+  const onFormSave = handleFormHeaderSubmit(async (formHeaderValues) => {
     const createdAt = Date.now();
 
     const form: FromWithoutId = {
@@ -69,7 +59,7 @@ export const useFormCreator = ({
     };
 
     await createForm(form);
-  };
+  });
 
   const onCopyLinkClick = (link: string) => {
     copyToClipboard(`${window.location.origin}/form-answer/${link}`);

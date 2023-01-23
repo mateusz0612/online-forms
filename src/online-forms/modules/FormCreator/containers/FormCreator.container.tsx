@@ -43,10 +43,9 @@ export const FormCreatorContainer: FC = () => {
   } = useQuestions();
 
   const {
-    values: formHeaderValues,
     formState: formHeaderFormState,
     register: formHeaderRegister,
-    trigger: triggerFormHeader,
+    handleSubmit: handleFormHeaderSubmit,
   } = useFormHeader();
 
   const {
@@ -75,9 +74,7 @@ export const FormCreatorContainer: FC = () => {
     onCopyLinkClick,
   } = useFormCreator({
     questions,
-    formHeaderValues,
-    formHeaderFormState,
-    triggerFormHeader,
+    handleFormHeaderSubmit,
   });
 
   const formViewHandlers = {

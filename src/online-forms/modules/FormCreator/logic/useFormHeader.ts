@@ -23,17 +23,14 @@ const createFormSchema = validation.object().shape({
 });
 
 export const useFormHeader = () => {
-  const { register, getValues, trigger, formState } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     defaultValues: DEFAULT_VALUES,
     validationSchema: createFormSchema,
-    reValidateMode: "onBlur",
   });
-  const values = getValues();
 
   return {
-    values,
     formState,
     register,
-    trigger,
+    handleSubmit,
   } as const;
 };

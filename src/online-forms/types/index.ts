@@ -52,13 +52,13 @@ export interface IForm {
   questions: IQuestion[];
 }
 
-export type FormData = Record<string, string>;
-
 export interface IFormAnswer {
   id: string;
   formId: string;
   answers: FormData;
 }
+
+export type FormData = Record<string, string>;
 
 export enum BooleanAnswersKeys {
   true = "Yes",
