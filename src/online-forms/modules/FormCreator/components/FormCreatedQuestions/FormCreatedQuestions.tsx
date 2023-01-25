@@ -19,7 +19,7 @@ interface Props {
   onOpenQuestionModal: () => void;
 }
 
-export const FormCreateQuestions: FC<Props> = ({
+export const FormCreatedQuestions: FC<Props> = ({
   haveNoQuestions,
   isFormSavePending,
   questions,
