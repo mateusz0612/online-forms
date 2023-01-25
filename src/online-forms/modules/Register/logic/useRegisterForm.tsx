@@ -46,7 +46,7 @@ const errorMessages = {
 };
 
 export const useRegisterForm = () => {
-  const { handleSubmit, register, setError, formState } =
+  const { handleSubmit, setError, control, formState } =
     useForm<IRegisterCredentials>({
       defaultValues: DEFAULT_VALUES,
       validationSchema: registerFormSchema,
@@ -73,7 +73,7 @@ export const useRegisterForm = () => {
   });
 
   return {
-    register,
+    control,
     onSubmit,
     formState,
   } as const;

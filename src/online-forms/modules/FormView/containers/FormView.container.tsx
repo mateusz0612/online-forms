@@ -24,7 +24,6 @@ export const FormViewContainer: FC<FormViewProps> = ({
   control,
   handlers,
   formState,
-  register,
   onQuestionClick,
 }) => {
   return (
@@ -47,7 +46,6 @@ export const FormViewContainer: FC<FormViewProps> = ({
                 isValueEditDisabled,
                 questionId: id,
                 control: control as IControl<FormData>,
-                register: register as IRegister<FormData>,
               })[type]
             }
             <HelperText

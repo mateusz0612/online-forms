@@ -1,4 +1,4 @@
-import { IControl, IFormState, IRegister } from "libs/development-kit/form";
+import { IControl, IFormState } from "libs/development-kit/form";
 import { IAnswer, IQuestion, QuesitonType } from "online-forms/types";
 
 export interface IFormHeaderValues {
@@ -8,12 +8,9 @@ export interface IFormHeaderValues {
 
 export interface QuestionFormProps {
   currentPickedType: QuesitonType;
-  control: IControl<IQuestion>;
-  formState: IFormState<IQuestion>;
-  answerFormState: IFormState<IAnswer>;
   answers: IAnswer[];
-  register: IRegister<IQuestion>;
-  answerRegister: IRegister<IAnswer>;
+  questionControl: IControl<IQuestion>;
+  answerControl: IControl<IAnswer>;
   onAddQuestionClick: () => void;
   onRemoveQuestionClick: (id: string) => void;
   onAddAnswerClick: () => void;

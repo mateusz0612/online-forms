@@ -10,7 +10,7 @@ import {
   FormHeader,
   AddQuestionModal,
   FormCreatedConfirmationModal,
-  FormCreateQuestions,
+  FormCreatedQuestions,
 } from "../components";
 import styled from "styled-components";
 
@@ -42,21 +42,15 @@ export const FormCreatorContainer: FC = () => {
     onDeleteQuestionClick,
   } = useQuestions();
 
-  const {
-    formState: formHeaderFormState,
-    register: formHeaderRegister,
-    handleSubmit: handleFormHeaderSubmit,
-  } = useFormHeader();
+  const { control: formHeaderControl, handleSubmit: handleFormHeaderSubmit } =
+    useFormHeader();
 
   const {
     isQuestionModalOpen,
     currentPickedType,
-    answerFormState,
     answers,
-    formState: addQuestionFormState,
-    control: addQuestionControl,
-    register: addQuestionRegister,
-    answerRegister,
+    questionControl,
+    answerControl,
     onAddQuestionClick,
     onRemoveAnswerClick,
     onEditQuestionClick,
@@ -85,11 +79,8 @@ export const FormCreatorContainer: FC = () => {
   return (
     <Wrapper width="50vw" margin="auto" mt={4} mb={4}>
       <Title>Create form</Title>
-      <FormHeader
-        formState={formHeaderFormState}
-        register={formHeaderRegister}
-      />
-      <FormCreateQuestions
+      <FormHeader control={formHeaderControl} />
+      <FormCreatedQuestions
         haveNoQuestions={haveNoQuestions}
         isFormSavePending={isFormSavePending}
         formViewHandlers={formViewHandlers}
@@ -99,18 +90,15 @@ export const FormCreatorContainer: FC = () => {
       />
       <AddQuestionModal
         isOpen={isQuestionModalOpen}
-        formState={addQuestionFormState}
-        answerFormState={answerFormState}
-        control={addQuestionControl}
         questions={questions}
         currentPickedType={currentPickedType}
         answers={answers}
+        questionControl={questionControl}
+        answerControl={answerControl}
         onClose={closeQuestionModal}
         onAddQuestionClick={onAddQuestionClick}
         onAddAnswerClick={onAddAnswerClick}
         onRemoveQuestionClick={onRemoveAnswerClick}
-        register={addQuestionRegister}
-        answerRegister={answerRegister}
       />
       <FormCreatedConfirmationModal
         isOpen={isFormCreatedConfirmationVisible}

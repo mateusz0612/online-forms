@@ -11,28 +11,22 @@ import { QuestionFormProps } from "../../FormCreator.types";
 import * as Styled from "./QuestionForm.styled";
 
 export const QuestionForm: FC<QuestionFormProps> = ({
-  register,
-  answerRegister,
+  currentPickedType,
+  answers,
+  questionControl,
+  answerControl,
   onAddAnswerClick,
   onAddQuestionClick,
   onRemoveQuestionClick,
-  currentPickedType,
-  answers,
-  control,
-  formState,
-  answerFormState,
 }) => {
-  const { errors } = formState;
-
   return (
     <Stack ml={3} mr={3}>
       <Styled.HelperText>Enter question content</Styled.HelperText>
       <TextField
+        name="content"
         label="Content"
         placeholder="Enter content..."
-        error={!!errors?.content}
-        helperText={errors?.content?.message}
-        {...register("content")}
+        control={questionControl}
       />
       <Stack
         flexDirection="row"
@@ -47,7 +41,7 @@ export const QuestionForm: FC<QuestionFormProps> = ({
             style={Styled.SelectStyles}
             defaultValue="options"
             name="type"
-            control={control}
+            control={questionControl}
             renderMenuItems={(MenuItem) => [
               <MenuItem key="boolean" value="boolean">
                 True/False
@@ -63,7 +57,11 @@ export const QuestionForm: FC<QuestionFormProps> = ({
         </Stack>
         <Stack justifyContent="center" alignItems="center">
           <Styled.HelperText>Is this question required?</Styled.HelperText>
-          <Switch name="required" control={control} defaultValue={false} />
+          <Switch
+            name="required"
+            control={questionControl}
+            defaultValue={false}
+          />
         </Stack>
       </Stack>
       {currentPickedType === "options" && (
@@ -71,11 +69,10 @@ export const QuestionForm: FC<QuestionFormProps> = ({
           <Stack width="52%" mt={2}>
             <Styled.HelperText>Add question options</Styled.HelperText>
             <TextField
+              name="content"
               label="Answer"
               placeholder="Enter answer"
-              error={!!answerFormState?.errors?.content}
-              helperText={answerFormState?.errors?.content?.message}
-              {...answerRegister("content")}
+              control={answerControl}
             />
             <SecondaryButton
               style={{ width: "15%", marginTop: "10px" }}

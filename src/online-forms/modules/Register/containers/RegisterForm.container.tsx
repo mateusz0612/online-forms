@@ -3,13 +3,9 @@ import { RegisterForm } from "../components";
 import { useRegisterForm } from "../logic";
 
 export const RegisterFormContainer: FC = () => {
-  const { register, onSubmit, formState } = useRegisterForm();
+  const { control, formState, onSubmit } = useRegisterForm();
 
   return (
-    <RegisterForm
-      register={register}
-      onSubmit={onSubmit}
-      formState={formState}
-    />
+    <RegisterForm control={control} formState={formState} onSubmit={onSubmit} />
   );
 };

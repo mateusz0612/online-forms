@@ -35,7 +35,7 @@ const errorCodesMessages = {
 };
 
 export const useLoginForm = () => {
-  const { register, handleSubmit, setError, formState } =
+  const { handleSubmit, setError, control, formState } =
     useForm<ILoginCredentials>({
       defaultValues: DEFAULT_LOGIN_FORM_VALUES,
       validationSchema: loginFormSchema,
@@ -58,16 +58,19 @@ export const useLoginForm = () => {
     }
   };
 
-  const onSubmit = handleSubmit(async (credentials) => {
-    await loginUser(
-      credentials,
-      () => navigate(Paths.Dashboard),
-      (error) => onError(error?.code)
-    );
-  });
+  const onSubmit = handleSubmit(
+    async (credentials) => {
+      await loginUser(
+        credentials,
+        () => navigate(Paths.Dashboard),
+        (error) => onError(error?.code)
+      );
+    },
+    (errors) => console.log(errors)
+  );
 
   return {
-    register,
+    control,
     onSubmit,
     formState,
   } as const;

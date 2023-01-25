@@ -23,14 +23,13 @@ const formHeaderSchema = validation.object().shape({
 });
 
 export const useFormHeader = () => {
-  const { register, handleSubmit, formState } = useForm({
+  const { handleSubmit, control } = useForm({
     defaultValues: DEFAULT_VALUES,
     validationSchema: formHeaderSchema,
   });
 
   return {
-    formState,
-    register,
+    control,
     handleSubmit,
   } as const;
 };

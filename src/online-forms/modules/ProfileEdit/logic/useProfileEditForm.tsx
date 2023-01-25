@@ -46,7 +46,7 @@ export const useProfileEditForm = ({ onClose }: ProfileEditModuleProps) => {
   const { userData } = useAuthContext();
   const queryClient = useQueryClient();
 
-  const { register, handleSubmit, reset, formState } = useForm<IUserData>({
+  const { handleSubmit, reset, control, formState } = useForm<IUserData>({
     defaultValues: userData,
     validationSchema: userFormValidationSchema,
   });
@@ -96,7 +96,7 @@ export const useProfileEditForm = ({ onClose }: ProfileEditModuleProps) => {
     isUserEditingPending,
     userData,
     formState,
-    register,
+    control,
     onUserEditClose,
     onProfileImageAdd,
     onUserEditSubmit,

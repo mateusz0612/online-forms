@@ -9,7 +9,7 @@ export const ProfileEditContainer: FC<ProfileEditModuleProps> = (props) => {
     disableSubmit,
     userData,
     formState,
-    register,
+    control,
     onUserEditClose,
     onUserEditSubmit,
     onProfileImageAdd,
@@ -22,7 +22,7 @@ export const ProfileEditContainer: FC<ProfileEditModuleProps> = (props) => {
       userData={userData}
       isOpen={props?.isOpen}
       formState={formState}
-      register={register}
+      control={control}
       onClose={onUserEditClose}
       onSubmit={onUserEditSubmit}
       onProfileImageChange={onProfileImageAdd}

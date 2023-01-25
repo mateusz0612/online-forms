@@ -1,4 +1,4 @@
-import { IControl, IFormState, IRegister } from "libs/development-kit/form";
+import { IControl, IFormState } from "libs/development-kit/form";
 import { IQuestion, FormData, IAnswer } from "online-forms/types";
 
 export interface IHandlers {
@@ -13,7 +13,6 @@ export interface FormViewProps {
   control?: IControl<FormData>;
   handlers?: IHandlers;
   formState?: IFormState<FormData>;
-  register?: IRegister<FormData>;
   onQuestionClick?: (id: string) => void;
 }
 

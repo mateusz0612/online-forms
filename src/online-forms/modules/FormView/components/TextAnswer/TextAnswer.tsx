@@ -1,22 +1,24 @@
 import { FC } from "react";
-import { Stack, TextField } from "libs/ui";
+import { Stack, TextField, UncontrolledTextField } from "libs/ui";
 import { FormViewAnswerComponent } from "../../FormView.types";
 
 export const TextAnswer: FC<FormViewAnswerComponent> = ({
   questionId,
   isEditable,
   isValueEditDisabled,
-  register,
+  control,
 }) => {
   return (
     <Stack mt={1}>
-      {register ? (
+      {control ? (
         <TextField
+          name={questionId as never}
           disabled={isEditable || isValueEditDisabled}
-          {...register(questionId as never)}
+          placeholder="Enter answer..."
+          control={control}
         />
       ) : (
-        <TextField disabled={isEditable || isValueEditDisabled} />
+        <UncontrolledTextField disabled={isEditable || isValueEditDisabled} />
       )}
     </Stack>
   );

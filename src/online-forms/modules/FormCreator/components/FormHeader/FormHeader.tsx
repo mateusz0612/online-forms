@@ -1,17 +1,14 @@
 import { FC } from "react";
 import { TextField, Tile } from "libs/ui";
-import { IFormState, IRegister } from "libs/development-kit/form";
+import { IFormState, IControl } from "libs/development-kit/form";
 import { IFormHeaderValues } from "../../FormCreator.types";
 import * as Styled from "./FormHeader.styled";
 
 interface Props {
-  formState: IFormState<IFormHeaderValues>;
-  register: IRegister<IFormHeaderValues>;
+  control: IControl<IFormHeaderValues>;
 }
 
-export const FormHeader: FC<Props> = ({ formState, register }) => {
-  const { errors } = formState;
-
+export const FormHeader: FC<Props> = ({ control }) => {
   return (
     <Tile width="100%">
       <Styled.Wrapper>
@@ -20,25 +17,23 @@ export const FormHeader: FC<Props> = ({ formState, register }) => {
           (Provide title to let people the context of the form)
         </Styled.HelperText>
         <TextField
+          name="name"
           label="Title"
           placeholder="Enter title..."
-          error={!!errors?.name}
-          helperText={errors?.name?.message}
-          {...register("name")}
+          control={control}
         />
         <Styled.Heading align="left">Description</Styled.Heading>
         <Styled.HelperText align="left">
           (Provide description to let people know something about this form)
         </Styled.HelperText>
         <TextField
+          name="description"
           label="Description"
           placeholder="Enter description..."
-          error={!!errors?.description}
-          helperText={errors?.description?.message}
           inputMode="text"
           rows={5}
           multiline
-          {...register("description")}
+          control={control}
         />
       </Styled.Wrapper>
     </Tile>

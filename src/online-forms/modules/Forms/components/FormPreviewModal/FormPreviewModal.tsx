@@ -26,7 +26,11 @@ export const FormPreviewModal: FC<Props> = ({
         <Styled.Description>
           {currentPickedForm?.description}
         </Styled.Description>
-        <FormView questions={currentPickedForm?.questions} isEditable={false} />
+        <FormView
+          questions={currentPickedForm?.questions}
+          isEditable={false}
+          isValueEditDisabled={true}
+        />
       </Stack>
     </ConfirmationModal>
   );

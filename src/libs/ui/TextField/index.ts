@@ -1,1 +1,1 @@
-export { TextField } from "./TextField";
+export { TextField, UncontrolledTextField } from "./TextField";

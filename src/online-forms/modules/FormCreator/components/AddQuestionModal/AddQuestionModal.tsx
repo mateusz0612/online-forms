@@ -13,17 +13,14 @@ interface Props {
 
 export const AddQuestionModal: FC<QuestionFormProps & Props> = ({
   isOpen,
-  formState,
-  answerFormState,
-  control,
   currentPickedType,
   answers,
+  questionControl,
+  answerControl,
   onAddQuestionClick,
   onAddAnswerClick,
   onRemoveQuestionClick,
   onClose,
-  register,
-  answerRegister,
 }) => {
   return (
     <Styled.StyledModal
@@ -41,11 +38,8 @@ export const AddQuestionModal: FC<QuestionFormProps & Props> = ({
         <QuestionForm
           answers={answers}
           currentPickedType={currentPickedType}
-          control={control}
-          formState={formState}
-          answerFormState={answerFormState}
-          register={register}
-          answerRegister={answerRegister}
+          answerControl={answerControl}
+          questionControl={questionControl}
           onAddQuestionClick={onAddQuestionClick}
           onAddAnswerClick={onAddAnswerClick}
           onRemoveQuestionClick={onRemoveQuestionClick}

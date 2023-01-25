@@ -49,18 +49,22 @@ export const useQuestionForm = ({
   const [isQuestionModalOpen, setIsQuestionModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
-  const { register, handleSubmit, watch, reset, setValue, control, formState } =
-    useForm({
-      defaultValues: QUESTION_DEFAULT_VALUES,
-      validationSchema: questionValidationSchema,
-    });
+  const {
+    handleSubmit,
+    watch,
+    reset,
+    setValue,
+    control: questionControl,
+  } = useForm({
+    defaultValues: QUESTION_DEFAULT_VALUES,
+    validationSchema: questionValidationSchema,
+  });
 
   const {
-    register: answerRegister,
     handleSubmit: answerHandleSubmit,
     reset: answerReset,
     setError: setAnswerError,
-    formState: answerFormState,
+    control: answerControl,
   } = useForm({
     defaultValues: ANSWER_DEFAULT_VALUE,
     validationSchema: answerValidationSchema,
@@ -138,18 +142,15 @@ export const useQuestionForm = ({
 
   return {
     isQuestionModalOpen,
-    formState,
-    answerFormState,
-    control,
     answers,
     currentPickedType,
+    questionControl,
+    answerControl,
     onAddAnswerClick,
     onRemoveAnswerClick,
     onEditQuestionClick,
     onAddQuestionClick,
     onOpenQuestionModal,
     closeQuestionModal,
-    answerRegister,
-    register,
   } as const;
 };
