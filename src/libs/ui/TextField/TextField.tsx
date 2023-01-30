@@ -21,6 +21,7 @@ interface Props {
   multiline?: boolean;
   defaultValue?: boolean;
   disabled?: boolean;
+  disableErrorMessage?: boolean;
   control: Control<any>;
 }
 
@@ -33,6 +34,7 @@ export const TextField: FC<Props> = ({
   rows,
   multiline,
   disabled,
+  disableErrorMessage,
   defaultValue,
   control,
 }) => {
@@ -55,7 +57,7 @@ export const TextField: FC<Props> = ({
           disabled={disabled}
           multiline={multiline}
           error={!!error}
-          helperText={error?.message}
+          helperText={!disableErrorMessage && error?.message}
           ref={ref}
           onChange={onChange}
           onBlur={onBlur}

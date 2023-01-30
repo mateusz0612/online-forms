@@ -27,8 +27,8 @@ const DEFAULT_STATE: State = {
 };
 
 const GRAPH_COLORS = [
-  "rgba(80, 180, 50, 0.2)",
   "rgba(237, 86, 27, 0.2)",
+  "rgba(80, 180, 50, 0.2)",
   "rgba(221, 223, 0, 0.2)",
   "rgba(36, 203, 229, 0.2)",
   "rgba(100, 229, 114, 0.2)",
@@ -83,7 +83,7 @@ const getQuestionAnswersByPercentages = (questionAnswers: string[]) => {
   return precentages as Record<string, number>;
 };
 
-export const useFormAnswers = () => {
+export const useFormAnalyze = () => {
   const [state, setState] = useState(DEFAULT_STATE);
   const formPreviewRef = useRef<HTMLDivElement>();
 

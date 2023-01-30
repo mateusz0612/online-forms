@@ -5,7 +5,7 @@ import {
   FormAnswersPreview,
   QuestionAnswerGraph,
 } from "../components";
-import { useFormAnswers } from "../logic";
+import { useFormAnalyze } from "../logic";
 import styled from "styled-components";
 
 const Wrapper = styled(Stack)`
@@ -27,7 +27,7 @@ export const FormAnalyzeContainer: FC = () => {
     onPickedAnswerIdChange,
     onPickedGrahTypeChange,
     onQuestionClick,
-  } = useFormAnswers();
+  } = useFormAnalyze();
 
   return (
     <Wrapper width="100%" margin="auto" pl={5} pr={5} gap={2} mt={4}>

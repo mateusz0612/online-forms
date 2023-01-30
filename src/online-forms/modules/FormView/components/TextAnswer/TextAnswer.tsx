@@ -16,6 +16,7 @@ export const TextAnswer: FC<FormViewAnswerComponent> = ({
           disabled={isEditable || isValueEditDisabled}
           placeholder="Enter answer..."
           control={control}
+          disableErrorMessage
         />
       ) : (
         <UncontrolledTextField disabled={isEditable || isValueEditDisabled} />

@@ -30,7 +30,6 @@ export const FormQuestions: FC<Props> = ({
         questions={formData?.questions}
         control={control}
         formState={formState}
-        register={register}
       />
       <Styled.SubmitAnswers onClick={onFormSubmit} disabled={isFormPending}>
         Submit form
