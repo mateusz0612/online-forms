@@ -89,7 +89,7 @@ export const useFormAnalyze = () => {
 
   const { formId } = useParams<URLParams>();
 
-  const { control, register, setValue } = useForm<FormData>({});
+  const { control, setValue } = useForm<FormData>({});
 
   const { state: answersState } = useFetch<IFormAnswer[]>(
     [CacheKeys.answers, `${formId}`],
@@ -189,7 +189,6 @@ export const useFormAnalyze = () => {
     control,
     formPreviewRef,
     graphData,
-    register,
     onPickedAnswerIdChange,
     onPickedGrahTypeChange,
     onQuestionClick,

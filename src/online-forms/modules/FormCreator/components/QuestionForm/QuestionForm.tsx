@@ -55,25 +55,39 @@ export const QuestionForm: FC<QuestionFormProps> = ({
             ]}
           />
         </Stack>
-        <Stack justifyContent="center" alignItems="center">
+        <Styled.SwitchWrapper justifyContent="center" alignItems="center">
           <Styled.HelperText>Is this question required?</Styled.HelperText>
           <Switch
             name="required"
             control={questionControl}
             defaultValue={false}
           />
-        </Stack>
+        </Styled.SwitchWrapper>
       </Stack>
       {currentPickedType === "options" && (
         <>
-          <Stack width="52%" mt={2}>
+          <Stack width="100%" mt={2}>
             <Styled.HelperText>Add question options</Styled.HelperText>
-            <TextField
-              name="content"
-              label="Answer"
-              placeholder="Enter answer"
-              control={answerControl}
-            />
+            <Stack
+              flexDirection="row"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <TextField
+                name="content"
+                label="Answer"
+                placeholder="Enter answer"
+                control={answerControl}
+              />
+              <Styled.SwitchWrapper justifyContent="center" alignItems="center">
+                <Styled.HelperText>Multiple answers enabled?</Styled.HelperText>
+                <Switch
+                  name="multiple"
+                  control={questionControl}
+                  defaultValue={false}
+                />
+              </Styled.SwitchWrapper>
+            </Stack>
             <SecondaryButton
               style={{ width: "15%", marginTop: "10px" }}
               onClick={onAddAnswerClick}

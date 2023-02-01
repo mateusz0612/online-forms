@@ -35,8 +35,8 @@ export const TextField: FC<Props> = ({
   multiline,
   disabled,
   disableErrorMessage,
-  defaultValue,
   control,
+  defaultValue = "",
 }) => {
   return (
     <Controller
@@ -44,7 +44,7 @@ export const TextField: FC<Props> = ({
       name={name}
       defaultValue={defaultValue}
       render={({
-        field: { ref, onChange, onBlur, value },
+        field: { ref, onChange, onBlur, value = "" },
         fieldState: { error },
       }) => (
         <MaterialTextField

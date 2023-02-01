@@ -17,5 +17,9 @@ export interface FormViewProps {
 }
 
 export type FormViewAnswerComponent = Partial<
-  Omit<FormViewProps, "questions"> & { questionId: string; answers: IAnswer[] }
+  Omit<FormViewProps, "questions"> & {
+    questionId: string;
+    multiple: boolean;
+    answers: IAnswer[];
+  }
 >;

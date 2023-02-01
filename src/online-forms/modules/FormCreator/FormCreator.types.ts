@@ -1,4 +1,4 @@
-import { IControl, IFormState } from "libs/development-kit/form";
+import { IControl } from "libs/development-kit/form";
 import { IAnswer, IQuestion, QuesitonType } from "online-forms/types";
 
 export interface IFormHeaderValues {

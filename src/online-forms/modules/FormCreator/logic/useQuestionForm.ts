@@ -11,6 +11,7 @@ const QUESTION_DEFAULT_VALUES: IQuestion = {
   content: "",
   type: "options",
   required: false,
+  multiple: false,
   answers: [],
 };
 
@@ -111,7 +112,7 @@ export const useQuestionForm = ({
       (question) => question?.id === questionId
     );
 
-    const { answers, content, required, type, id } =
+    const { answers, content, required, multiple, type, id } =
       editedQuestion as IQuestion;
 
     setValue("id", id);
@@ -119,6 +120,7 @@ export const useQuestionForm = ({
     setValue("answers", answers);
     setValue("required", required);
     setValue("type", type);
+    setValue("multiple", multiple);
 
     openQuestionModal();
   };

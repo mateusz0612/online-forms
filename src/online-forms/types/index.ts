@@ -40,6 +40,7 @@ export interface IQuestion {
   content: string;
   type: QuesitonType;
   required: boolean;
+  multiple: boolean;
   answers: IAnswer[];
 }
 

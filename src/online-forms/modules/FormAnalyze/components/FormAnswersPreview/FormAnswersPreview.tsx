@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { Stack } from "libs/ui";
-import { IControl, IRegister } from "libs/development-kit/form";
+import { IControl } from "libs/development-kit/form";
 import { FormView } from "online-forms/modules/FormView";
 import { FormData, IQuestion } from "online-forms/types";
 import * as Styled from "./FormAnswersPreview.styled";
@@ -9,15 +9,11 @@ interface Props {
   questions: IQuestion[];
   control: IControl<FormData>;
   showPreview: boolean;
-  register: IRegister<FormData>;
   onQuestionClick: (id: string) => void;
 }
 
 export const FormAnswersPreview = forwardRef(
-  (
-    { questions, control, showPreview, register, onQuestionClick }: Props,
-    ref
-  ) => {
+  ({ questions, control, showPreview, onQuestionClick }: Props, ref) => {
     return (
       <Styled.Wrapper>
         <Styled.ScrollableContent ref={ref}>
@@ -29,7 +25,6 @@ export const FormAnswersPreview = forwardRef(
                 control={control}
                 isEditable={false}
                 onQuestionClick={onQuestionClick}
-                register={register}
                 isValueEditDisabled
               />
             ) : (

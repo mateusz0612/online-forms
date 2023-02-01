@@ -1,1 +1,3 @@
-export { ControlledRadio, Radio } from "./Radio";
+export { RadioGroup, UncontrolledRadioGroup } from "./RadioGroup";
+
+export type { IRadioOption, IRadioOptions } from "./RadioGroup";

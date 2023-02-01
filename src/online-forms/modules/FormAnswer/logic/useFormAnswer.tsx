@@ -34,9 +34,32 @@ const mapUndefinedFormValues = (formData: FormData) => {
   }, {});
 };
 
+const createFormDefaultValues = (questions: IQuestion[]) => {
+  const defaultValues = questions?.reduce((currentDefaultValues, question) => {
+    const { id, multiple } = question;
+
+    return {
+      ...currentDefaultValues,
+      [id]: multiple ? [] : "",
+    };
+  }, {});
+
+  return defaultValues;
+};
+
 const createFormValidationSchema = (questions: IQuestion[]) => {
   const validationSchema = questions?.reduce((currentSchema, question) => {
-    const { required, id } = question;
+    const { required, multiple, id } = question;
+
+    if (required && multiple) {
+      return {
+        ...currentSchema,
+        [id]: validation
+          .array()
+          .of(validation.string())
+          .min(1, "Choose atleast one answer"),
+      };
+    }
 
     if (required) {
       return {
@@ -83,12 +106,14 @@ export const useFormAnswer = () => {
       },
     });
 
-  const { control, formState, register, handleSubmit } = useForm<FormData>({
-    validationSchema: createFormValidationSchema(
-      formFetchState?.data?.questions
-    ),
-    reValidateMode: "onChange",
-  });
+  const { control, formState, register, handleSubmit, getValues } =
+    useForm<FormData>({
+      defaultValues: createFormDefaultValues(formFetchState?.data?.questions),
+      validationSchema: createFormValidationSchema(
+        formFetchState?.data?.questions
+      ),
+      reValidateMode: "onChange",
+    });
 
   const fetchState = combineFetchStates<IForm, IUserData>(
     formFetchState,
@@ -98,7 +123,7 @@ export const useFormAnswer = () => {
   const onFormSubmit = handleSubmit(async (data) => {
     const formAnswersData: Omit<FormAnswerWithoutId, "id"> = {
       formId: formFetchState?.data?.id,
-      answers: mapUndefinedFormValues(data),
+      answers: data,
     };
 
     await addAnswer(formAnswersData);
