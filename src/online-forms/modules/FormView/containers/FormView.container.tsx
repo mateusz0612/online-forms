@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { HelperText, Stack } from "libs/ui";
-import { IControl, IRegister } from "libs/development-kit/form";
+import { IControl } from "libs/development-kit/form";
 import { FormData } from "online-forms/types";
 import {
   EditHandlers,
@@ -28,7 +28,7 @@ export const FormViewContainer: FC<FormViewProps> = ({
 }) => {
   return (
     <Stack>
-      {questions?.map(({ id, content, required, answers, type }) => (
+      {questions?.map(({ id, content, required, multiple, answers, type }) => (
         <Styled.Wrapper
           key={id}
           onClickEnabled={!!onQuestionClick}
@@ -39,9 +39,11 @@ export const FormViewContainer: FC<FormViewProps> = ({
             <Styled.QuestionHeader isQuestionRequired={required}>
               {content}
             </Styled.QuestionHeader>
+            {multiple && <HelperText text="You can choose multiple answers" />}
             {
               getTypeComponent({
                 answers,
+                multiple,
                 isEditable,
                 isValueEditDisabled,
                 questionId: id,
@@ -54,6 +56,7 @@ export const FormViewContainer: FC<FormViewProps> = ({
                   `${id}`
                 ]?.message
               }
+              apperance="error"
             />
           </Styled.QuestionWrapper>
         </Styled.Wrapper>

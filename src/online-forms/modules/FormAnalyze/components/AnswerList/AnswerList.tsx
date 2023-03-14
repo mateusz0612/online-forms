@@ -11,6 +11,12 @@ interface Props {
   onPickedAnswerIdChange: (id: string) => void;
 }
 
+const Loading: FC = () => (
+  <Stack width="100%" alignItems="center">
+    <Progress />
+  </Stack>
+);
+
 export const AnswerList: FC<Props> = ({
   answerWithFormState,
   pickedAnswerId,
@@ -21,11 +27,7 @@ export const AnswerList: FC<Props> = ({
       <h3>Answers</h3>
       <Renderer
         state={answerWithFormState}
-        pending={() => (
-          <Stack width="100%" alignItems="center">
-            <Progress />
-          </Stack>
-        )}
+        pending={() => <Loading />}
         fail={() => <p>Error occured</p>}
       >
         {(answersWithForm) => {

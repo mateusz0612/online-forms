@@ -40,6 +40,7 @@ export interface IQuestion {
   content: string;
   type: QuesitonType;
   required: boolean;
+  multiple: boolean;
   answers: IAnswer[];
 }
 
@@ -58,7 +59,7 @@ export interface IFormAnswer {
   answers: FormData;
 }
 
-export type FormData = Record<string, string>;
+export type FormData = Record<string, string | string[]>;
 
 export enum BooleanAnswersKeys {
   true = "Yes",

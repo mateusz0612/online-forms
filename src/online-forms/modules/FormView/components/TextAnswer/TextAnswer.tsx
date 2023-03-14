@@ -12,7 +12,7 @@ export const TextAnswer: FC<FormViewAnswerComponent> = ({
     <Stack mt={1}>
       {control ? (
         <TextField
-          name={questionId as never}
+          name={`${questionId}`}
           disabled={isEditable || isValueEditDisabled}
           placeholder="Enter answer..."
           control={control}

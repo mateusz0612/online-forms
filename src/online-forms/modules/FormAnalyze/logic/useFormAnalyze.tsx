@@ -2,7 +2,8 @@ import { useState, useRef } from "react";
 import { useFetch, combineFetchStates } from "libs/development-kit/api";
 import { useParams } from "libs/development-kit/routing";
 import { useForm } from "libs/development-kit/form";
-import { FormsService } from "online-forms/services";
+import { GraphProps } from "libs/ui";
+import { FormsService, AnswersService } from "online-forms/services";
 import {
   IForm,
   IFormAnswer,
@@ -10,19 +11,19 @@ import {
   FormData,
   IQuestion,
 } from "online-forms/types";
-import { IQuestionAnswersGraphData, Graph } from "../FormAnalyze.types";
+import { GraphType } from "../FormAnalyze.types";
 
 type URLParams = { formId: string };
 
 interface State {
   pickedAnswerId: string;
-  pickedGraphType: Graph;
+  pickedGraphType: GraphType;
   pickedQuestion: IQuestion | null;
 }
 
 const DEFAULT_STATE: State = {
   pickedAnswerId: "",
-  pickedGraphType: Graph.values,
+  pickedGraphType: GraphType.values,
   pickedQuestion: null,
 };
 
@@ -65,7 +66,7 @@ const getQuestionAnswersByCount = (questionAnswers: string[]) => {
 };
 
 const getQuestionAnswersByPercentages = (questionAnswers: string[]) => {
-  const counter = getQuestionAnswersByCount(questionAnswers) || [];
+  const counter = getQuestionAnswersByCount(questionAnswers) || {};
   const questionsCount = questionAnswers?.length;
 
   const precentages = Object.keys(counter)?.reduce(
@@ -89,17 +90,17 @@ export const useFormAnalyze = () => {
 
   const { formId } = useParams<URLParams>();
 
-  const { control, register, setValue } = useForm<FormData>({});
+  const { control, setValue } = useForm<FormData>({});
 
   const { state: answersState } = useFetch<IFormAnswer[]>(
     [CacheKeys.answers, `${formId}`],
-    async () => await FormsService.getFormAnswers(`${formId}`),
+    async () => await AnswersService.get(`${formId}`),
     { cacheTime: 0 }
   );
 
   const { state: formState } = useFetch<IForm>(
     [CacheKeys.form, `${formId}`],
-    async () => await FormsService.getForm(`${formId}`)
+    async () => await FormsService.get(`${formId}`)
   );
 
   const answerWithFormState = combineFetchStates<IFormAnswer[], IForm>(
@@ -113,15 +114,15 @@ export const useFormAnalyze = () => {
   );
 
   const questionAnswersByCount = getQuestionAnswersByCount(
-    pickedQuestionAnswers
+    pickedQuestionAnswers?.flat()
   );
 
   const questionAnswersByPrecentage = getQuestionAnswersByPercentages(
-    pickedQuestionAnswers
+    pickedQuestionAnswers?.flat()
   );
 
   const graphTypeData =
-    state.pickedGraphType === Graph.values
+    state.pickedGraphType === GraphType.values
       ? questionAnswersByCount
       : questionAnswersByPrecentage;
 
@@ -129,20 +130,22 @@ export const useFormAnalyze = () => {
 
   const graphDataValues = Object.values(graphTypeData || []);
 
-  const graphData: IQuestionAnswersGraphData = {
-    labels: graphDataLabels,
-    datasets: [
-      {
-        label:
-          state.pickedGraphType === Graph.values
-            ? "# of answers"
-            : "% of answers",
-        data: graphDataValues,
-        backgroundColor: GRAPH_COLORS,
-        borderColor: GRAPH_COLORS,
-        borderWidth: 1,
-      },
-    ],
+  const graphData: GraphProps = {
+    data: {
+      labels: graphDataLabels,
+      datasets: [
+        {
+          label:
+            state.pickedGraphType === GraphType.values
+              ? "# of answers"
+              : "% of answers",
+          data: graphDataValues,
+          backgroundColor: GRAPH_COLORS,
+          borderColor: GRAPH_COLORS,
+          borderWidth: 1,
+        },
+      ],
+    },
   };
 
   const setDefaultPreviewFormValues = (answers: FormData) => {
@@ -179,7 +182,7 @@ export const useFormAnalyze = () => {
     setState((prevState) => ({ ...prevState, pickedQuestion: question }));
   };
 
-  const onPickedGrahTypeChange = (newGraphType: Graph) => {
+  const onPickedGrahTypeChange = (newGraphType: GraphType) => {
     setState((prevState) => ({ ...prevState, pickedGraphType: newGraphType }));
   };
 
@@ -189,7 +192,6 @@ export const useFormAnalyze = () => {
     control,
     formPreviewRef,
     graphData,
-    register,
     onPickedAnswerIdChange,
     onPickedGrahTypeChange,
     onQuestionClick,

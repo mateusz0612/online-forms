@@ -23,7 +23,6 @@ export const FormAnalyzeContainer: FC = () => {
     control,
     formPreviewRef,
     graphData,
-    register,
     onPickedAnswerIdChange,
     onPickedGrahTypeChange,
     onQuestionClick,
@@ -42,7 +41,6 @@ export const FormAnalyzeContainer: FC = () => {
         control={control}
         showPreview={state?.pickedAnswerId !== ""}
         onQuestionClick={onQuestionClick}
-        register={register}
       />
       <QuestionAnswerGraph
         pickedQuestion={state?.pickedQuestion}

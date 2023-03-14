@@ -16,7 +16,7 @@ import { IUserData } from "online-forms/types";
 import { id } from "libs/development-kit/helpers/id";
 
 export const UserService = {
-  getUserData: async (id: string) => {
+  get: async (id: string) => {
     const q = query(collection(db, Collections.users), where("id", "==", id));
 
     const userDoc = await getDocs(q);
@@ -25,7 +25,7 @@ export const UserService = {
 
     return user as IUserData;
   },
-  editUser: async (userData: IUserData, profileImage: File | null) => {
+  edit: async (userData: IUserData, profileImage: File | null) => {
     const userDoc = doc(db, Collections.users, userData?.id);
 
     if (profileImage) {

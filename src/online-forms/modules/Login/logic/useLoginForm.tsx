@@ -58,16 +58,13 @@ export const useLoginForm = () => {
     }
   };
 
-  const onSubmit = handleSubmit(
-    async (credentials) => {
-      await loginUser(
-        credentials,
-        () => navigate(Paths.Dashboard),
-        (error) => onError(error?.code)
-      );
-    },
-    (errors) => console.log(errors)
-  );
+  const onSubmit = handleSubmit(async (credentials) => {
+    await loginUser(
+      credentials,
+      () => navigate(Paths.Dashboard),
+      (error) => onError(error?.code)
+    );
+  });
 
   return {
     control,

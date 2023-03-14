@@ -1,5 +1,10 @@
 import { FC } from "react";
-import { ControlledRadio, Radio, Stack } from "libs/ui";
+import {
+  RadioGroup,
+  UncontrolledRadioGroup,
+  IRadioOptions,
+  Stack,
+} from "libs/ui";
 import { BooleanAnswersKeys } from "online-forms/types";
 import { FormViewAnswerComponent } from "../../FormView.types";
 
@@ -9,30 +14,30 @@ export const BooleanAnswers: FC<FormViewAnswerComponent> = ({
   isEditable,
   isValueEditDisabled,
 }) => {
+  const options: IRadioOptions = [
+    {
+      id: BooleanAnswersKeys.false,
+      label: BooleanAnswersKeys.false,
+      value: BooleanAnswersKeys.false,
+    },
+    {
+      id: BooleanAnswersKeys.true,
+      label: BooleanAnswersKeys.true,
+      value: BooleanAnswersKeys.true,
+    },
+  ];
+
   return (
     <Stack>
       {control ? (
-        <>
-          <ControlledRadio
-            name={`${questionId}`}
-            control={control}
-            value={BooleanAnswersKeys.true}
-            disabled={isEditable || isValueEditDisabled}
-            label="Yes"
-          />
-          <ControlledRadio
-            name={`${questionId}`}
-            control={control}
-            value={BooleanAnswersKeys.false}
-            disabled={isEditable || isValueEditDisabled}
-            label="No"
-          />
-        </>
+        <RadioGroup
+          name={`${questionId}`}
+          control={control}
+          options={options}
+          disabled={isEditable || isValueEditDisabled}
+        />
       ) : (
-        <>
-          <Radio label="Yes" checked={false} />
-          <Radio label="No" checked={false} />
-        </>
+        <UncontrolledRadioGroup options={options} />
       )}
     </Stack>
   );
