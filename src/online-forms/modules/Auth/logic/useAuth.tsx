@@ -14,7 +14,7 @@ export const useAuth = () => {
 
   const { state: userDataFetchState } = useFetch(
     [CacheKeys.user, `${user?.uid}`],
-    async () => await UserService.getUserData(`${user?.uid}`)
+    async () => await UserService.get(`${user?.uid}`)
   );
 
   const loading =

@@ -8,7 +8,7 @@ import { useParams, useNavigate } from "libs/development-kit/routing";
 import { useForm } from "libs/development-kit/form";
 import { toast } from "libs/development-kit/toasts";
 import * as validation from "libs/development-kit/validation";
-import { FormsService } from "online-forms/services";
+import { FormsService, AnswersService } from "online-forms/services";
 import { UserService } from "online-forms/services";
 import { useAuthContext } from "online-forms/modules/Auth";
 import { Paths } from "online-forms/routes";
@@ -86,18 +86,18 @@ export const useFormAnswer = () => {
 
   const { state: formFetchState } = useFetch<IForm>(
     [CacheKeys.form, `${formId}`],
-    async () => await FormsService.getForm(`${formId}`)
+    async () => await FormsService.get(`${formId}`)
   );
 
   const { state: userFetchState } = useFetch<IUserData>(
     [CacheKeys.user, formFetchState?.data?.userId],
-    async () => await UserService.getUserData(formFetchState?.data?.userId),
+    async () => await UserService.get(formFetchState?.data?.userId),
     { enabled: !!formFetchState?.data?.userId }
   );
 
   const { mutateAsync: addAnswer, isLoading: isFormPending } =
     usePost<FormAnswerWithoutId>({
-      mutationFn: async (data) => await FormsService.createFormAnswer(data),
+      mutationFn: async (data) => await AnswersService.create(data),
       onSuccess: () => {
         setIsSuccessModalOpen(true);
       },

@@ -38,7 +38,7 @@ export const useFormCreator = ({
     data,
     isLoading: isFormSavePending,
   } = usePost<FromWithoutId, FormCreatedResponse>({
-    mutationFn: async (data) => await FormsService.createForm(data),
+    mutationFn: async (data) => await FormsService.create(data),
     onSuccess: async () => {
       await queryClient.invalidateQueries([CacheKeys.forms, `${user?.uid}`]);
       setIsFormCreatedConfirmationVisible(true);

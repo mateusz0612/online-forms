@@ -6,18 +6,7 @@ export type AnswerWithFormState = State<{
   secondStateData: IForm;
 }>;
 
-export interface IQuestionAnswersGraphData {
-  labels: string[];
-  datasets: {
-    label: string;
-    data: number[];
-    backgroundColor: string[];
-    borderColor: string[];
-    borderWidth: number;
-  }[];
-}
-
-export enum Graph {
+export enum GraphType {
   values = "values",
   percentages = "percentages",
 }

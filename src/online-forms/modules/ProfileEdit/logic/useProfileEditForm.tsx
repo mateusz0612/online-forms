@@ -54,7 +54,7 @@ export const useProfileEditForm = ({ onClose }: ProfileEditModuleProps) => {
   const { mutateAsync: editUser, isLoading: isUserEditingPending } =
     usePost<IUserData>({
       mutationFn: async (userData) => {
-        await UserService.editUser(userData, profileImage);
+        await UserService.edit(userData, profileImage);
         await queryClient.invalidateQueries([
           CacheKeys.user,
           `${userData?.id}`,

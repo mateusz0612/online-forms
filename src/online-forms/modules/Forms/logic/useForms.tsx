@@ -28,14 +28,14 @@ export const useForms = () => {
 
   const forms = useFetch(
     [CacheKeys.forms, `${user?.uid}`],
-    async () => await FormsService.userFormsList(`${user?.uid}`)
+    async () => await FormsService.userList(`${user?.uid}`)
   );
 
   const { mutateAsync: deleteForm, isLoading: isFormDeletePending } = usePost<{
     id: string;
   }>({
     mutationFn: async ({ id }) => {
-      await FormsService.deleteForm(id);
+      await FormsService.delete(id);
       await forms?.refetch();
     },
     onSuccess: () => {
